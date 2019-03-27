@@ -7,10 +7,12 @@ const msp = state => {
     user: {
       email: "",
       password: "",
-    }
+    },
+    formMessage: "Already have an account?",
+    formLink: "/login",
+    formName: "Sign In"
   });
 };
-
 const mdp = dispatch => {
   return ({
     submitAction: user => dispatch(createNewUser(user)),

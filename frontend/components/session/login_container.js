@@ -7,7 +7,10 @@ const msp = state => {
     user: {
       email: "",
       password: "",
-    }
+    },
+    formMessage: "Don't have an account?",
+    formLink: "/signup",
+    formName: "Create Account"
   });
 };
 
