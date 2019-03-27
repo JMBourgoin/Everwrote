@@ -13,3 +13,93 @@
  *= require_tree .
  *= require_self
  */
+
+ html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.signup-form-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 120px auto;
+  width: 530px;
+  height: 700px;
+  background-color: white;
+  box-shadow: 1px 1px 18px darkgrey;
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.form-header h2{
+  font-size: 50px;
+  font-weight: bolder;
+  font-family: Georgia, 'Times New Roman', Times, serif
+  margin: 10px;
+}
+
+.form-header p {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color:  rgb(90, 90, 90);
+  font-weight: light;
+  margin: 10px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  width: 330px;
+}
+
+.input-fields {
+  border-radius: 8px;
+  height: 30px;
+  width: 100px:
+  box-sizing: border-box;
+  margin: 8px 0;
+  border: 2px solid;
+  border-color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.form-button {
+  height: 55px;
+  color: white;
+  background-color: #00bd56;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.logo {
+  width: 20%;
+}
+
+
+

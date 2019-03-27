@@ -147,33 +147,9 @@ var logoutUser = function logoutUser() {
   !*** ./frontend/components/app.jsx ***!
   \*************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _session_login_container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session/login_container */ "./frontend/components/session/login_container.js");
-/* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-
-var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
-    className: "app-container"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "/login",
-    component: _session_login_container__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "/signup",
-    component: _session_signup_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (App);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Volumes/JB HD/Everwrote/frontend/components/app.jsx: Unexpected token (9:8)\n\n\u001b[0m \u001b[90m  7 | \u001b[39m  \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m    \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"app-container>\"\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33mSwitch\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mRoute\u001b[39m path\u001b[33m=\u001b[39m\u001b[32m\"/login\"\u001b[39m component\u001b[33m=\u001b[39m{\u001b[33mLoginFormContainer\u001b[39m} \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mRoute\u001b[39m path\u001b[33m=\u001b[39m\u001b[32m\"/signup\"\u001b[39m component\u001b[33m=\u001b[39m{\u001b[33mSignupFormContainer\u001b[39m} \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at Object.raise (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3851:17)\n    at Object.unexpected (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5165:16)\n    at Object.jsxParseIdentifier (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3350:12)\n    at Object.jsxParseNamespacedName (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3360:23)\n    at Object.jsxParseAttribute (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3443:22)\n    at Object.jsxParseOpeningElementAfterName (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3464:28)\n    at Object.jsxParseOpeningElementAt (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3457:17)\n    at Object.jsxParseElementAt (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3489:33)\n    at Object.jsxParseElement (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3558:17)\n    at Object.parseExprAtom (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3565:19)\n    at Object.parseExprSubscripts (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5916:23)\n    at Object.parseMaybeUnary (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5896:21)\n    at Object.parseExprOps (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5783:23)\n    at Object.parseMaybeConditional (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5756:23)\n    at Object.parseMaybeAssign (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5703:21)\n    at Object.parseParenAndDistinguishExpression (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:6468:28)\n    at Object.parseExprAtom (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:6262:21)\n    at Object.parseExprAtom (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:3570:20)\n    at Object.parseExprSubscripts (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5916:23)\n    at Object.parseMaybeUnary (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5896:21)\n    at Object.parseExprOps (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5783:23)\n    at Object.parseMaybeConditional (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5756:23)\n    at Object.parseMaybeAssign (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5703:21)\n    at Object.parseExpression (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:5651:23)\n    at Object.parseReturnStatement (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:7671:28)\n    at Object.parseStatementContent (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:7341:21)\n    at Object.parseStatement (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:7293:17)\n    at Object.parseBlockOrModuleBlockBody (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:7879:25)\n    at Object.parseBlockBody (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:7866:10)\n    at Object.parseBlock (/Volumes/JB HD/Everwrote/node_modules/@babel/parser/lib/index.js:7850:10)");
 
 /***/ }),
 
@@ -204,180 +180,6 @@ var Root = function Root(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Root);
-
-/***/ }),
-
-/***/ "./frontend/components/session/login_container.js":
-/*!********************************************************!*\
-  !*** ./frontend/components/session/login_container.js ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
-/* harmony import */ var _signup_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup_form */ "./frontend/components/session/signup_form.jsx");
-
-
-
-
-var msp = function msp(state) {
-  return {
-    user: {
-      email: "",
-      password: ""
-    }
-  };
-};
-
-var mdp = function mdp(dispatch) {
-  return {
-    submitAction: function submitAction(user) {
-      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewSession"])(user));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_signup_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/session/signup_container.js":
-/*!*********************************************************!*\
-  !*** ./frontend/components/session/signup_container.js ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
-/* harmony import */ var _signup_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup_form */ "./frontend/components/session/signup_form.jsx");
-
-
-
-
-var msp = function msp(state) {
-  return {
-    user: {
-      email: "",
-      password: ""
-    }
-  };
-};
-
-var mdp = function mdp(dispatch) {
-  return {
-    submitAction: function submitAction(user) {
-      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewUser"])(user));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_signup_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/session/signup_form.jsx":
-/*!*****************************************************!*\
-  !*** ./frontend/components/session/signup_form.jsx ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var SignUpForm =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(SignUpForm, _React$Component);
-
-  function SignUpForm(props) {
-    var _this;
-
-    _classCallCheck(this, SignUpForm);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SignUpForm).call(this, props));
-    _this.state = _this.props.user;
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(SignUpForm, [{
-    key: "display",
-    value: function display(field) {
-      var _this2 = this;
-
-      return function (e) {
-        _this2.setState(_defineProperty({}, field, e.target.value));
-      };
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      this.props.submitAction(this.state);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "signup-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "#",
-        alt: "everwrote-logo"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Everwrote"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Remember everything important.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.email,
-        onChange: this.display('email'),
-        placholder: "Email"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
-        value: this.state.password,
-        onChange: this.display('password')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "form-button",
-        type: "submit",
-        value: "Continue"
-      })));
-    }
-  }]);
-
-  return SignUpForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (SignUpForm);
 
 /***/ }),
 
@@ -43085,7 +42887,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

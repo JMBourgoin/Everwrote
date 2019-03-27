@@ -20,25 +20,28 @@ class SignUpForm extends React.Component {
 
   render(){
     return (
-    <div className="signup-form">
+    <div className="signup-form-container">
 
       <div className="form-header">
-        <img src="#" alt="everwrote-logo"/>
+          <img className="logo" src={window.birdwordsPic} />
         <h2>Everwrote</h2>
         <p>Remember everything important.</p>
       </div>
 
-      <form onSubmit={this.handleSubmit}>
+      <form className="signup-form" onSubmit={this.handleSubmit}>
         <input 
+          className="input-fields"
           type="text" 
           value={this.state.email}
           onChange={this.display('email')}
-          placholder="Email"
+          placeholder="Email"
         />
-        <input
+        <input 
+          className="input-fields"
           type="password"
           value={this.state.password}
           onChange={this.display('password')}
+          placeholder="Password"
         />
         <input 
           className="form-button" 

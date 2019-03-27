@@ -5,7 +5,7 @@ import React from 'react';
 
 const App = () => {
   return (
-    <div className="app-container">
+    <div className="app-container>"
         <div>
             <Switch>
                 <Route path="/login" component={LoginFormContainer} />
