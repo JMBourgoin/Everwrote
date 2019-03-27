@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-    validates :username, :session_token, :password_digest, presence: true
+    validates :session_token, :password_digest, presence: true
     validates :email, presence: true 
     # format: {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i} 
-    validates :username, uniqueness: true
     validates :password, length: { minimum: 6 }, allow_nil: true
 
     attr_reader :password
@@ -17,8 +16,8 @@ class User < ApplicationRecord
         bcrypt_password.is_password?(password)
     end
 
-    def self.find_by_credentials(username, password)
-        user = User.find_by(name: name)
+    def self.find_by_credentials(email, password)
+        user = User.find_by(email: email)
         return nil unless user && user.is_password?(password)
         user
     end

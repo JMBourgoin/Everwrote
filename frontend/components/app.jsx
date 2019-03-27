@@ -1,6 +1,9 @@
+import LoginFormContainer from './session/login_container';
+import SignupFormContainer from './session/signup_container';
 const App = () => (
     <div>
-        <h1>Hello from the App component</h1>
+        <Route path="/login" component={LoginFormContainer} />
+        <Route path="/signup" component={SignupFormContainer} />
     </div>
 )
 
