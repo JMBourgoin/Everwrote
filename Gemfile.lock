@@ -221,7 +221,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
-  jquery-rails
+  jquery-rails (~> 4.3.3)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   pry-rails

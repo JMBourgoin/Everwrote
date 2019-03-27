@@ -11,7 +11,7 @@ class SignUpForm extends React.Component {
       this.setState({[field]: e.target.value });
     };
   }
-}
+
 
   handleSubmit(e){
     e.preventDefault();
@@ -19,6 +19,7 @@ class SignUpForm extends React.Component {
   }
 
   render(){
+    return (
     <div className="signup-form">
 
       <div className="form-header">
@@ -46,7 +47,8 @@ class SignUpForm extends React.Component {
         />
       </form>
     </div>
-  
+    )
   }
+}
 
   export default SignUpForm;
