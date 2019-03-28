@@ -26,7 +26,7 @@ class SignUpForm extends React.Component {
         <div className="signup-form-container">
 
           <div className="form-header">
-              <img className="logo" src={window.logoPic} />
+              <img className="logo" src={window.logopic2} />
             <h2>Everwrote</h2>
             <p>Remember everything important.</p>
           </div>

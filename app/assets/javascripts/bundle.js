@@ -157,6 +157,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_login_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session/login_container */ "./frontend/components/session/login_container.js");
 /* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.js");
 /* harmony import */ var _nav_bar_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nav_bar_container */ "./frontend/components/nav_bar_container.jsx");
+/* harmony import */ var _splash_page_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./splash_page_container */ "./frontend/components/splash_page_container.jsx");
+/* harmony import */ var _splash_2_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./splash_2_container */ "./frontend/components/splash_2_container.jsx");
+
+
 
 
 
@@ -167,8 +171,17 @@ var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-container"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
+    exact: true,
     path: "/",
     component: _nav_bar_container__WEBPACK_IMPORTED_MODULE_4__["NavBarContainer"]
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
+    exact: true,
+    path: "/",
+    component: _splash_page_container__WEBPACK_IMPORTED_MODULE_5__["SplashPageContainer"]
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
+    exact: true,
+    path: "/",
+    component: _splash_2_container__WEBPACK_IMPORTED_MODULE_6__["Splash2Container"]
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
     path: "/login",
     component: _session_login_container__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -199,6 +212,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var NavBarContainer = function NavBarContainer() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "nav-parent-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "nav-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "nav-logo"
@@ -215,7 +230,7 @@ var NavBarContainer = function NavBarContainer() {
   }, " or "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-login",
     to: '/login'
-  }, "Log in")))));
+  }, "Log in"))))));
 };
 
 /***/ }),
@@ -407,7 +422,7 @@ function (_React$Component) {
         className: "form-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo",
-        src: window.logoPic
+        src: window.logopic2
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Everwrote"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Remember everything important.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "signup-form",
         onSubmit: this.handleSubmit
@@ -440,6 +455,75 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SignUpForm);
+
+/***/ }),
+
+/***/ "./frontend/components/splash_2_container.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/splash_2_container.jsx ***!
+  \****************************************************/
+/*! exports provided: Splash2Container */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Splash2Container", function() { return Splash2Container; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Splash2Container = function Splash2Container() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash2-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash2-image"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.splashtwo,
+    alt: "Everwrotebrain"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Focus on what matters most"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash2-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "st1"
+  }, "Manage everything from big projects to personal moments."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "st2"
+  }, "Capture ideas and inspiration in notes, voice, and pictures."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "st3"
+  }, "Never lose track of your tasks.")));
+};
+
+/***/ }),
+
+/***/ "./frontend/components/splash_page_container.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/splash_page_container.jsx ***!
+  \*******************************************************/
+/*! exports provided: SplashPageContainer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SplashPageContainer", function() { return SplashPageContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+var SplashPageContainer = function SplashPageContainer() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-image"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.splashHero,
+    alt: "Everwrote Hero"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Feel organized without the effort"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Everwrote helps you capture and prioritize ideas, projects, and to-do lists, so nothing falls through the cracks."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "splash-signup",
+    to: '/signup'
+  }, "SIGN UP FOR FREE"))));
+};
 
 /***/ }),
 
