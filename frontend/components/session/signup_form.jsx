@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+
 class SignUpForm extends React.Component {
   constructor(props){
     super(props);
     this.state = this.props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   display(field){
@@ -19,20 +21,30 @@ class SignUpForm extends React.Component {
     this.props.submitAction(this.state);
   }
 
+  renderErrors() {
+    return (
+      <ul className="errors">
+        {this.props.errors.map((error, index) => (
+          <li key={`${index}`}>{error}</li>
+        ))}
+      </ul>
+    );
+  }
+
   render(){
     return (
     
-      <div className="form-background">
-        <div className="signup-form-container">
+      <div className={this.props.background}>
+        <div className={this.props.klass}>
 
           <div className="form-header">
-              <img className="logo" src={window.logopic2} />
+              <img className="logo" src={this.props.logo} />
             <h2>Everwrote</h2>
             <p>Remember everything important.</p>
           </div>
 
           <form className="signup-form" onSubmit={this.handleSubmit}>
-            
+            {this.renderErrors()}
             <input 
               className="input-fields"
               type="text" 

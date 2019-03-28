@@ -12,10 +12,9 @@ const msp = state => {
     formMessage: "Already have an account?",
     formLink: "/login",
     formName: "Sign In",
-    background: "form-background",
-    klass: "signup-form-container",
-    header: "form-header",
-    logo: `${window.logopic2}`
+    background: "bottom-signup",
+    klass: "bottom-signup-form",
+    header: "bottom-header",
   });
 };
 const mdp = dispatch => {

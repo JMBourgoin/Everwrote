@@ -8,9 +8,14 @@ const msp = state => {
       email: "",
       password: "",
     },
+    errors: state.errors.login,
     formMessage: "Don't have an account?",
     formLink: "/signup",
-    formName: "Create Account"
+    formName: "Create Account",
+    background: "form-background",
+    klass: "signup-form-container",
+    header: "form-header",
+    logo: `${window.logopic2}`
   });
 };
 

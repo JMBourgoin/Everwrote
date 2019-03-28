@@ -4,7 +4,7 @@ export const Splash2Container = () => {
   return (
     <div className="splash2-container">
       <div className="splash2-image">
-        <img src={window.splashtwo} alt="Everwrotebrain" />
+        <img className="splash2-image" src={window.splashtwo} alt="Everwrotebrain" />
       </div>
       <h2>Focus on what matters most</h2>
       <div className="splash2-text">
