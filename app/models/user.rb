@@ -1,11 +1,13 @@
 class User < ApplicationRecord
     validates :session_token, :password_digest, presence: true
-    validates :email, presence: true 
+    validates :email, presence: true, uniqueness: true
     # format: {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i} 
     validates :password, length: { minimum: 6 }, allow_nil: true
 
     attr_reader :password
     after_initialize :ensure_session_token
+
+    has_many :notebooks, dependent: :destroy
 
     def password=(password)
         @password = password

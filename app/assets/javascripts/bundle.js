@@ -86,6 +86,105 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/notebooks.js":
+/*!***************************************!*\
+  !*** ./frontend/actions/notebooks.js ***!
+  \***************************************/
+/*! exports provided: RECEIVE_ALL_NOTEBOOKS, RECEIVE_NOTEBOOK, DELETE_NOTEBOOK, receiveErrors, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_NOTEBOOKS", function() { return RECEIVE_ALL_NOTEBOOKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_NOTEBOOK", function() { return RECEIVE_NOTEBOOK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_NOTEBOOK", function() { return DELETE_NOTEBOOK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllNotebooks", function() { return fetchAllNotebooks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchNotebook", function() { return fetchNotebook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNotebook", function() { return createNotebook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateNotebook", function() { return updateNotebook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteNotebook", function() { return deleteNotebook; });
+/* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./frontend/util/api_util.js");
+
+var RECEIVE_ALL_NOTEBOOKS = "FETCH_ALL_NOTEBOOKS";
+var RECEIVE_NOTEBOOK = "FETCH_NOTEBOOK";
+var DELETE_NOTEBOOK = "DELETE_NOTEBOOK";
+
+var receiveAllNotebooks = function receiveAllNotebooks(notebooks) {
+  return {
+    type: RECEIVE_ALL_NOTEBOOKS,
+    notebooks: notebooks
+  };
+};
+
+var receiveNotebook = function receiveNotebook(notebook) {
+  return {
+    type: RECEIVE_NOTEBOOK,
+    notebook: notebook
+  };
+};
+
+var removeNotebook = function removeNotebook(id) {
+  return {
+    type: DELETE_NOTEBOOK,
+    notebookId: id
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_SESSION_ERRORS,
+    errors: errors
+  };
+};
+var fetchAllNotebooks = function fetchAllNotebooks() {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllNotebooks"]().then(function (notebooks) {
+      return dispatch(receiveAllNotebooks(notebooks));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var fetchNotebook = function fetchNotebook(id) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchNotebook"](id).then(function (notebook) {
+      return dispatch(receiveNotebook(notebook));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var createNotebook = function createNotebook(notebook) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["createNotebook"](notebook).then(function (notebook) {
+      return dispatch(receiveNotebook(notebook));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var updateNotebook = function updateNotebook(notebook) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["updateNotebook"](notebook).then(function (notebook) {
+      return dispatch(receiveNotebook(notebook));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var deleteNotebook = function deleteNotebook(id) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteid"](id).then(function (id) {
+      return dispatch(removeNotebook(id));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session.js":
 /*!*************************************!*\
   !*** ./frontend/actions/session.js ***!
@@ -236,6 +335,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
+/* harmony import */ var _actions_notebooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/notebooks */ "./frontend/actions/notebooks.js");
+/* harmony import */ var _notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./notebooks_index_item */ "./frontend/components/notebooks/notebooks_index_item.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -258,8 +359,33 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+var msp = function msp(state) {
+  var userId = state.session.currentUserId;
+  var userEmail = state.entities.users[userId].email;
+  return {
+    userEmail: userEmail
+  };
+};
+
 var mdp = function mdp(dispatch) {
   return {
+    fetchAllNotebooks: function fetchAllNotebooks() {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["fetchAllNotebooks"])());
+    },
+    fetchNotebook: function fetchNotebook(id) {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["fetchNotebook"])(id));
+    },
+    createNotebook: function createNotebook(notebook) {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["createNotebook"])(notebook));
+    },
+    updateNotebook: function updateNotebook(notebook) {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["updateNotebook"])(notebook));
+    },
+    deleteNotebook: function deleteNotebook(id) {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["deleteNotebook"])(id));
+    },
     logoutUser: function logoutUser() {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_2__["logoutUser"])());
     }
@@ -277,21 +403,28 @@ function (_React$Component) {
     _classCallCheck(this, NotebooksContainer);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebooksContainer).call(this, props));
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.state = {};
+    _this.logoutClick = _this.logoutClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(NotebooksContainer, [{
-    key: "handleClick",
-    value: function handleClick(e) {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllNotebooks();
+    }
+  }, {
+    key: "logoutClick",
+    value: function logoutClick(e) {
       e.preventDefault();
       this.props.logoutUser();
     }
   }, {
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.handleClick
+        onClick: this.logoutClick
       }, "Log out"));
     }
   }]);
@@ -299,7 +432,42 @@ function (_React$Component) {
   return NotebooksContainer;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mdp)(NotebooksContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(NotebooksContainer));
+
+/***/ }),
+
+/***/ "./frontend/components/notebooks/notebooks_index_item.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/notebooks/notebooks_index_item.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var NotebookIndexItem = function NotebookIndexItem(_ref) {
+  var id = _ref.id,
+      title = _ref.title,
+      author_id = _ref.author_id,
+      created_at = _ref.created_at,
+      updated_at = _ref.updated_at;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/notebooks/".concat(id),
+    title: title,
+    key: id,
+    author_id: author_id,
+    created: created_at,
+    updated: updated_at
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (NotebookIndexItem);
 
 /***/ }),
 
@@ -857,11 +1025,34 @@ var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_notebooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/notebooks */ "./frontend/actions/notebooks.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
 var NotebooksReducer = function NotebooksReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState = newState;
 
   switch (action.type) {
+    case _actions_notebooks__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_NOTEBOOKS"]:
+      return action.notebooks;
+
+    case _actions_notebooks__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_NOTEBOOK"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState, _defineProperty({}, action.notebook.id, action.notebook));
+      return newState;
+
+    case _actions_notebooks__WEBPACK_IMPORTED_MODULE_0__["DELETE_NOTEBOOK"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
+      var nbId = action.notebookId;
+      delete newState[nbId];
+      return newState;
+
     default:
       return oldState;
   }
@@ -1186,7 +1377,7 @@ var configureStore = function configureStore() {
 /*!***********************************!*\
   !*** ./frontend/util/api_util.js ***!
   \***********************************/
-/*! exports provided: createUser, createSession, deleteSession */
+/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1194,6 +1385,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createUser", function() { return createUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSession", function() { return createSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSession", function() { return deleteSession; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllNotebooks", function() { return fetchAllNotebooks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchNotebook", function() { return fetchNotebook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNotebook", function() { return createNotebook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateNotebook", function() { return updateNotebook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteNotebook", function() { return deleteNotebook; });
 var createUser = function createUser(user) {
   return $.ajax({
     url: 'api/users',
@@ -1216,6 +1412,43 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     url: "api/session/",
     method: 'DELETE'
+  });
+};
+var fetchAllNotebooks = function fetchAllNotebooks() {
+  return $.ajax({
+    url: 'api/notebooks/',
+    method: 'GET'
+  });
+};
+var fetchNotebook = function fetchNotebook(id) {
+  return $.ajax({
+    url: "api/notebooks/".concat(id),
+    method: 'GET'
+  });
+};
+var createNotebook = function createNotebook(notebook) {
+  return $.ajax({
+    url: "api/notebooks/",
+    method: 'POST',
+    data: {
+      notebook: notebook
+    }
+  });
+};
+var updateNotebook = function updateNotebook(notebook) {
+  return $.ajax({
+    url: "api/notebooks/".concat(notebook.id),
+    method: 'PATCH',
+    data: {
+      notebook: notebook
+    }
+  });
+};
+var deleteNotebook = function deleteNotebook(id) {
+  return $.ajax({
+    url: "api/notebooks/".concat(id),
+    method: 'DELETE',
+    notebookId: id
   });
 };
 
@@ -43809,7 +44042,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
