@@ -15,7 +15,7 @@ const msp = state => {
     background: "form-background",
     klass: "signup-form-container",
     header: "form-header",
-    logo: `${window.logopic2}`
+    logo: `${window.logoPic}`
   });
 };
 const mdp = dispatch => {

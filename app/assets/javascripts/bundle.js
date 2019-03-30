@@ -106,8 +106,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteNotebook", function() { return deleteNotebook; });
 /* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./frontend/util/api_util.js");
 
-var RECEIVE_ALL_NOTEBOOKS = "FETCH_ALL_NOTEBOOKS";
-var RECEIVE_NOTEBOOK = "FETCH_NOTEBOOK";
+var RECEIVE_ALL_NOTEBOOKS = "RECEIVE_ALL_NOTEBOOKS";
+var RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 var DELETE_NOTEBOOK = "DELETE_NOTEBOOK";
 
 var receiveAllNotebooks = function receiveAllNotebooks(notebooks) {
@@ -175,7 +175,7 @@ var updateNotebook = function updateNotebook(notebook) {
 };
 var deleteNotebook = function deleteNotebook(id) {
   return function (dispatch) {
-    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteid"](id).then(function (id) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteNotebook"](id).then(function (id) {
       return dispatch(removeNotebook(id));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
@@ -274,6 +274,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_splash_2_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./splash/splash_2_container */ "./frontend/components/splash/splash_2_container.jsx");
 /* harmony import */ var _splash_splash_3_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./splash/splash_3_container */ "./frontend/components/splash/splash_3_container.jsx");
 /* harmony import */ var _notebooks_notebooks_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./notebooks/notebooks_container */ "./frontend/components/notebooks/notebooks_container.jsx");
+/* harmony import */ var _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sidebar/sidebar_container */ "./frontend/components/sidebar/sidebar_container.jsx");
+
 
 
 
@@ -288,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: "app-container"
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
     exact: true,
     path: "/",
     component: _splash_nav_bar_container__WEBPACK_IMPORTED_MODULE_5__["NavBarContainer"]
@@ -312,10 +314,15 @@ var App = function App() {
     exact: true,
     path: "/signup",
     component: _session_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "main-container"
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
     path: "/notebooks",
     component: _notebooks_notebooks_container__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }))));
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+    path: "/notebooks",
+    component: _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -337,6 +344,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
 /* harmony import */ var _actions_notebooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/notebooks */ "./frontend/actions/notebooks.js");
 /* harmony import */ var _notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./notebooks_index_item */ "./frontend/components/notebooks/notebooks_index_item.jsx");
+/* harmony import */ var _notebooks_header_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./notebooks_header_container */ "./frontend/components/notebooks/notebooks_header_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -361,11 +369,15 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var msp = function msp(state) {
   var userId = state.session.currentUserId;
   var userEmail = state.entities.users[userId].email;
+  var notebooks = state.entities.notebooks;
   return {
-    userEmail: userEmail
+    userEmail: userEmail,
+    userId: userId,
+    notebooks: notebooks
   };
 };
 
@@ -376,15 +388,6 @@ var mdp = function mdp(dispatch) {
     },
     fetchNotebook: function fetchNotebook(id) {
       return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["fetchNotebook"])(id));
-    },
-    createNotebook: function createNotebook(notebook) {
-      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["createNotebook"])(notebook));
-    },
-    updateNotebook: function updateNotebook(notebook) {
-      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["updateNotebook"])(notebook));
-    },
-    deleteNotebook: function deleteNotebook(id) {
-      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["deleteNotebook"])(id));
     },
     logoutUser: function logoutUser() {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_2__["logoutUser"])());
@@ -422,8 +425,22 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      var _this2 = this;
+
+      var notebooksArr = Object.values(this.props.notebooks);
+      var notebooks = notebooksArr.map(function (notebook) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          id: notebook.id,
+          author_id: _this2.props.userEmail,
+          created_at: notebook.created_at,
+          updated_at: notebook.updated_at,
+          title: notebook.title,
+          key: notebook.id
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "notebooks-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, notebooks), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         onClick: this.logoutClick
       }, "Log out"));
     }
@@ -433,6 +450,94 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(NotebooksContainer));
+
+/***/ }),
+
+/***/ "./frontend/components/notebooks/notebooks_header_container.jsx":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/notebooks/notebooks_header_container.jsx ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var NotebookHeader =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(NotebookHeader, _React$Component);
+
+  function NotebookHeader(props) {
+    _classCallCheck(this, NotebookHeader);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(NotebookHeader).call(this, props));
+  }
+
+  _createClass(NotebookHeader, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "nb-header-head"
+      }, "Notebooks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-header-sub"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "My notebook list"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-header-sub-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-header-notebook"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/notebooks'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.notebookPic,
+        alt: "new-notebook-icon"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/notebooks'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New Notebook"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/notebooks'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.sortPic,
+        alt: "sort-by-icon"
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "nb-row-head"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/notebooks'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "TITLE"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CREATED BY")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/notebooks'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "UPDATED"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: '/notebooks'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CREATED"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ACTIONS")))));
+    }
+  }]);
+
+  return NotebookHeader;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (NotebookHeader);
 
 /***/ }),
 
@@ -448,26 +553,127 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-var NotebookIndexItem = function NotebookIndexItem(_ref) {
-  var id = _ref.id,
-      title = _ref.title,
-      author_id = _ref.author_id,
-      created_at = _ref.created_at,
-      updated_at = _ref.updated_at;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/notebooks/".concat(id),
-    title: title,
-    key: id,
-    author_id: author_id,
-    created: created_at,
-    updated: updated_at
-  });
+
+
+var msp = function msp(state) {
+  return {};
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (NotebookIndexItem);
+var mdp = function mdp(dispatch) {
+  return {};
+};
+
+var NotebookIndexItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(NotebookIndexItem, _React$Component);
+
+  function NotebookIndexItem(props) {
+    var _this;
+
+    _classCallCheck(this, NotebookIndexItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebookIndexItem).call(this, props));
+    _this.myToggle = _this.myToggle.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NotebookIndexItem, [{
+    key: "myToggle",
+    value: function myToggle() {
+      document.getElementById("nb-dropdown").classList.toggle("show");
+    }
+  }, {
+    key: "showNotebook",
+    value: function showNotebook() {}
+  }, {
+    key: "render",
+    value: function render() {
+      var author_id = this.props.author_id;
+      var id = this.props.id;
+      var created_at = this.props.created_at;
+      var updated_at = this.props.updated_at;
+      var title = this.props.title;
+      var monthStr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; //  const createdDateStr = JSON.parse(created_at); 
+      //  const updatedDateStr = JSON.parse(updated_at);
+      //  const updatedDate = new Date(updatedDateStr);
+
+      var createdDate = new Date(created_at);
+      var updatedDate = new Date(updated_at);
+      var monthUpdated = monthStr[updatedDate.getMonth()];
+      var dayCreated = createdDate.getDay();
+      var monthCreated = monthStr[createdDate.getMonth()];
+      var dayUpdated = updatedDate.getDay();
+      var updated = "".concat(monthUpdated, " ").concat(dayUpdated);
+      var created = "".concat(monthCreated, " ").concat(dayCreated);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.showNotebook,
+        className: "notebook-item",
+        key: id,
+        to: "/notebooks/".concat(id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "notebook-item-list",
+        key: id
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: "".concat(id, "1"),
+        className: "nb-title"
+      }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: "".concat(id, "2"),
+        className: "nb-createdby"
+      }, author_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: "".concat(id, "3"),
+        className: "nb-created"
+      }, created), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: "".concat(id, "4"),
+        className: "nb-updated"
+      }, updated), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: "".concat(id, "5"),
+        className: "nb-actions"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "action-button",
+        onClick: this.myToggle
+      }, "\u2022\u2022\u2022"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dropdown"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onMouseOut: this.myToggle,
+        className: "nb-dropdown-menu",
+        id: "nb-dropdown"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "nb-dropdown-items"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/notebooks/edit"
+      }, "edit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/notebooks/"
+      }, "delete"))))))));
+    }
+  }]);
+
+  return NotebookIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, mdp)(NotebookIndexItem));
 
 /***/ }),
 
@@ -530,7 +736,7 @@ var msp = function msp(state) {
     background: "form-background",
     klass: "signup-form-container",
     header: "form-header",
-    logo: "".concat(window.logopic2)
+    logo: "".concat(window.logoPic)
   };
 };
 
@@ -619,7 +825,7 @@ var msp = function msp(state) {
     background: "form-background",
     klass: "signup-form-container",
     header: "form-header",
-    logo: "".concat(window.logopic2)
+    logo: "".concat(window.logoPic)
   };
 };
 
@@ -760,6 +966,109 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/sidebar/sidebar_container.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/sidebar/sidebar_container.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var msp = function msp(state) {
+  var email = state.entities.users[state.session.currentUserId].email;
+  return {
+    email: email
+  };
+};
+
+var SidebarContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SidebarContainer, _React$Component);
+
+  function SidebarContainer(props) {
+    _classCallCheck(this, SidebarContainer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(SidebarContainer).call(this, props));
+  }
+
+  _createClass(SidebarContainer, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sidebar-outer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sidebar-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: '/notebooks',
+        className: "profile"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.logoPic,
+        alt: "user-profile"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: '/notebooks',
+        className: "add-note"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.newNote,
+        alt: "new-note-icon"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "New Note")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "sidebar-list-ul"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: '/notebooks',
+        className: "sidebar-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.notePic,
+        alt: "note-icon"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All Notes"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: '/notebooks',
+        className: "sidebar-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.notebook2Pic,
+        alt: "Notes-icon"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Notebooks"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: '/notebooks',
+        className: "sidebar-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.tagPic,
+        alt: "Notebooks-icon"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tags"))))));
+    }
+  }]);
+
+  return SidebarContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp)(SidebarContainer));
+
+/***/ }),
+
 /***/ "./frontend/components/splash/nav_bar_container.jsx":
 /*!**********************************************************!*\
   !*** ./frontend/components/splash/nav_bar_container.jsx ***!
@@ -783,7 +1092,7 @@ var NavBarContainer = function NavBarContainer() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "nav-logo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.logopic2,
+    src: window.logoPic,
     alt: "Everwrote Logo"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Everwrote")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "nav-buttons"

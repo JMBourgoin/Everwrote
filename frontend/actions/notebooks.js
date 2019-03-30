@@ -1,12 +1,12 @@
 import * as ApiUtil from '../util/api_util';
-export const RECEIVE_ALL_NOTEBOOKS = "FETCH_ALL_NOTEBOOKS";
-export const RECEIVE_NOTEBOOK = "FETCH_NOTEBOOK";
+export const RECEIVE_ALL_NOTEBOOKS = "RECEIVE_ALL_NOTEBOOKS";
+export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 export const DELETE_NOTEBOOK = "DELETE_NOTEBOOK";
 
 const receiveAllNotebooks = (notebooks) => {
   return ({
     type: RECEIVE_ALL_NOTEBOOKS,
-    notebooks: notebooks,
+    notebooks,
   });
 };
 
@@ -54,7 +54,7 @@ export const updateNotebook = (notebook) => dispatch => {
 };
 
 export const deleteNotebook = (id) => dispatch => {
-  return ApiUtil.deleteid(id).then(id => dispatch(removeNotebook(id)),
+  return ApiUtil.deleteNotebook(id).then(id => dispatch(removeNotebook(id)),
     err => (dispatch(receiveErrors(err.responseJSON))
     ));
 };

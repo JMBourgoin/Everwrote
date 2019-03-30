@@ -6,7 +6,7 @@ export const NavBarContainer = () => {
     <div className="nav-parent-container">
       <div className="nav-container">
         <div className="nav-logo">
-          <img src={window.logopic2} alt="Everwrote Logo"/>
+          <img src={window.logoPic} alt="Everwrote Logo"/>
           <h3>Everwrote</h3>
         </div>
         <div className="nav-buttons">
