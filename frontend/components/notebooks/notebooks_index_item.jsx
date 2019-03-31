@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import NotebookActions from '../menus/notebooks_action_container';
 
 const msp = state => {
   return({
@@ -72,23 +73,8 @@ const mdp = dispatch => {
         <li key={`${id}4`} className="nb-updated">{updated}</li>
         
         <li key={`${id}5`} className="nb-actions">
-          <button className="action-button" onClick={this.myToggle}>•••</button>
-
-          <div className="dropdown">
-            <div onMouseOut={this.myToggle} className="nb-dropdown-menu" id='nb-dropdown'>
-              <ul className="nb-dropdown-items">
-                <li>
-                  <Link to={`/notebooks/edit`}>edit</Link>
-                </li>
-                <li>
-                  <Link to={`/notebooks/`}>delete</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
+          <NotebookActions onClick={this.myToggle}/>
         </li>
-
       </ul>
     </div>
   );

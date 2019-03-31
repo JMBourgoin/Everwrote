@@ -41,8 +41,8 @@ time, mark, audio, video {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  width: 420px;
-  height: 550px;
+  width: 525px;
+  height: 720px;
   background-color: white;
   box-shadow: 1px 1px 25px lightgray;
 }
@@ -51,18 +51,19 @@ time, mark, audio, video {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 45px;
 }
+
 .form-header h2{
-  font-size: 40px;
+  font-size: 45px;
   font-weight: 900;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Playfair Display', serif;
   
 }
 
 .form-header p {
-  font-size: 14px;
-  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  font-family: 'Didact Gothic', sans-serif;
   font-weight: 250;
   color:  rgb(90, 90, 90);
   margin: 10px;
@@ -71,35 +72,74 @@ time, mark, audio, video {
 .signup-form {
   display: flex;
   flex-direction: column;
-  margin: 30px 50px 50px 50px;
-  width: 260px;
+  margin: 0px 50px 50px 50px;
+  width: 320px;
 }
 
 .input-fields {
   border-radius: 8px;
-  height: 40px;
+  height: 45px;
 
   box-sizing: border-box;
-  margin: 8px 0;
-  border: 2px solid;
+  margin: 5px 0;
+  border: 1px solid;
   border-color: whitesmoke;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 14px;
   padding: 10px;
   font-weight: 350;
 }
 
 .form-button {
-  height: 40px;
+  height: 50px;
   color: white;
-  background-color: #0b8457;
+  background-color: #00A94F;
   border-radius: 8px;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 16px;
+  margin: 20px 0;
+}
+.form-button:hover{
+  background-color: #009A4C;
+  cursor: pointer;
+}
+.or-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+  color: rgb(206, 206, 206);
+  font-family: 'Didact Gothic', sans-serif;
+}
+.hr {
+  width: 43%;
+  height: 1px;
+  background-color: rgb(206, 206, 206);
+  
+}
+
+.form-button-demo {
+  height: 50px;
+  color: gray;
+  background-color:white;
+  border-radius: 8px;
+  border-color: rgb(233, 231, 231);
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 16px;
+  margin-bottom: 14px;
+  height: 50px;
+  width: 320px;
+  margin-top: 20px;
+}
+
+.form-button-demo:hover {
+  background-color: rgb(233, 231, 231);
+  cursor: pointer;
 }
 
 .logo {
-  width: 25%;
+  width: 18%;
   margin-top: 18px;
 }
 
@@ -120,25 +160,26 @@ time, mark, audio, video {
   justify-content: space-between;
   align-content: space-between;
   height: 45px;
-  font-family: Helvetica;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .form-link-container div {
   font-weight: 200;
-  font-size: 12px;
+  font-size: 15px;
   color: grey;
+  margin-bottom: 5px;
 }
 
 .form-link {
   text-decoration: none;
-  color: #0b8457;
-  font-size: 14px;
+  color: #00A94F;
+  font-size: 18px;
   font-weight: 400;
 }
 
 .errors {
   list-style: none;
-  font-family: helvetica;
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 11px;
   color: #10316b ;
   font-weight: 600;
@@ -169,7 +210,7 @@ time, mark, audio, video {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 900;
   font-size: 24px;
   width: 100px;
@@ -186,7 +227,7 @@ time, mark, audio, video {
 }
 
 .nav-buttons li {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   margin: 0 10px;
   font-size: 14px;
   font-weight: 400;
@@ -197,21 +238,21 @@ time, mark, audio, video {
 }
 
 .nav-signup {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   text-decoration: none;
-  color: #0b8457;
+  color: #00A94F;
   
 }
 
 .nav-login {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   text-decoration: none;
   width: 10px;
   padding: 8px 38px 8px 38px;
   height: 4.5px;
-  border: 1.5px solid #0b8457;
+  border: 1.5px solid #00A94F;
   border-radius: 3.75px;
-  color: #0b8457;
+  color: #00A94F;
 }
 
 .or {
@@ -229,8 +270,8 @@ time, mark, audio, video {
   justify-content: space-around;
   align-items: center;
   height: 620px;
-  background-color: #0b8457;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='12' viewBox='0 0 20 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 12c0-.622-.095-1.221-.27-1.785A5.982 5.982 0 0 0 10 12c1.67 0 3.182-.683 4.27-1.785A5.998 5.998 0 0 0 14 12h2a4 4 0 0 1 4-4V6c-1.67 0-3.182.683-4.27 1.785C15.905 7.22 16 6.622 16 6c0-.622-.095-1.221-.27-1.785A5.982 5.982 0 0 0 20 6V4a4 4 0 0 1-4-4h-2c0 .622.095 1.221.27 1.785A5.982 5.982 0 0 0 10 0C8.33 0 6.818.683 5.73 1.785 5.905 1.22 6 .622 6 0H4a4 4 0 0 1-4 4v2c1.67 0 3.182.683 4.27 1.785A5.998 5.998 0 0 1 4 6c0-.622.095-1.221.27-1.785A5.982 5.982 0 0 1 0 6v2a4 4 0 0 1 4 4h2zm-4 0a2 2 0 0 0-2-2v2h2zm16 0a2 2 0 0 1 2-2v2h-2zM0 2a2 2 0 0 0 2-2H0v2zm20 0a2 2 0 0 1-2-2h2v2zm-10 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' fill='%2385ef47' fill-opacity='0.33' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-color: #00a94f;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 52 52'%3E%3Cpath fill='%2376c043' fill-opacity='0.4' d='M0 17.83V0h17.83a3 3 0 0 1-5.66 2H5.9A5 5 0 0 1 2 5.9v6.27a3 3 0 0 1-2 5.66zm0 18.34a3 3 0 0 1 2 5.66v6.27A5 5 0 0 1 5.9 52h6.27a3 3 0 0 1 5.66 0H0V36.17zM36.17 52a3 3 0 0 1 5.66 0h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 0 1 0-5.66V52H36.17zM0 31.93v-9.78a5 5 0 0 1 3.8.72l4.43-4.43a3 3 0 1 1 1.42 1.41L5.2 24.28a5 5 0 0 1 0 5.52l4.44 4.43a3 3 0 1 1-1.42 1.42L3.8 31.2a5 5 0 0 1-3.8.72zm52-14.1a3 3 0 0 1 0-5.66V5.9A5 5 0 0 1 48.1 2h-6.27a3 3 0 0 1-5.66-2H52v17.83zm0 14.1a4.97 4.97 0 0 1-1.72-.72l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1 0-5.52l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43c.53-.35 1.12-.6 1.72-.72v9.78zM22.15 0h9.78a5 5 0 0 1-.72 3.8l4.44 4.43a3 3 0 1 1-1.42 1.42L29.8 5.2a5 5 0 0 1-5.52 0l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1-.72-3.8zm0 52c.13-.6.37-1.19.72-1.72l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43a5 5 0 0 1 5.52 0l4.43-4.43a3 3 0 1 1 1.42 1.41l-4.44 4.43c.36.53.6 1.12.72 1.72h-9.78zm9.75-24a5 5 0 0 1-3.9 3.9v6.27a3 3 0 1 1-2 0V31.9a5 5 0 0 1-3.9-3.9h-6.27a3 3 0 1 1 0-2h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 1 1 2 0v6.27a5 5 0 0 1 3.9 3.9h6.27a3 3 0 1 1 0 2H31.9z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .splash-image img{
@@ -279,7 +320,7 @@ time, mark, audio, video {
 }
 
 .splash-signup {
-  color: #0b8457;
+  color: #00A94F;
   text-decoration: none;
 }
 
@@ -340,7 +381,7 @@ time, mark, audio, video {
 .splash3-container h3 {
   font-size: 30px;
   font-family: sans-serif;
-  color: #0b8457;
+  color: #00A94F;
 }
 
 .splash3-container h6 {
@@ -419,7 +460,7 @@ time, mark, audio, video {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: #0b8457;
+  background-color: #00A94F;
   color: white;
   padding-left: 50px;
 }
@@ -594,7 +635,7 @@ time, mark, audio, video {
 }
 
 .nb-header-notebook p{
-  color: #0b8457;
+  color: #00A94F;
   font-weight: 600;
 }
 

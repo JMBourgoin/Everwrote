@@ -15,7 +15,10 @@ class SignUpForm extends React.Component {
     };
   }
 
-
+  handleDemo(e){
+    e.preventDefault();
+    this.setState({'email': "demo_user@gmail.com", 'password': 'password'})
+  }
   handleSubmit(e){
     e.preventDefault();
     this.props.submitAction(this.state);
@@ -42,9 +45,14 @@ class SignUpForm extends React.Component {
             <h2>Everwrote</h2>
             <p>Remember everything important.</p>
           </div>
-
+          <button onClick={this.handleDemo} className="form-button-demo">Continue with demo-user</button>
           <form className="signup-form" onSubmit={this.handleSubmit}>
-            {this.renderErrors()}
+          <div className="or-line">
+              <div className="hr"></div>
+              <p>or</p>
+              <div className="hr"></div>
+          </div>
+            
             <input 
               className="input-fields"
               type="text" 
@@ -66,7 +74,7 @@ class SignUpForm extends React.Component {
               type="submit"
               value="Continue"
             />
-
+            {this.renderErrors()}
           </form>
           <div className="form-link-container">
             <div>{this.props.formMessage}</div>

@@ -329,6 +329,107 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./frontend/components/menus/notebooks_action_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/menus/notebooks_action_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var msp = function msp(state) {
+  return {};
+};
+
+var mdp = function mdp(dispatch) {
+  return {};
+};
+
+var NotebooksActionMenu =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(NotebooksActionMenu, _React$Component);
+
+  function NotebooksActionMenu(props) {
+    var _this;
+
+    _classCallCheck(this, NotebooksActionMenu);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebooksActionMenu).call(this, props));
+    _this.state = {
+      showMenu: false
+    };
+    _this.openMenu = _this.openMenu.bind(_assertThisInitialized(_this));
+    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NotebooksActionMenu, [{
+    key: "openMenu",
+    value: function openMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: true
+      });
+      document.addEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: false
+      });
+      document.removeEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "button-text",
+        onClick: this.openMenu
+      }, "\u2022\u2022\u2022"), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "notebook-action-menu"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "button-text"
+      }, "edit"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "button-text"
+      }, "delete")) : null);
+    }
+  }]);
+
+  return NotebooksActionMenu;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(NotebooksActionMenu));
+
+/***/ }),
+
 /***/ "./frontend/components/notebooks/notebooks_container.jsx":
 /*!***************************************************************!*\
   !*** ./frontend/components/notebooks/notebooks_container.jsx ***!
@@ -554,6 +655,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _menus_notebooks_action_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../menus/notebooks_action_container */ "./frontend/components/menus/notebooks_action_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -571,6 +673,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -650,22 +753,9 @@ function (_React$Component) {
       }, updated), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         key: "".concat(id, "5"),
         className: "nb-actions"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "action-button",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_action_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         onClick: this.myToggle
-      }, "\u2022\u2022\u2022"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dropdown"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onMouseOut: this.myToggle,
-        className: "nb-dropdown-menu",
-        id: "nb-dropdown"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "nb-dropdown-items"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/notebooks/edit"
-      }, "edit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/notebooks/"
-      }, "delete"))))))));
+      }))));
     }
   }]);
 
@@ -903,6 +993,15 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "handleDemo",
+    value: function handleDemo(e) {
+      e.preventDefault();
+      this.setState({
+        'email': "demo_user@gmail.com",
+        'password': 'password'
+      });
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -931,10 +1030,19 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo",
         src: this.props.logo
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Everwrote"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Remember everything important.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Everwrote"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Remember everything important.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDemo,
+        className: "form-button-demo"
+      }, "Continue with demo-user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "signup-form",
         onSubmit: this.handleSubmit
-      }, this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "or-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hr"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "or"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hr"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "input-fields",
         type: "text",
         value: this.state.email,
@@ -950,7 +1058,7 @@ function (_React$Component) {
         className: "form-button",
         type: "submit",
         value: "Continue"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-link-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.formMessage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "form-link",
