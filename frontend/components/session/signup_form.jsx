@@ -7,6 +7,7 @@ class SignUpForm extends React.Component {
     this.state = this.props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   display(field){
