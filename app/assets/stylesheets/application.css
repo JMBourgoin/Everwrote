@@ -566,6 +566,55 @@ button {
   color: white;
 }
 
+/* Footer------------------------------------------------------------------- */
+
+.foot-parent-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 17px;
+  margin: 0 30px;
+  height: 180px;
+  
+
+}
+
+.footer-logo {
+  width: 60px;
+}
+.nav-footer-insta {
+  width: 50px;
+}
+.nav-footer-jmb {
+  width: 100px;
+  margin: 0 10px;
+}
+
+.nav-footer-linked {
+  width: 28px;
+  margin: 0 5px;
+}
+
+.footer-logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 35px;
+  width: 100px;
+}
+
+.footer-buttons ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  
+}
 /* APP-container------------------------------------------------------------ */
 .main-container {
   display: flex;
@@ -575,11 +624,15 @@ button {
 /* Sidebar------------------------------------------------------------------ */
 
 .sidebar-container {
+  position: fixed;
+  left:0;
+  top:0;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 240px;
   background-color: rgb(24, 24, 24);
+  z-index: 5;
 }
 
 .profile {
@@ -597,7 +650,7 @@ button {
 .profile-container {
   display: flex;
   flex-direction: column;
-  margin: 10px 5px 10px 10px;
+  margin: 10px 5px 15px 10px;
 }
 .profile img{
   width: 50px;
@@ -689,12 +742,15 @@ margin: 200px 20px;
 /* ----NOTEBOOKS HEADER COMPONENT----- */
 .notebooks-container {
   position: relative;
-  width: 100vw;
-  margin: 0 40px;
-}
+  width: 100%;
+  min-width: 600px;
+  margin-left: 240px;
+  margin-right: 30px;
+  }
 .nb-header {
   font-family: 'Didact Gothic', sans-serif;
   border-top: lightgray;
+  margin-left: 30px;
 }
 .nb-header h3 {
   font-size: 25px;
@@ -732,9 +788,17 @@ margin: 200px 20px;
   font-size: 14px;
 }
 
-.nb-header-notebook p{
+.nb-header-notebook button{
   color: #00A94F;
   font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+.nb-header-notebook button p {
+  margin: 0 2px 2px 0;
 }
 
 
@@ -746,15 +810,17 @@ margin: 200px 20px;
   font-family: 'Didact Gothic', sans-serif;
   font-size: 14px;
   color: rgb(105, 104, 104);
+  
 }
 .notebook-item-list {
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
   padding: 12px 0;
+  margin-left: 30px;
   background-color: white;
 }
 
@@ -764,26 +830,24 @@ margin: 200px 20px;
 }
 
 .nb-title {
-  width: 200px;
+  width: 150px;
 }
 .nb-createdby{
-  width: 200px;
+  width: 150px;
 }
 .nb-created, .nb-updated {
-  width: 200px;
+  width: 150px;
 }
 
 .nb-actions {
-  width: 200px;
+  position: relative;
+  width: 80px;
 }
 
 .nb-list-head {
-  position: relative;
-  top: 0;
-  left: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
   padding: 12px 0;
@@ -801,14 +865,30 @@ margin: 200px 20px;
   background-color: rgb(241, 241, 241);
 }
 
+.notebook-sorting-menu {
+  position: absolute;
+  display: flex; 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  left: -170;
+  width: 140px;
+  height: 140px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px lightgray;
+  border-radius: 2px;
+  z-index: 22;
+  right: 20px;
+}
 
 .notebook-action-menu{
   position: absolute;
   display: flex; 
-  justify-content: center;
   flex-direction: column;
-  align-items: space-around;
-  width: 140px;
+  justify-content: center;
+  align-items: flex-start;
+  left: -170;
+  width: 120px;
   height: 100px;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 10px lightgray;
@@ -818,9 +898,47 @@ margin: 200px 20px;
 }
   
 .nb-title {
+  display: flex;
+  align-items: center;
   font-weight: 900px;
+  font-size: 13px;
+  color: gray;
+}
+.nb-action-button {
+  border: none;
+  padding: none;
+  margin: none;
+  width: 100%;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 200px;
+  font-family: 'Didact Gothic', sans-serif;
+  padding: 0 10px;
 }
 
+.nb-sorting {
+  width: 100%;
+  margin-left: 20px;
+}
+.nb-sorting:first-child{
+  margin-top: 10px;
+}
+.nb-sorting:hover{
+  background-color: lightgray;
+ }
+  .nb-sorting-button {
+  border: none;
+  padding: none;
+  margin: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 300px;
+  font-family: 'Didact Gothic', sans-serif;
+  padding: 5px 0;
+  }
+.nb-sorting-button:hover{
+  background-color: lightgray;
+}
  .button-text {
   border: none;
   padding: none;
@@ -831,14 +949,18 @@ margin: 200px 20px;
 .notebook-action-menu > button {
   font-size: 14px;
   font-weight: 600;
-  margin: 5px;
+  margin: 5px 0;
+}
+
+.small-icon {
+  height: 17px;
 }
 
 /* Notebooks NEW modal---------------------------------- */
 .modal-outer-container {
   position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -856,6 +978,7 @@ margin: 200px 20px;
   position: absolute;
   display: flex;
   flex-direction: column;
+  align-content: center;
   width: 550px;
   height: 300px;
   background-color: white;
@@ -863,6 +986,8 @@ margin: 200px 20px;
   box-shadow: 1px 1px 25px gray;
   z-index:100;
   font-family: 'Didact Gothic', sans-serif;
+  margin-left: 25%;
+  
 }
 
 .modal-header-container {
@@ -925,10 +1050,9 @@ margin: 200px 20px;
   height: 30px;
   border: none;
   border-radius: 5px;
-  background: darkgray;
+  background-color: darkgray;
   font-size: 16px;
   color: lightgray;
-
 }
 
 .modal-button {
@@ -936,11 +1060,18 @@ margin: 200px 20px;
   height: 30px;
   border: none;
   border-radius: 5px;
-  background: lightgray;
+  background-color: lightgray;
   margin: 0 10px;
   font-size: 16px;
   color: gray;
 }
+
+.modal-button:hover {
+  cursor: pointer;
+  background-color: slate;
+}
+
+
 
 
 

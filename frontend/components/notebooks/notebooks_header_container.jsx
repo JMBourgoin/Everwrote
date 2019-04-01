@@ -37,8 +37,8 @@ class NotebookHeader extends React.Component {
             <div className="nb-header-notebook">
               <button onClick={this.props.showModal}>
                 <img src={window.notebookPic} alt="new-notebook-icon"/>
+                <p>New Notebook</p>
               </button>
-              <Link to={'/notebooks'}><p>New Notebook</p></Link>
             </div>
             <div>
               <NotebooksSortingMenu 

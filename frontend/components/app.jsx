@@ -8,6 +8,7 @@ import { SplashPageContainer } from './splash/splash_page_container';
 import { Splash2Container } from './splash/splash_2_container';
 import { Splash3Container } from './splash/splash_3_container';
 import { Splash4Container } from "./splash/splash_4_container";
+import { FooterContainer } from "./splash/footer_container";
 import  NotebooksContainer  from './notebooks/notebooks_container';
 import SidebarContainer from './sidebar/sidebar_container';
 
@@ -19,6 +20,7 @@ const App = () => {
       <Route exact path="/" component={Splash2Container} />
       <Route exact path="/" component={Splash3Container} />
       <Route exact path="/" component={Splash4Container} />
+      <Route exact path="/" component={FooterContainer} />
 
       <Switch>
         <AuthRoute exact path="/login" component={LoginFormContainer} />

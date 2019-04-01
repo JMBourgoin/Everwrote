@@ -6,8 +6,10 @@ import NotebookActions from '../menus/notebooks_action_container';
 const msp = (state, ownProps) => {
   let id = ownProps.id;
   let notebook = state.entities.notebooks[id];
+  let author = state.entities.users[notebook.author_id].email;
   return({
     notebook,
+    author
   });
 };
 
@@ -66,8 +68,8 @@ const mdp = dispatch => {
   return (
     <div onClick={this.showNotebook} className={`notebook-item`} key={id} to={`/notebooks/${id}`}>
       <ul className='notebook-item-list' key={id}>
-        <li key={`${id}1`} className="nb-title">{title}</li>
-        <li key={`${id}2`} className="nb-createdby">{author_id}</li>
+        <li><button onClick={this.showNotes} key={`${id}1`} className="nb-title"><img className="small-icon" src={window.notebook2Pic} alt=""/>{title}</button></li>
+        <li key={`${id}2`} className="nb-createdby">{this.props.author}</li>
         <li key={`${id}3`} className="nb-created">{created}</li>
         <li key={`${id}4`} className="nb-updated">{updated}</li>
         

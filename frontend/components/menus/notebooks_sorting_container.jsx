@@ -30,10 +30,16 @@ class NotebooksSortingMenu extends React.Component {
             </button>
 
             {this.state.showMenu ? (
-              <div className="notebook-action-menu">
-                <button onClick={this.props.titleClick} className="button-text">Sort by Title</button>
-                <button onClick={this.props.createdClick} className="button-text">Sort by Created</button>
-                <button onClick={this.props.updatedClick}className="button-text">Sort by Updated</button>
+              <div className="notebook-sorting-menu">
+                <div className="nb-sorting">
+                  <button onClick={this.props.titleClick} className="nb-sorting-button">Sort by Title</button>
+                </div>
+                <div className="nb-sorting">
+                  <button onClick={this.props.createdClick} className="nb-sorting-button">Sort by Created</button>
+                </div>
+                <div className="nb-sorting">
+                  <button onClick={this.props.updatedClick} className="nb-sorting-button">Sort by Updated</button>
+                </div>
               </div>
             ) : null}
           </div>
