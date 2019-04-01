@@ -1,12 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NotebooksSortingMenu from '../menus/notebooks_sorting_container';
+
 
 class NotebookHeader extends React.Component {
   constructor(props){
     super(props);
+    this.titleClick = this.titleClick.bind(this);
+    this.updatedClick = this.updatedClick.bind(this);
+    this.createdClick = this.createdClick.bind(this);
   }
   
-  
+  titleClick(e){
+    e.preventDefault();
+    this.props.changeState('title');
+  }
+
+  updatedClick(e) {
+    e.preventDefault();
+    this.props.changeState('updated');
+  }
+
+  createdClick(e) {
+    e.preventDefault();
+    this.props.changeState('created');
+  }
+
   render(){
     
     return (
@@ -22,19 +41,21 @@ class NotebookHeader extends React.Component {
               <Link to={'/notebooks'}><p>New Notebook</p></Link>
             </div>
             <div>
-              <Link to={'/notebooks'}>
-                <img src={window.sortPic} alt="sort-by-icon"/>
-              </Link>
+              <NotebooksSortingMenu 
+                titleClick={this.titleClick}
+                updatedClick={this.updatedClick}
+                createdClick={this.createdClick}
+              />
             </div>
           </div>
         </div>
-        <div >
-          <ul className="nb-row-head">
-            <li><Link to={'/notebooks'}><p>TITLE</p></Link></li>
-            <li><p>CREATED BY</p></li>
-            <li><Link to={'/notebooks'}><p>UPDATED</p></Link></li>
-            <li><Link to={'/notebooks'}><p>CREATED</p></Link></li>
-            <li><p>ACTIONS</p></li>
+        <div className="nb-row-head">
+          <ul className="nb-list-head">
+            <li className="nb-title head-title"><button onClick={this.titleClick} className="button-text">TITLE</button></li>
+            <li className="nb-createdby head-create"><p>CREATED BY</p></li>
+            <li className="nb-created head-updated"><button onClick={this.updatedClick} className="button-text">UPDATED </button></li>
+            <li className="nb-updated head-created"><button onClick={this.createdClick} className="button-text">CREATED </button></li>
+            <li className="nb-actions head-actions"><p>ACTIONS</p></li>
           </ul>
         </div>
       </div>

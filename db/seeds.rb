@@ -16,12 +16,12 @@ users = User.create([
 ])
 
 notebooks = Notebook.create([
-  {title: 'My Notebook 1', author_id: 1},
-  {title: 'My Notebook 2', author_id: 1},
-  {title: 'My Notebook 3', author_id: 1},
-  {title: 'My Notebook 4', author_id: 1},
-  {title: 'My Notebook 5', author_id: 1},
-  {title: 'My Notebook 6', author_id: 1},
+  {title: 'Thoughts on stuff.', author_id: 1},
+  {title: 'Drinking water.', author_id: 1},
+  {title: 'Foot Pain.', author_id: 1},
+  {title: 'My favorite cats tricks.', author_id: 1},
+  {title: 'Where & How to find stuff.', author_id: 1},
+  {title: 'Random things.', author_id: 1},
   {title: 'My Notebook 1', author_id: 2},
   {title: 'My Notebook 2', author_id: 2},
   {title: 'My Notebook 3', author_id: 2},

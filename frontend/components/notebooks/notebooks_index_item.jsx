@@ -5,7 +5,7 @@ import NotebookActions from '../menus/notebooks_action_container';
 
 const msp = state => {
   return({
-
+    
   });
 };
 
@@ -19,11 +19,8 @@ const mdp = dispatch => {
 
   constructor(props){
     super(props);
-    this.myToggle = this.myToggle.bind(this);
   }
-  myToggle(){
-    document.getElementById("nb-dropdown").classList.toggle("show");
-  }
+  
   showNotebook(){
     
   }
@@ -66,14 +63,14 @@ const mdp = dispatch => {
 
   return (
     <div onClick={this.showNotebook} className={`notebook-item`} key={id} to={`/notebooks/${id}`}>
-      <ul className={`notebook-item-list`} key={id}>
+      <ul className='notebook-item-list' key={id}>
         <li key={`${id}1`} className="nb-title">{title}</li>
         <li key={`${id}2`} className="nb-createdby">{author_id}</li>
         <li key={`${id}3`} className="nb-created">{created}</li>
         <li key={`${id}4`} className="nb-updated">{updated}</li>
         
         <li key={`${id}5`} className="nb-actions">
-          <NotebookActions onClick={this.myToggle}/>
+          <NotebookActions />
         </li>
       </ul>
     </div>

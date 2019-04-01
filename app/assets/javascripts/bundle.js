@@ -273,8 +273,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_splash_page_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./splash/splash_page_container */ "./frontend/components/splash/splash_page_container.jsx");
 /* harmony import */ var _splash_splash_2_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./splash/splash_2_container */ "./frontend/components/splash/splash_2_container.jsx");
 /* harmony import */ var _splash_splash_3_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./splash/splash_3_container */ "./frontend/components/splash/splash_3_container.jsx");
-/* harmony import */ var _notebooks_notebooks_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./notebooks/notebooks_container */ "./frontend/components/notebooks/notebooks_container.jsx");
-/* harmony import */ var _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sidebar/sidebar_container */ "./frontend/components/sidebar/sidebar_container.jsx");
+/* harmony import */ var _splash_splash_4_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./splash/splash_4_container */ "./frontend/components/splash/splash_4_container.jsx");
+/* harmony import */ var _notebooks_notebooks_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./notebooks/notebooks_container */ "./frontend/components/notebooks/notebooks_container.jsx");
+/* harmony import */ var _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./sidebar/sidebar_container */ "./frontend/components/sidebar/sidebar_container.jsx");
+
 
 
 
@@ -306,6 +308,10 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _splash_splash_3_container__WEBPACK_IMPORTED_MODULE_8__["Splash3Container"]
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
+    exact: true,
+    path: "/",
+    component: _splash_splash_4_container__WEBPACK_IMPORTED_MODULE_9__["Splash4Container"]
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["AuthRoute"], {
     exact: true,
     path: "/login",
@@ -318,10 +324,10 @@ var App = function App() {
     className: "main-container"
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
     path: "/notebooks",
-    component: _notebooks_notebooks_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _notebooks_notebooks_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
     path: "/notebooks",
-    component: _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   })));
 };
 
@@ -430,6 +436,105 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/menus/notebooks_sorting_container.jsx":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/menus/notebooks_sorting_container.jsx ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var NotebooksSortingMenu =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(NotebooksSortingMenu, _React$Component);
+
+  function NotebooksSortingMenu(props) {
+    var _this;
+
+    _classCallCheck(this, NotebooksSortingMenu);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebooksSortingMenu).call(this, props));
+    _this.state = {
+      showMenu: false
+    };
+    _this.openMenu = _this.openMenu.bind(_assertThisInitialized(_this));
+    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(NotebooksSortingMenu, [{
+    key: "openMenu",
+    value: function openMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: true
+      });
+      document.addEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: false
+      });
+      document.removeEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button-text",
+        onClick: this.openMenu
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.sortPic,
+        alt: "sort"
+      })), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "notebook-action-menu"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.titleClick,
+        className: "button-text"
+      }, "Sort by Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.createdClick,
+        className: "button-text"
+      }, "Sort by Created"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.updatedClick,
+        className: "button-text"
+      }, "Sort by Updated")) : null);
+    }
+  }]);
+
+  return NotebooksSortingMenu;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (NotebooksSortingMenu);
+
+/***/ }),
+
 /***/ "./frontend/components/notebooks/notebooks_container.jsx":
 /*!***************************************************************!*\
   !*** ./frontend/components/notebooks/notebooks_container.jsx ***!
@@ -442,10 +547,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
-/* harmony import */ var _actions_notebooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/notebooks */ "./frontend/actions/notebooks.js");
-/* harmony import */ var _notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./notebooks_index_item */ "./frontend/components/notebooks/notebooks_index_item.jsx");
-/* harmony import */ var _notebooks_header_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./notebooks_header_container */ "./frontend/components/notebooks/notebooks_header_container.jsx");
+/* harmony import */ var _actions_notebooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/notebooks */ "./frontend/actions/notebooks.js");
+/* harmony import */ var _notebooks_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./notebooks_index_item */ "./frontend/components/notebooks/notebooks_index_item.jsx");
+/* harmony import */ var _notebooks_header_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./notebooks_header_container */ "./frontend/components/notebooks/notebooks_header_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -470,7 +574,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
 var msp = function msp(state) {
   var userId = state.session.currentUserId;
   var userEmail = state.entities.users[userId].email;
@@ -485,13 +588,10 @@ var msp = function msp(state) {
 var mdp = function mdp(dispatch) {
   return {
     fetchAllNotebooks: function fetchAllNotebooks() {
-      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["fetchAllNotebooks"])());
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_2__["fetchAllNotebooks"])());
     },
     fetchNotebook: function fetchNotebook(id) {
-      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["fetchNotebook"])(id));
-    },
-    logoutUser: function logoutUser() {
-      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_2__["logoutUser"])());
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_2__["fetchNotebook"])(id));
     }
   };
 };
@@ -507,8 +607,13 @@ function (_React$Component) {
     _classCallCheck(this, NotebooksContainer);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebooksContainer).call(this, props));
-    _this.state = {};
-    _this.logoutClick = _this.logoutClick.bind(_assertThisInitialized(_this));
+    _this.state = {
+      sortBy: 'created'
+    };
+    _this.sortByCreated = _this.sortByCreated.bind(_assertThisInitialized(_this));
+    _this.sortByUpdated = _this.sortByUpdated.bind(_assertThisInitialized(_this));
+    _this.sortByTitle = _this.sortByTitle.bind(_assertThisInitialized(_this));
+    _this.changeState = _this.changeState.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -518,10 +623,36 @@ function (_React$Component) {
       this.props.fetchAllNotebooks();
     }
   }, {
-    key: "logoutClick",
-    value: function logoutClick(e) {
-      e.preventDefault();
-      this.props.logoutUser();
+    key: "changeState",
+    value: function changeState(sort) {
+      this.setState({
+        sortBy: sort
+      });
+    }
+  }, {
+    key: "sortByCreated",
+    value: function sortByCreated(arr) {
+      var newArr = arr.concat([]);
+      return newArr.sort(function (a, b) {
+        return new Date(b.created_at) < new Date(a.created_at) ? -1 : 1;
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+    }
+  }, {
+    key: "sortByUpdated",
+    value: function sortByUpdated(arr) {
+      var newArr = arr.concat([]);
+      return newArr.sort(function (a, b) {
+        return new Date(b.updated_at) < new Date(a.updated_at) ? -1 : 1;
+      });
+    }
+  }, {
+    key: "sortByTitle",
+    value: function sortByTitle(arr) {
+      var newArr = arr.concat([]);
+      return newArr.sort(function (a, b) {
+        return a.title[0] < b.title[0] ? -1 : 1;
+      });
     }
   }, {
     key: "render",
@@ -529,8 +660,18 @@ function (_React$Component) {
       var _this2 = this;
 
       var notebooksArr = Object.values(this.props.notebooks);
-      var notebooks = notebooksArr.map(function (notebook) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      var sortedNotebooks = [];
+
+      if (this.state.sortBy === 'title') {
+        sortedNotebooks = this.sortByTitle(notebooksArr);
+      } else if (this.state.sortBy === 'updated') {
+        sortedNotebooks = this.sortByUpdated(notebooksArr);
+      } else if (this.state.sortBy === 'created') {
+        sortedNotebooks = this.sortByCreated(notebooksArr);
+      }
+
+      var notebooks = sortedNotebooks.map(function (notebook) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           id: notebook.id,
           author_id: _this2.props.userEmail,
           created_at: notebook.created_at,
@@ -541,9 +682,13 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "notebooks-container"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, notebooks), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.logoutClick
-      }, "Log out"));
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_header_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        setIndexState: this.setIndexState,
+        sortByTitle: this.sortByTitle,
+        sortByUpdated: this.sortByUpdate,
+        sortByCreated: this.sortByCreated,
+        changeState: this.changeState
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, notebooks));
     }
   }]);
 
@@ -566,6 +711,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _menus_notebooks_sorting_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menus/notebooks_sorting_container */ "./frontend/components/menus/notebooks_sorting_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -576,13 +722,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -593,12 +740,36 @@ function (_React$Component) {
   _inherits(NotebookHeader, _React$Component);
 
   function NotebookHeader(props) {
+    var _this;
+
     _classCallCheck(this, NotebookHeader);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NotebookHeader).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebookHeader).call(this, props));
+    _this.titleClick = _this.titleClick.bind(_assertThisInitialized(_this));
+    _this.updatedClick = _this.updatedClick.bind(_assertThisInitialized(_this));
+    _this.createdClick = _this.createdClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(NotebookHeader, [{
+    key: "titleClick",
+    value: function titleClick(e) {
+      e.preventDefault();
+      this.props.changeState('title');
+    }
+  }, {
+    key: "updatedClick",
+    value: function updatedClick(e) {
+      e.preventDefault();
+      this.props.changeState('updated');
+    }
+  }, {
+    key: "createdClick",
+    value: function createdClick(e) {
+      e.preventDefault();
+      this.props.changeState('created');
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -618,20 +789,34 @@ function (_React$Component) {
         alt: "new-notebook-icon"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/notebooks'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New Notebook"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: '/notebooks'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.sortPic,
-        alt: "sort-by-icon"
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New Notebook"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_sorting_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        titleClick: this.titleClick,
+        updatedClick: this.updatedClick,
+        createdClick: this.createdClick
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nb-row-head"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: '/notebooks'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "TITLE"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CREATED BY")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: '/notebooks'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "UPDATED"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: '/notebooks'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CREATED"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ACTIONS")))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "nb-list-head"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nb-title head-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.titleClick,
+        className: "button-text"
+      }, "TITLE")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nb-createdby head-create"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CREATED BY")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nb-created head-updated"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.updatedClick,
+        className: "button-text"
+      }, "UPDATED ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nb-updated head-created"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.createdClick,
+        className: "button-text"
+      }, "CREATED ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nb-actions head-actions"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ACTIONS")))));
     }
   }]);
 
@@ -666,9 +851,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -693,21 +878,12 @@ function (_React$Component) {
   _inherits(NotebookIndexItem, _React$Component);
 
   function NotebookIndexItem(props) {
-    var _this;
-
     _classCallCheck(this, NotebookIndexItem);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebookIndexItem).call(this, props));
-    _this.myToggle = _this.myToggle.bind(_assertThisInitialized(_this));
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(NotebookIndexItem).call(this, props));
   }
 
   _createClass(NotebookIndexItem, [{
-    key: "myToggle",
-    value: function myToggle() {
-      document.getElementById("nb-dropdown").classList.toggle("show");
-    }
-  }, {
     key: "showNotebook",
     value: function showNotebook() {}
   }, {
@@ -753,9 +929,7 @@ function (_React$Component) {
       }, updated), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         key: "".concat(id, "5"),
         className: "nb-actions"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_action_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        onClick: this.myToggle
-      }))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_action_container__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
     }
   }]);
 
@@ -1087,6 +1261,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_notebooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/notebooks */ "./frontend/actions/notebooks.js");
+/* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1097,9 +1273,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1109,10 +1285,25 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var msp = function msp(state) {
   var email = state.entities.users[state.session.currentUserId].email;
+  var notebooks = state.entities.notebooks;
   return {
-    email: email
+    email: email,
+    notebooks: notebooks
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchAllNotebooks: function fetchAllNotebooks() {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_3__["fetchAllNotebooks"])());
+    },
+    logoutUser: function logoutUser() {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_4__["logoutUser"])());
+    }
   };
 };
 
@@ -1122,26 +1313,77 @@ function (_React$Component) {
   _inherits(SidebarContainer, _React$Component);
 
   function SidebarContainer(props) {
+    var _this;
+
     _classCallCheck(this, SidebarContainer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SidebarContainer).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SidebarContainer).call(this, props));
+    _this.state = {
+      showMenu: false
+    };
+    _this.openMenu = _this.openMenu.bind(_assertThisInitialized(_this));
+    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    _this.logoutClick = _this.logoutClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(SidebarContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllNotebooks();
+    }
+  }, {
+    key: "logoutClick",
+    value: function logoutClick(e) {
+      e.preventDefault();
+      this.props.logoutUser();
+    }
+  }, {
+    key: "openMenu",
+    value: function openMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: true
+      });
+      document.addEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: false
+      });
+      document.removeEventListener('click', this.closeMenu);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var notebooks = Object.values(this.props.notebooks);
+      var nbButtons = notebooks.map(function (notebook) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          key: notebook.id,
+          onClick: _this2.props.titleClick,
+          className: "sidebar-small"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.notebook2Pic,
+          alt: "Notes-icon"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, notebook.title));
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar-outer-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sidebar-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: '/notebooks',
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.logoPic,
         alt: "user-profile"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: '/notebooks',
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.email))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "add-note"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.newNote,
@@ -1149,31 +1391,36 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "New Note")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "sidebar-list-ul"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: '/notebooks',
+        to: "/notebooks",
         className: "sidebar-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.notePic,
         alt: "note-icon"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All Notes"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: '/notebooks',
-        className: "sidebar-list"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All Notes"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.openMenu,
+        className: "sidebar-list sidebar-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.notebook2Pic,
         alt: "Notes-icon"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Notebooks"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: '/notebooks',
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Notebooks")), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "notebooks-sidebar-menu"
+      }, nbButtons) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/notebooks",
         className: "sidebar-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.tagPic,
-        alt: "Notebooks-icon"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tags"))))));
+        alt: "tags-icon"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tags")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "side-logout",
+        onClick: this.logoutClick
+      }, "Log out")));
     }
   }]);
 
   return SidebarContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp)(SidebarContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(SidebarContainer));
 
 /***/ }),
 
@@ -1232,7 +1479,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Splash2Container = function Splash2Container() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "splash2-container"
+    className: "splash2-outer-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash2-inner-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash2-image"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1247,7 +1496,7 @@ var Splash2Container = function Splash2Container() {
     className: "st2"
   }, "Capture ideas and inspiration in notes, voice, and pictures."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "st3"
-  }, "Never lose track of your tasks.")));
+  }, "Never lose track of your tasks."))));
 };
 
 /***/ }),
@@ -1264,12 +1513,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Splash3Container", function() { return Splash3Container; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _session_signup2_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/signup2_container */ "./frontend/components/session/signup2_container.js");
-
 
 var Splash3Container = function Splash3Container() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "splash3-container"
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash3-outer-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash3-inner-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash3-image"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1308,8 +1557,31 @@ var Splash3Container = function Splash3Container() {
     className: "collaborate-pic",
     src: window.collaboratepic,
     alt: "Everwrote Collaborate"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "splash4-signup-today"
+  }))));
+};
+
+/***/ }),
+
+/***/ "./frontend/components/splash/splash_4_container.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/splash/splash_4_container.jsx ***!
+  \***********************************************************/
+/*! exports provided: Splash4Container */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Splash4Container", function() { return Splash4Container; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _session_signup2_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/signup2_container */ "./frontend/components/session/signup2_container.js");
+
+
+var Splash4Container = function Splash4Container() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash4-outer-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash4-inner-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "sb1"
   }, "Sign up for Everwrote Today"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
@@ -1340,8 +1612,11 @@ var SplashPageContainer = function SplashPageContainer() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-inner-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-image"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "hero",
     src: window.splashHero,
     alt: "Everwrote Hero"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1351,7 +1626,7 @@ var SplashPageContainer = function SplashPageContainer() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "splash-signup",
     to: '/signup'
-  }, "SIGN UP FOR FREE"))));
+  }, "SIGN UP FOR FREE")))));
 };
 
 /***/ }),

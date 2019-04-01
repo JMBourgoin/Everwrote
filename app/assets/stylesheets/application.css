@@ -35,6 +35,21 @@ time, mark, audio, video {
   text-decoration: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+
+
 /* SIGN UP FORM CONTAINER --------------------- ----------------*/
 .signup-form-container {
   display: flex;
@@ -56,7 +71,7 @@ time, mark, audio, video {
 
 .form-header h2{
   font-size: 45px;
-  font-weight: 900;
+  font-weight: 800;
   font-family: 'Playfair Display', serif;
   
 }
@@ -72,7 +87,7 @@ time, mark, audio, video {
 .signup-form {
   display: flex;
   flex-direction: column;
-  margin: 0px 50px 50px 50px;
+  margin: 0px 50px 30px 50px;
   width: 320px;
 }
 
@@ -97,7 +112,7 @@ time, mark, audio, video {
   border-radius: 8px;
   font-family: 'Didact Gothic', sans-serif;
   font-size: 16px;
-  margin: 20px 0;
+  margin: 20px 0 0px 0;
 }
 .form-button:hover{
   background-color: #009A4C;
@@ -201,7 +216,9 @@ time, mark, audio, video {
   justify-content: space-between;
   align-items: center;
   padding: 17px;
-  height: 70px;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 8vh;
   min-width: 600px;
   z-index: 99;
 }
@@ -211,12 +228,12 @@ time, mark, audio, video {
   flex-direction: row;
   align-items: center;
   font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 24px;
+  font-weight: 800;
+  font-size: 35px;
   width: 100px;
 }
 .nav-logo img {
-  width: 85px;
+  width: 60px;
 }
 
 .nav-buttons ul {
@@ -263,21 +280,36 @@ time, mark, audio, video {
 /* Splash-------------------------------- */
 .splash-container {
   /* margin-top: 120px; */
+  width: 100vw;
+  height: 620px;
   padding-top: 80px;
+  padding-left: 20px;
   padding-bottom: 10px;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  height: 620px;
   background-color: #00a94f;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 52 52'%3E%3Cpath fill='%2376c043' fill-opacity='0.4' d='M0 17.83V0h17.83a3 3 0 0 1-5.66 2H5.9A5 5 0 0 1 2 5.9v6.27a3 3 0 0 1-2 5.66zm0 18.34a3 3 0 0 1 2 5.66v6.27A5 5 0 0 1 5.9 52h6.27a3 3 0 0 1 5.66 0H0V36.17zM36.17 52a3 3 0 0 1 5.66 0h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 0 1 0-5.66V52H36.17zM0 31.93v-9.78a5 5 0 0 1 3.8.72l4.43-4.43a3 3 0 1 1 1.42 1.41L5.2 24.28a5 5 0 0 1 0 5.52l4.44 4.43a3 3 0 1 1-1.42 1.42L3.8 31.2a5 5 0 0 1-3.8.72zm52-14.1a3 3 0 0 1 0-5.66V5.9A5 5 0 0 1 48.1 2h-6.27a3 3 0 0 1-5.66-2H52v17.83zm0 14.1a4.97 4.97 0 0 1-1.72-.72l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1 0-5.52l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43c.53-.35 1.12-.6 1.72-.72v9.78zM22.15 0h9.78a5 5 0 0 1-.72 3.8l4.44 4.43a3 3 0 1 1-1.42 1.42L29.8 5.2a5 5 0 0 1-5.52 0l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1-.72-3.8zm0 52c.13-.6.37-1.19.72-1.72l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43a5 5 0 0 1 5.52 0l4.43-4.43a3 3 0 1 1 1.42 1.41l-4.44 4.43c.36.53.6 1.12.72 1.72h-9.78zm9.75-24a5 5 0 0 1-3.9 3.9v6.27a3 3 0 1 1-2 0V31.9a5 5 0 0 1-3.9-3.9h-6.27a3 3 0 1 1 0-2h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 1 1 2 0v6.27a5 5 0 0 1 3.9 3.9h6.27a3 3 0 1 1 0 2H31.9z'%3E%3C/path%3E%3C/svg%3E");
 }
+.splash-inner-container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-content: center;
+}
+.splash-image {
+  display: flex;
+  justify-content: center;
+  padding: 60px 30px 0px 30px;
+  
+}
 
-.splash-image img{
-  width: 80%;
-  height: 80%;
-  margin: 30px 0px 30px 20px;
+.hero {
+  height: auto;
+  width: auto;
+  max-width: 80%; 
+  max-height: 80%;
 
 }
 
@@ -285,25 +317,25 @@ time, mark, audio, video {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  font-family: Sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   color: white;
   min-width: 350px;
   max-width: 450px;
-  margin: 40px 10px 40px 40px;
+  margin: 60px 10px 40px 80px;
 }
 
 .splash-text h2 {
   color: white;
-  font-size: 47px;
-  font-weight: 700;
+  font-size: 55px;
+  font-weight: 600;
   margin-bottom: 25px;
 }
 
 .splash-text h4 {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 100;
   line-height: 40px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.7px;
 }
 
 .splash-button {
@@ -325,12 +357,17 @@ time, mark, audio, video {
 }
 
 /* Splash2---------------------------------------------------- */
+.splash2-outer-container{
+  display: flex;
+  justify-content: center;
+  background-color: rgb(249, 245, 245);
 
-.splash2-container {
+}
+.splash2-inner-container {
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(249, 245, 245);
 }
 
 .splash2-image {
@@ -338,9 +375,10 @@ time, mark, audio, video {
   height: 100px;
 }
 
-.splash2-container h2 {
-  font-family: sans-serif;
-  font-size: 40px;
+.splash2-inner-container h2 {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 55px;
+  font-weight: 700;
   color: rgb(34, 34, 34);
   margin-top: 100px;
 }
@@ -350,14 +388,15 @@ time, mark, audio, video {
   flex-direction: row;
   justify-content: space-around;
   margin: 100px 45px;
-  font-family: sans-serif;
-  font-size: 20px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 25px;
+  font-weight: 100;
   color: gray;
 }
 
 .splash2-text h3 {
   line-height: 40px;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   margin: 20px 10px;
   font-weight: 100;
 }
@@ -372,30 +411,36 @@ time, mark, audio, video {
 
 /* Splash3---------------------------------------------------------- */
 
-
-.splash3-container h2 {
-  font-size: 40px;
-  font-family: sans-serif;
+.splash3-outer-container {
+  display: flex;
+  justify-content: center;
 }
 
-.splash3-container h3 {
-  font-size: 30px;
-  font-family: sans-serif;
-  color: #00A94F;
-}
-
-.splash3-container h6 {
-  font-size: 18px;
-  font-family: sans-serif;
-  letter-spacing: 1px;
-  font-weight: 100px;
-}
-
-.splash3-container {
+.splash3-inner-container {
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   margin: 50px;
 }
+.splash3-inner-container h2 {
+  font-size: 50px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight: 800;
+}
+
+.splash3-inner-container h3 {
+  font-size: 35px;
+  font-family: 'Didact Gothic', sans-serif;
+  color: #00A94F;
+}
+
+.splash3-inner-container h6 {
+  font-size: 25px;
+  font-family: 'Didact Gothic', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 100px;
+}
+
 .splash3-image {
   margin: 0 auto;
   height: 45px;
@@ -408,13 +453,14 @@ time, mark, audio, video {
   text-align: center;
   margin: 80px 0;
   height: 140px;
-  max-width: 600;
+  max-width: 800;
 }
 
 .splash3-brain-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 100px;
 }
 
@@ -433,7 +479,9 @@ time, mark, audio, video {
 .splash3-organize-container {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+
   margin-bottom: 100px;
 }
 
@@ -446,7 +494,8 @@ time, mark, audio, video {
 .splash3-collaborate-container {
  display: flex;
  flex-direction: row;
- justify-content: space-around;
+ justify-content: space-between;
+  align-items: center;
  margin-bottom: 100px;
 }
 
@@ -456,13 +505,19 @@ time, mark, audio, video {
   margin-right: 20px;
 }
 /* Splash4---------------------------------------------------------------- */
-.splash4-signup-today {
+.splash4-outer-container{
+  display: flex;
+  justify-content: center;
+  background-color: #00A94F;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.splash4-inner-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  background-color: #00A94F;
+  justify-content: space-between;
   color: white;
-  padding-left: 50px;
+  /* padding-left: 50px; */
 }
 
 .bottom-signup {
@@ -481,25 +536,32 @@ time, mark, audio, video {
   justify-content: space-between;
 }
 
-.splash4-signup-today h3 {
-  font-family: sans-serif;
-  font-size: 40px;
+.bottom-signup-form .form-button {
+  margin-bottom: 0px;
+}
+
+.bottom-signup .form-link-container {
+  color: green;
+}
+.splash4-inner-container h3 {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 50px;
   letter-spacing: 1px;
   line-height: 50px;
   margin-top: 150px;
 }
 
-.splash4-signup-today h6 {
-  font-family: sans-serif;
-  font-size: 18px;
+.splash4-inner-container h6 {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 25px;
   font-weight: 100;
 }
 
-.splash4-signup-today p {
+.splash4-inner-container p {
   color: white;}
 
 
-.splash4-signup-today a {
+.splash4-inner-container a {
   color: white;
 }
 
@@ -516,21 +578,28 @@ time, mark, audio, video {
   flex-direction: column;
   height: 100vh;
   width: 240px;
-  background-color: rgb(31, 31, 31);
+  background-color: rgb(24, 24, 24);
 }
 
 .profile {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 80px;
-  font-family: sans-serif;
+  height: 70px;
+  font-family: 'Didact Gothic', sans-serif;
   color: lightgray;
   font-size: 13px;
-  margin-bottom: 50px;
+  background-color: transparent;
+  border: none;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px 10px 10px;
 }
 .profile img{
-  width: 80px;
+  width: 50px;
 }
 
 .add-note {
@@ -538,9 +607,13 @@ time, mark, audio, video {
   flex-direction: row;
   align-items: center;
   margin: 20px;
-  font-family: sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   color: white;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
 }
+
 
 .add-note img {
   width: 33px;
@@ -551,11 +624,14 @@ time, mark, audio, video {
   display: flex;
   flex-direction: row;
   color: lightgray;
-  font-family: sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 15px;
   margin: 15px 25px;
   list-style: none;
+  background-color: transparent;
+  border: none;
 }
+
 
 .sidebar-list-ul {
   list-style: none;
@@ -565,6 +641,15 @@ time, mark, audio, video {
   height: 18px;
   margin-right: 7px;
 }
+.side-logout {
+background-color: #00A94F;
+border-radius: 5px;
+width: 80px;
+height: 30px;
+font-size: 12px;
+color: white;
+margin: 200px 20px;
+}
 
 .logoutButton {
   width: 55px;
@@ -573,21 +658,45 @@ time, mark, audio, video {
   margin-top: 60vh;
 }
 
+.sidebar-small {
+  display: flex;
+  flex-direction: row;
+  color: lightgray;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 12px;
+  margin: 15px 20px;
+  list-style: none;
+  background-color: transparent;
+  border: none;
+}
+.sidebar-small img {
+  height: 15px;
+  margin: 0 5px;
+}
 
 
+.notebooks-sidebar-menu {
+  margin-left: 15px;
+}
+
+.sidebar-button {
+  margin: 0 16px;
+}
 
 /* NOTEBOOKS---------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 /* ----NOTEBOOKS HEADER COMPONENT----- */
 .notebooks-container {
-  width: 100vw;
+  width: 95vw;
+  margin: 0 40px;
 }
 .nb-header {
-  font-family: sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
+  border-top: lightgray;
 }
 .nb-header h3 {
   font-size: 25px;
-  margin: 30px;
+  margin: 20px 0px;
 }
 .nb-header img {
   height: 20px;
@@ -597,7 +706,7 @@ time, mark, audio, video {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 8% 10px 30px;
+  margin: 10px 0;
   font-weight: 600;
 }
 
@@ -608,22 +717,9 @@ time, mark, audio, video {
   align-items: center;
   width: 200px;
 }
-.nb-row-head {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 10px;
-  padding: 12px 0 12px 15px;
-  list-style: none;
-  background-color: rgb(241, 241, 241);
-  border-top: 2px solid rgb(109, 109, 109);
-  border-bottom: .5px solid lightgray;
-  color: rgb(160, 160, 160);
 
-}
 
-.nb-row-head a {
+.nb-row-head button {
   color:rgb(160, 160, 160);
 }
 
@@ -645,75 +741,92 @@ time, mark, audio, video {
 
 .notebook-item {
   text-decoration: none;
-  font-family: sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 14px;
   color: rgb(105, 104, 104);
 }
 .notebook-item-list {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-content: flex-start;
+  align-items: center;
   list-style: none;
   padding: 12px 0;
   background-color: white;
+}
+
+.nb-title, .nb-createby, .nb-created, .nb-updated, .nb-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nb-title {
+  width: 200px;
+}
+.nb-createdby{
+  width: 200px;
+}
+.nb-created, .nb-updated {
+  width: 200px;
+}
+
+.nb-actions {
+  width: 200px;
+}
+
+.nb-list-head {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 12px 0;
+  font-size: 12px;
+}
+
+.nb-row-head {
+  background-color: rgb(241, 241, 241);
+  border-top: 2px solid rgb(24, 24, 24);
+  border-bottom: .5px solid lightgray;
+  color: rgb(160, 160, 160);
 }
 
 .notebook-item-list:hover {
   background-color: rgb(241, 241, 241);
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
-.nb-dropdown-menu {
-  display: none;
+.notebook-action-menu{
   position: absolute;
+  display: flex; 
+  justify-content: center;
+  flex-direction: column;
+  align-items: space-around;
   width: 140px;
   height: 100px;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 10px lightgray;
   border-radius: 2px;
+  z-index: 22;
+  right: 20px;
 }
-
-.dropdown a{
-  text-decoration: none;
-}
-
-
-.nb-dropdown-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
-  margin-top: 17px;
   
-}
-.nb-actions a {
-  text-decoration: none;
-}
-.nb-dropdown-items li{
-  margin: 5px;
-}
-.nb-dropdown-items a{
-  font-family: sans-serif;
-  color:  rgb(51, 51, 51);
-  
-}
-.show {
-  display: block;
-}
-
 .nb-title {
   font-weight: 900px;
 }
 
-.action-button {
+ .button-text {
   border: none;
   padding: none;
   margin: none;
   background-color: transparent;
 }
+
+.notebook-action-menu > button {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px;
+}
+

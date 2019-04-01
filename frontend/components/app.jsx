@@ -7,26 +7,29 @@ import { NavBarContainer } from './splash/nav_bar_container';
 import { SplashPageContainer } from './splash/splash_page_container';
 import { Splash2Container } from './splash/splash_2_container';
 import { Splash3Container } from './splash/splash_3_container';
+import { Splash4Container } from "./splash/splash_4_container";
 import  NotebooksContainer  from './notebooks/notebooks_container';
 import SidebarContainer from './sidebar/sidebar_container';
 
 const App = () => {
   return (
     <div className="app-container">
-      <Route exact path="/" component={NavBarContainer}/>
-      <Route exact path="/" component={SplashPageContainer}/>
+      <Route exact path="/" component={NavBarContainer} />
+      <Route exact path="/" component={SplashPageContainer} />
       <Route exact path="/" component={Splash2Container} />
       <Route exact path="/" component={Splash3Container} />
+      <Route exact path="/" component={Splash4Container} />
+
       <Switch>
-          <AuthRoute exact path="/login" component={LoginFormContainer} />
-          <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <AuthRoute exact path="/signup" component={SignupFormContainer} />
       </Switch>
       <div className="main-container">
-        <ProtectedRoute path="/notebooks" component={NotebooksContainer}/>
+        <ProtectedRoute path="/notebooks" component={NotebooksContainer} />
         <ProtectedRoute path="/notebooks" component={SidebarContainer} />
       </div>
     </div>
-  )
+  );
 }
 
 export default App;

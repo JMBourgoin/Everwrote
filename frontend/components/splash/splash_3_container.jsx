@@ -1,10 +1,9 @@
 import React from 'react';
-import SignUpContainer from '../session/signup2_container';
 
 export const Splash3Container = () => {
   return (
-    <div>
-      <div className="splash3-container">
+    <div className="splash3-outer-container">
+      <div className="splash3-inner-container">
         <div className="splash3-image">
           <img className="splash3-image" src={window.splash3pic} alt="Everwrotebrain" />
         </div>
@@ -33,13 +32,6 @@ export const Splash3Container = () => {
           </div>
             <img className="collaborate-pic" src={window.collaboratepic} alt="Everwrote Collaborate"/>
         </div>
-      </div>
-      <div className="splash4-signup-today">
-        <div>
-          <h3 className="sb1">Sign up for Everwrote Today</h3>
-          <h6 className="sb2">Capture ideas and inspiration from anywhere and manage tasks with ease.</h6>
-        </div>
-        <SignUpContainer className="bottom-signup"/>
       </div>
     </div>
   )
