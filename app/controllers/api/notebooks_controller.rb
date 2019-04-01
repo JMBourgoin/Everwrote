@@ -4,7 +4,7 @@ class Api::NotebooksController < ApplicationController
     @notebooks = collection.select{|book| book.author_id == current_user.id}
   end
 
-  def new
+  def create
     @notebook = Notebook.new(notebook_params)
     if @notebook && logged_in?
       @notebook.save!
@@ -45,16 +45,17 @@ class Api::NotebooksController < ApplicationController
   def destroy
     @notebook = Notebook.find(params[:id])
     if @notebook && current_user.id == @notebook.author_id
+      @nb_id = @notebook.id;
       @notebook.destroy
-      render :index
+      render json: {id: @nb_id}
     else
       render @notebook.errors.full_messages, status: 404
     end
   end
 
-  private
+  
   def notebook_params
-    params.require(:notebook).permit(:id, :title, :author_id, :created_at, :updated_at)
+    params.require(:notebook).permit(:title, :author_id)
   end
 
 end

@@ -3,6 +3,7 @@ import React from 'react';
 import { fetchAllNotebooks, fetchNotebook } from '../../actions/notebooks';
 import NotebookIndexItem from './notebooks_index_item';
 import NotebookHeader from './notebooks_header_container';
+import AddNotebook from '../menus/notebooks_modal_container';
 
 const msp = state => {    
   const userId = state.session.currentUserId;
@@ -28,12 +29,15 @@ class NotebooksContainer extends React.Component {
     super(props);
     this.state = {
       sortBy: 'created',
+      showModal: false,
     };
-  
+
     this.sortByCreated = this.sortByCreated.bind(this);
     this.sortByUpdated = this.sortByUpdated.bind(this);
     this.sortByTitle = this.sortByTitle.bind(this);
     this.changeState = this.changeState.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount(){
@@ -66,9 +70,18 @@ class NotebooksContainer extends React.Component {
     let newArr = arr.concat([]);
     return (
       newArr.sort((a, b) => {
-       return (a.title[0] < b.title[0] ? -1 : 1);
+       return (a.title[0].toUpperCase() < b.title[0].toUpperCase() ? -1 : 1);
      })
     );
+  }
+
+  closeModal(e){
+    this.setState({showModal: false});
+  }
+
+  showModal(e){
+    e.preventDefault();
+    this.setState({showModal: true});
   }
   
   render(){
@@ -87,10 +100,10 @@ class NotebooksContainer extends React.Component {
       return (
          <NotebookIndexItem 
           id={notebook.id} 
-          author_id={this.props.userEmail} 
-          created_at={notebook.created_at}
-          updated_at={notebook.updated_at}
-          title={notebook.title}
+          // author_id={this.props.userEmail} 
+          // created_at={notebook.created_at}
+          // updated_at={notebook.updated_at}
+          // title={notebook.title}
           key={notebook.id}
           />
       )
@@ -98,12 +111,22 @@ class NotebooksContainer extends React.Component {
     
     return (
       <div className="notebooks-container">
+        {
+          this.state.showModal ?
+          (
+            <AddNotebook 
+            closeModal={this.closeModal}
+            />
+          ) :
+          (null)
+          }
         <NotebookHeader 
           setIndexState={this.setIndexState}
           sortByTitle={this.sortByTitle}
           sortByUpdated={this.sortByUpdate}
           sortByCreated={this.sortByCreated}
           changeState={this.changeState}
+          showModal={this.showModal}
         />
         <ul>
           { notebooks }

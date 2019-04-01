@@ -55,6 +55,6 @@ export const deleteNotebook = id => {
   return $.ajax({
     url: `api/notebooks/${id}`,
     method: 'DELETE',
-    notebookId: id
+    data: { id }
   });
 };

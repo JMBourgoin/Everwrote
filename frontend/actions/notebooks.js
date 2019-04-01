@@ -20,7 +20,7 @@ const receiveNotebook = notebook => {
 const removeNotebook = (id) => {
   return ({
     type: DELETE_NOTEBOOK,
-    notebookId: id
+     id
   });
 };
 

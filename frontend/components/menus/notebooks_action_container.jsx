@@ -1,15 +1,20 @@
 import { connect } from 'react-redux';
+import { updateNotebook, deleteNotebook } from '../../actions/notebooks';
 import React from 'react';
 
-const msp = state => {
-    return ({
+const msp = (state, ownProps) => {
+    let id = ownProps.id;
+    let notebook = state.entities.notebooks[id];
 
+    return ({
+        notebook,
     });
 };
 
 const mdp = dispatch => {
     return ({
-
+        deleteNotebook: id => dispatch(deleteNotebook(id)),
+        updateNotebook: notebook => dispatch(updateNotebook(notebook))
     });
 };
 
@@ -21,6 +26,8 @@ class NotebooksActionMenu extends React.Component {
         }
         this.openMenu = this.openMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+        this.editHandle = this.editHandle.bind(this);
+        this.deleteHandle = this.deleteHandle.bind(this);
     }
 
     openMenu(e){
@@ -35,6 +42,14 @@ class NotebooksActionMenu extends React.Component {
         document.removeEventListener('click', this.closeMenu);
     }
 
+    deleteHandle(){
+        this.props.deleteNotebook(this.props.notebook.id);
+    }
+
+    editHandle(){
+
+    }
+
     render(){
         return (
             <div>
@@ -44,8 +59,8 @@ class NotebooksActionMenu extends React.Component {
                     this.state.showMenu ? 
                     (
                         <div className="notebook-action-menu">
-                            <button className="button-text">edit</button>
-                            <button className="button-text">delete</button>
+                            <button onClick={this.editHandle} className="button-text">edit</button>
+                            <button onClick={this.deleteHandle} className="button-text">delete</button>
                         </div>
                     ) : (
                         null

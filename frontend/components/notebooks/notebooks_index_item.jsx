@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NotebookActions from '../menus/notebooks_action_container';
 
-const msp = state => {
+const msp = (state, ownProps) => {
+  let id = ownProps.id;
+  let notebook = state.entities.notebooks[id];
   return({
-    
+    notebook,
   });
 };
 
@@ -26,11 +28,11 @@ const mdp = dispatch => {
   }
   render (){
     
-    const author_id = this.props.author_id;
-    const id = this.props.id;
-    const created_at = this.props.created_at;
-    const updated_at = this.props.updated_at;
-    const title = this.props.title;
+    const author_id = this.props.notebook.author_id;
+    const id = this.props.notebook.id;
+    const created_at = this.props.notebook.created_at;
+    const updated_at = this.props.notebook.updated_at;
+    const title = this.props.notebook.title;
     
     const monthStr = [
       "Jan",
@@ -54,9 +56,9 @@ const mdp = dispatch => {
     const createdDate = new Date(created_at);
     const updatedDate = new Date(updated_at);
     const monthUpdated = monthStr[updatedDate.getMonth()];
-    const dayCreated = createdDate.getDay();
+    const dayCreated = createdDate.getDate();
    const monthCreated = monthStr[createdDate.getMonth()];
-   const dayUpdated = updatedDate.getDay();
+   const dayUpdated = updatedDate.getDate();
     const updated = `${monthUpdated} ${dayUpdated}`;
    const created = `${monthCreated} ${dayCreated}`;
    
@@ -70,7 +72,9 @@ const mdp = dispatch => {
         <li key={`${id}4`} className="nb-updated">{updated}</li>
         
         <li key={`${id}5`} className="nb-actions">
-          <NotebookActions />
+          <NotebookActions 
+            id={id}
+          />
         </li>
       </ul>
     </div>
