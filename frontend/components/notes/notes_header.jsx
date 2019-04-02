@@ -34,7 +34,7 @@ class NotesHeader extends React.Component {
     return (
       <div className="notes-idx-header-outer">
         <div className="notes-idx-header">
-          <h3>All Notes</h3>
+          <h3>{this.props.header}</h3>
           <div className="notes-idx-sub-header">
             <p>{noteCount} notes</p>
             <div>

@@ -57,14 +57,14 @@ class SidebarContainer extends React.Component {
     let notebooks = Object.values(this.props.notebooks);
     let nbButtons = notebooks.map(notebook =>{
       return (
-        <button
+        <Link
         key ={notebook.id}
-        onClick={this.props.titleClick} 
+        to={`/notes/notebooks/${notebook.id}`} 
         className="sidebar-small"
         >
         <img src={window.notebook2Pic} alt="Notes-icon" />
         <p>{notebook.title}</p>
-        </button>
+        </Link>
       )
     })
     return (
@@ -82,7 +82,7 @@ class SidebarContainer extends React.Component {
           </button>
           <ul className="sidebar-list-ul">
             <li>
-              <Link to={"/notebooks"} className="sidebar-list">
+              <Link to={"/notes"} className="sidebar-list">
                 <img src={window.notePic} alt="note-icon" />
                 <h3>All Notes</h3>
               </Link>

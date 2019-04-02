@@ -12,6 +12,7 @@ import { FooterContainer } from "./splash/footer_container";
 import  NotebooksContainer  from './notebooks/notebooks_container';
 import SidebarContainer from './sidebar/sidebar_container';
 import NotesIndex from './notes/notes_index_container';
+import NotebookNotesIndex from './notes/notebook_notes_index_container';
 import NoteContainer from './notes/note_container';
 
 const App = () => {
@@ -31,8 +32,10 @@ const App = () => {
         <ProtectedRoute path="/notebooks" component={NotebooksContainer} />
         <ProtectedRoute path="/notebooks" component={SidebarContainer} />
         <ProtectedRoute path="/notes" component={NoteContainer} />
-        <ProtectedRoute path="/notes" component={NotesIndex} />
+        <ProtectedRoute exact path="/notes" component={NotesIndex} />
+        <ProtectedRoute exact path="/notes/notebooks/:notebookId" component={NotebookNotesIndex} />
         <ProtectedRoute path="/notes" component={SidebarContainer}/>
+
       </div>
     </div>
   );

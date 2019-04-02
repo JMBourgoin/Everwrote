@@ -68,7 +68,7 @@ const mdp = dispatch => {
   return (
     <div onClick={this.showNotebook} className={`notebook-item`} key={id} to={`/notebooks/${id}`}>
       <ul className='notebook-item-list' key={id}>
-        <li><button onClick={this.showNotes} key={`${id}1`} className="nb-title"><img className="small-icon" src={window.notebook2Pic} alt=""/>{title}</button></li>
+        <li><Link to={`/notes/notebooks/${id}`} key={`${id}1`} className="nb-title"><img className="small-icon" src={window.notebook2Pic} alt=""/>{title}</Link></li>
         <li key={`${id}2`} className="nb-createdby">{this.props.author}</li>
         <li key={`${id}3`} className="nb-created">{created}</li>
         <li key={`${id}4`} className="nb-updated">{updated}</li>
