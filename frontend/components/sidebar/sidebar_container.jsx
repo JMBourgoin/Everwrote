@@ -58,12 +58,12 @@ class SidebarContainer extends React.Component {
     let nbButtons = notebooks.map(notebook =>{
       return (
         <Link
-        key ={notebook.id}
-        to={`/notes/notebooks/${notebook.id}`} 
-        className="sidebar-small"
-        >
-        <img src={window.notebook2Pic} alt="Notes-icon" />
-        <p>{notebook.title}</p>
+          key ={notebook.id}
+          to={`/notes/notebooks/${notebook.id}`} 
+          className="sidebar-small"
+          >
+          <img src={window.notebook2Pic} alt="Notes-icon" />
+          <p>{notebook.title}</p>
         </Link>
       )
     })
@@ -88,13 +88,17 @@ class SidebarContainer extends React.Component {
               </Link>
             </li>
             <li>
-              <button
-                onClick={this.openMenu}
-                className="sidebar-list sidebar-button"
-              >
-                <img src={window.notebook2Pic} alt="Notes-icon" />
-                <h3>Notebooks</h3>
-              </button>
+              <div className="sidebar-notebook-button">
+                <button
+                  onClick={this.openMenu}
+                  className="sidebar-list sidebar-button"
+                >
+                  <img className="sidebar-notebook-img" src={window.notebook2Pic} alt="Notes-icon" />
+                </button>
+                  <Link className="sidebar-list-a" to={"/notebooks"}>
+                    <h3>Notebooks</h3>
+                  </Link> 
+              </div>
               {this.state.showMenu ? (
                 <div className="notebooks-sidebar-menu">{nbButtons}</div>
                 ) : null}

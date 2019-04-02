@@ -45,7 +45,6 @@
   border: none;
 }
 
-
 .add-note img {
   width: 33px;
   margin-right: 7px;
@@ -63,23 +62,23 @@
   border: none;
 }
 
-
 .sidebar-list-ul {
   list-style: none;
 }
 
 .sidebar-list img {
   height: 18px;
-  margin-right: 7px;
+  margin-right: 5px;
 }
+
 .side-logout {
-background-color: #00A94F;
-border-radius: 5px;
-width: 80px;
-height: 30px;
-font-size: 12px;
-color: white;
-margin: 200px 20px;
+  background-color: #00A94F;
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  font-size: 12px;
+  color: white;
+  margin: 200px 20px;
 }
 
 .logoutButton {
@@ -100,16 +99,38 @@ margin: 200px 20px;
   background-color: transparent;
   border: none;
 }
+
 .sidebar-small img {
   height: 15px;
   margin: 0 5px;
 }
-
 
 .notebooks-sidebar-menu {
   margin-left: 15px;
 }
 
 .sidebar-button {
-  margin: 0 16px;
+  margin: 0 0 0 24px;
+  padding: 0;
+
+}
+
+.sidebar-notebook-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 20px;
+  padding: 0px;
+  margin: 0;
+}
+
+.sidebar-list-a {
+  color: lightgray;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-list .sidebar-button {
+  margin-right: 0;
+  padding: 0;
 }

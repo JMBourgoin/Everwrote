@@ -2228,13 +2228,19 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.notePic,
         alt: "note-icon"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All Notes"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All Notes"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sidebar-notebook-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.openMenu,
         className: "sidebar-list sidebar-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "sidebar-notebook-img",
         src: window.notebook2Pic,
         alt: "Notes-icon"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Notebooks")), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        className: "sidebar-list-a",
+        to: "/notebooks"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Notebooks"))), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "notebooks-sidebar-menu"
       }, nbButtons) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/notebooks",
