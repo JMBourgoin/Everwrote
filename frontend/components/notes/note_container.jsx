@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactQuill from 'react-quill'; 
 
 const msp = state => {
   return ({
@@ -15,16 +16,35 @@ const mdp = dispatch => {
 
 
 class NoteContainer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+    this.state = { text: '' };
+    this.handleChange = this.handleChange.bind(this);
   }
-  render(){
+
+  handleChange(value) {
+    this.setState({ text: value });
+  }
+
+  render() {
     return (
       <div className="note-outer-container">
-        NOTE
+        <div className="quil-container">
+          <ReactQuill 
+          value={this.state.text}
+          onChange={this.handleChange} 
+          theme="snow"
+          >
+            <div className="my-editing-area">
+            </div>
+      
+          </ReactQuill>
+        </div>
+        <button>Save</button>
       </div>
     )
   }
 }
+
 
 export default connect(msp, mdp)(NoteContainer);
