@@ -40,7 +40,7 @@ notebooks = Notebook.create([
   {title: 'My Notebook 1', author_id: 5}
 ])
 
-notes - Note.create([
+notes = Note.create([
   {title: 'Wonderful Note.', body: 'This note is about being a wonderful note.  It is a special note, this note.  Wonderful.', author_id: 0, notebook_id: 1},
   {title: 'Bonderful Note.', body: 'This note is about being a Bonderful note.  It is a special note, this note.  Bonderful.', author_id: 0, notebook_id: 1},
   {title: 'Vonderful Note.', body: 'This note is about being a Vonderful note.  It is a special note, this note.  Vonderful.', author_id: 0, notebook_id: 1},
