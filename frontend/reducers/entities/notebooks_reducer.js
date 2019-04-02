@@ -18,7 +18,6 @@ const NotebooksReducer = (oldState = {}, action)=>{
     case DELETE_NOTEBOOK:
       newState = merge({}, oldState);
       let id = action.id.id;
-      debugger
       delete newState[id];
       return newState;
     default:

@@ -1,0 +1,95 @@
+/* Splash3---------------------------------------------------------- */
+
+.splash3-outer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.splash3-inner-container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+.splash3-inner-container h2 {
+  font-size: 50px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight: 800;
+}
+
+.splash3-inner-container h3 {
+  font-size: 35px;
+  font-family: 'Didact Gothic', sans-serif;
+  color: #00A94F;
+}
+
+.splash3-inner-container h6 {
+  font-size: 25px;
+  font-family: 'Didact Gothic', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 100px;
+}
+
+.splash3-image {
+  margin: 0 auto;
+  height: 45px;
+}
+
+.splash3-header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  margin: 80px 0;
+  height: 140px;
+  max-width: 800;
+}
+
+.splash3-brain-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.brain-pic {
+  width: 240px;
+  height: 240px;
+  margin-left: 20px;
+}
+
+.sb1, .sb2 {
+  line-height: 34px;
+  max-width: 410px; 
+  margin: 20px;
+}
+
+.splash3-organize-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 100px;
+}
+
+.organize-pic {
+  width: 280px;
+  height: 280px;
+  margin-right: 20px;
+}
+
+.splash3-collaborate-container {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+  align-items: center;
+ margin-bottom: 100px;
+}
+
+.collaborate-pic {
+  width: 280px;
+  height: 280px;
+  margin-right: 20px;
+}

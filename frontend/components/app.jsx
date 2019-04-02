@@ -11,6 +11,8 @@ import { Splash4Container } from "./splash/splash_4_container";
 import { FooterContainer } from "./splash/footer_container";
 import  NotebooksContainer  from './notebooks/notebooks_container';
 import SidebarContainer from './sidebar/sidebar_container';
+import NotesIndex from './notes/notes_index_container';
+import NoteContainer from './notes/note_container';
 
 const App = () => {
   return (
@@ -21,7 +23,6 @@ const App = () => {
       <Route exact path="/" component={Splash3Container} />
       <Route exact path="/" component={Splash4Container} />
       <Route exact path="/" component={FooterContainer} />
-
       <Switch>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
@@ -29,6 +30,9 @@ const App = () => {
       <div className="main-container">
         <ProtectedRoute path="/notebooks" component={NotebooksContainer} />
         <ProtectedRoute path="/notebooks" component={SidebarContainer} />
+        <ProtectedRoute path="/notes" component={NoteContainer} />
+        <ProtectedRoute path="/notes" component={NotesIndex} />
+        <ProtectedRoute path="/notes" component={SidebarContainer}/>
       </div>
     </div>
   );

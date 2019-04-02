@@ -1,0 +1,216 @@
+/* ----NOTEBOOKS HEADER COMPONENT----- */
+.notebooks-container {
+  position: relative;
+  width: 100%;
+  min-width: 600px;
+  margin-left: 240px;
+  margin-right: 30px;
+  }
+.nb-header {
+  font-family: 'Didact Gothic', sans-serif;
+  border-top: lightgray;
+  margin-left: 30px;
+}
+.nb-header h3 {
+  font-size: 25px;
+  margin: 20px 0px;
+}
+.nb-header img {
+  height: 20px;
+}
+
+.nb-header-sub {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.nb-header-sub-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+
+
+.nb-row-head button {
+  color:rgb(160, 160, 160);
+}
+
+.nb-header-notebook {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+}
+
+.nb-header-notebook button{
+  color: #00A94F;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+.nb-header-notebook button p {
+  margin: 0 2px 2px 0;
+}
+
+
+
+/* Notebook Items--------------------------------------------------------- */
+
+.notebook-item {
+  text-decoration: none;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 14px;
+  color: rgb(105, 104, 104);
+  
+}
+.notebook-item-list {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 12px 0;
+  margin-left: 30px;
+  background-color: white;
+}
+
+.nb-title, .nb-createby, .nb-created, .nb-updated, .nb-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nb-title {
+  width: 150px;
+}
+.nb-createdby{
+  width: 150px;
+}
+.nb-created, .nb-updated {
+  width: 150px;
+}
+
+.nb-actions {
+  position: relative;
+  width: 80px;
+}
+
+.nb-list-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 12px 0;
+  font-size: 12px;
+}
+
+.nb-row-head {
+  background-color: rgb(241, 241, 241);
+  border-top: 2px solid rgb(24, 24, 24);
+  border-bottom: .5px solid lightgray;
+  color: rgb(160, 160, 160);
+}
+
+.notebook-item-list:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.notebook-sorting-menu {
+  position: absolute;
+  display: flex; 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  left: -170;
+  width: 140px;
+  height: 140px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px lightgray;
+  border-radius: 2px;
+  z-index: 22;
+  right: 20px;
+}
+
+.notebook-action-menu{
+  position: absolute;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  left: -170;
+  width: 120px;
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px lightgray;
+  border-radius: 2px;
+  z-index: 22;
+  right: 20px;
+}
+  
+.nb-title {
+  display: flex;
+  align-items: center;
+  font-weight: 900px;
+  font-size: 13px;
+  color: gray;
+}
+.nb-action-button {
+  border: none;
+  padding: none;
+  margin: none;
+  width: 100%;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 200px;
+  font-family: 'Didact Gothic', sans-serif;
+  padding: 0 10px;
+}
+
+.nb-sorting {
+  width: 100%;
+  margin-left: 20px;
+}
+.nb-sorting:first-child{
+  margin-top: 10px;
+}
+.nb-sorting:hover{
+  background-color: lightgray;
+ }
+  .nb-sorting-button {
+  border: none;
+  padding: none;
+  margin: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 300px;
+  font-family: 'Didact Gothic', sans-serif;
+  padding: 5px 0;
+  }
+.nb-sorting-button:hover{
+  background-color: lightgray;
+}
+ .button-text {
+  border: none;
+  padding: none;
+  margin: none;
+  background-color: transparent;
+}
+
+.notebook-action-menu > button {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.small-icon {
+  height: 17px;
+}

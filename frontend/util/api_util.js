@@ -1,3 +1,5 @@
+// SESSION----------------------------------------------------------------------
+
 export const createUser = user => {
   return $.ajax ({
     url: 'api/users',
@@ -20,6 +22,8 @@ export const deleteSession = () => {
     method: 'DELETE',
   });
 };
+
+// NOTEBOOKS -------------------------------------------------------------------
 
 export const fetchAllNotebooks = () => {
   return $.ajax({
@@ -58,3 +62,44 @@ export const deleteNotebook = id => {
     data: { id }
   });
 };
+
+// NOTES -----------------------------------------------------------------------
+
+export const fetchAllNotes = () => {
+  return $.ajax({
+    url: `api/notes`,
+    method: 'GET'
+  });
+};
+
+export const fetchNote = (id) => {
+  return $.ajax({
+    url: `api/notes/${id}`,
+    method: 'GET'
+  });
+};
+
+export const createNote = note => {
+  return $.ajax({
+    url: `api/notes`,
+    method: 'POST',
+    data: { note }
+  });
+};
+
+export const updateNote = note => {
+  return $.ajax({
+    url: `api/notes/${note.id}`,
+    method: 'PATCH',
+    data: { note }
+  });
+};
+
+export const deleteNote = id => {
+  return $.ajax({
+    url: `api/notes/${id}`,
+    method: 'DELETE',
+    data: { id }
+  });
+};
+

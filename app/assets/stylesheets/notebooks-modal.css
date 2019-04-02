@@ -1,0 +1,116 @@
+/* Notebooks NEW modal---------------------------------- */
+.modal-outer-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-background {
+  background-color: black;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  opacity: .5;
+}
+
+.modal-form-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 550px;
+  height: 300px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 1px 1px 25px gray;
+  z-index:100;
+  font-family: 'Didact Gothic', sans-serif;
+  margin-left: 25%;
+  
+}
+
+.modal-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 20px 5px 25px;
+}
+
+.notebook-modal-header {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.sub-head-modal {
+  margin: 20px 0 0 30px;
+  font-size: 14px;
+  color: gray;
+  font-weight: 400px;
+}
+.notebook-modal-form {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.notebook-modal-form-input {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: 200;
+}
+
+.notebook-modal-form p {
+  color: gray;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  
+}
+.modal-horizontal-line {
+  height: 1px;
+  background-color: lightgray;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.modal-buttons-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.modal-button-continue{
+  width: 90px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: darkgray;
+  font-size: 16px;
+  color: lightgray;
+}
+
+.modal-button {
+  width: 90px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: lightgray;
+  margin: 0 10px;
+  font-size: 16px;
+  color: gray;
+}
+
+.modal-button:hover {
+  cursor: pointer;
+  background-color: slate;
+}
+
+ 

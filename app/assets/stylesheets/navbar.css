@@ -1,0 +1,76 @@
+/* NavBar---------------------------------------------------- */
+.nav-parent-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: auto;
+  z-index: 22;
+  background-color: white;
+}
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 8vh;
+  min-width: 600px;
+  z-index: 99;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 35px;
+  width: 100px;
+}
+.nav-logo img {
+  width: 60px;
+}
+
+.nav-buttons ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  text-decoration: none;
+}
+
+.nav-buttons li {
+  font-family: 'Didact Gothic', sans-serif;
+  margin: 0 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.nav-buttons li link {
+  text-decoration: none;
+  
+}
+
+.nav-signup {
+  font-family: 'Didact Gothic', sans-serif;
+  text-decoration: none;
+  color: #00A94F;
+  
+}
+
+.nav-login {
+  font-family: 'Didact Gothic', sans-serif;
+  text-decoration: none;
+  width: 10px;
+  padding: 8px 38px 8px 38px;
+  height: 4.5px;
+  border: 1.5px solid #00A94F;
+  border-radius: 3.75px;
+  color: #00A94F;
+}
+
+.or {
+  padding-top: 1px;
+  font-size: 12px;
+}

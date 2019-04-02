@@ -1,0 +1,150 @@
+/* SIGN UP FORM CONTAINER --------------------- ----------------*/
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 525px;
+  height: 720px;
+  background-color: white;
+  box-shadow: 1px 1px 25px lightgray;
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 45px;
+}
+
+.form-header h2{
+  font-size: 45px;
+  font-weight: 800;
+  font-family: 'Playfair Display', serif;
+  
+}
+
+.form-header p {
+  font-size: 16px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight: 250;
+  color:  rgb(90, 90, 90);
+  margin: 10px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 50px 30px 50px;
+  width: 320px;
+}
+
+.input-fields {
+  border-radius: 8px;
+  height: 45px;
+
+  box-sizing: border-box;
+  margin: 5px 0;
+  border: 1px solid;
+  border-color: rgb(230, 230, 230);
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  font-weight: 350;
+}
+
+.form-button {
+  height: 50px;
+  color: white;
+  background-color: #00A94F;
+  border-radius: 8px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 16px;
+  margin: 20px 0 0px 0;
+}
+.form-button:hover{
+  background-color: #009A4C;
+  cursor: pointer;
+}
+.or-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+  color: rgb(206, 206, 206);
+  font-family: 'Didact Gothic', sans-serif;
+}
+.hr {
+  width: 43%;
+  height: 1px;
+  background-color: rgb(206, 206, 206);
+  
+}
+
+.form-button-demo {
+  height: 50px;
+  color: gray;
+  background-color:white;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: rgb(230, 230, 230);
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 16px;
+  margin-bottom: 14px;
+  height: 50px;
+  width: 320px;
+  margin-top: 20px;
+}
+
+.form-button-demo:hover {
+  background-color: rgb(233, 231, 231);
+  cursor: pointer;
+}
+
+.logo {
+  width: 18%;
+  margin-top: 18px;
+}
+
+.form-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fdfdfd;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%2300bd56' fill-opacity='0.12'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.form-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-content: space-between;
+  height: 45px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.form-link-container div {
+  font-weight: 200;
+  font-size: 15px;
+  color: grey;
+  margin-bottom: 5px;
+}
+
+.form-link {
+  text-decoration: none;
+  color: #00A94F;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.errors {
+  list-style: none;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 11px;
+  color: #10316b ;
+  font-weight: 600;
+}
