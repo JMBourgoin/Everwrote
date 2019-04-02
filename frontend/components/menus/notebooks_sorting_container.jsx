@@ -30,7 +30,7 @@ class NotebooksSortingMenu extends React.Component {
             </button>
 
             {this.state.showMenu ? (
-              <div className="notebook-sorting-menu">
+              <div className={this.props.klass}>
                 <div className="nb-sorting">
                   <button onClick={this.props.titleClick} className="nb-sorting-button">Sort by Title</button>
                 </div>

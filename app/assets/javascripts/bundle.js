@@ -814,7 +814,7 @@ function (_React$Component) {
         src: window.sortPic,
         alt: "sort"
       })), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "notebook-sorting-menu"
+        className: this.props.klass
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nb-sorting"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1117,7 +1117,8 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New Notebook"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_sorting_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         titleClick: this.titleClick,
         updatedClick: this.updatedClick,
-        createdClick: this.createdClick
+        createdClick: this.createdClick,
+        klass: "notebook-sorting-menu"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nb-row-head"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1495,7 +1496,8 @@ function (_React$Component) {
         notes: this.props.notes,
         titleClick: this.titleClick,
         updatedClick: this.updatedClick,
-        createdClick: this.createdClick
+        createdClick: this.createdClick,
+        klass: "notes-sorting-menu"
       }))))));
     }
   }]);

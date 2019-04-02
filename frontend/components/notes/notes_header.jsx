@@ -44,6 +44,7 @@ class NotesHeader extends React.Component {
                   titleClick={this.titleClick}
                   updatedClick={this.updatedClick}
                   createdClick={this.createdClick}
+                  klass="notes-sorting-menu"
                 />
               </div>
             </div>

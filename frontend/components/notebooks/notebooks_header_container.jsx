@@ -45,6 +45,7 @@ class NotebookHeader extends React.Component {
                 titleClick={this.titleClick}
                 updatedClick={this.updatedClick}
                 createdClick={this.createdClick}
+                klass="notebook-sorting-menu"
               />
             </div>
           </div>
