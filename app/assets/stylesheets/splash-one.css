@@ -19,18 +19,14 @@
   justify-content: space-around;
   align-content: center;
 }
-.splash-image {
+ .splash-image {
   display: flex;
   justify-content: center;
-  padding: 60px 30px 0px 30px;
-  
-}
+  align-items: center;
+} 
 
-.hero {
-  height: auto;
-  width: auto;
-  max-width: 80%; 
-  max-height: 80%;
+ .hero {
+  width: 80%;
 
 }
 

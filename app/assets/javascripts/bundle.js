@@ -288,7 +288,7 @@ var deleteNote = function deleteNote(id) {
 /*!*************************************!*\
   !*** ./frontend/actions/session.js ***!
   \*************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, receiveErrors, createNewUser, createNewSession, logoutUser */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, createNewUser, createNewSession, logoutUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -296,7 +296,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewUser", function() { return createNewUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewSession", function() { return createNewSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutUser", function() { return logoutUser; });
@@ -305,6 +307,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var CLEAR_ERRORS = "CLEAR_ERRORS";
 
 var receiveCurrentUser = function receiveCurrentUser(user) {
   return {
@@ -323,6 +326,11 @@ var receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors
+  };
+};
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
   };
 };
 var createNewUser = function createNewUser(user) {
@@ -1294,6 +1302,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_quill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-quill */ "./node_modules/react-quill/lib/index.js");
 /* harmony import */ var react_quill__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_quill__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actions_notes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/notes */ "./frontend/actions/notes.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1316,12 +1327,60 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var msp = function msp(state) {
-  return {};
+
+
+var msp = function msp(state, ownProps) {
+  var body = "Add note body";
+  var title = "Add note title";
+  var id = null;
+  var notebook_id = parseInt(ownProps.location.pathname.substr(-1));
+  var author_id = state.session.currentUserId;
+  var oldNote = null;
+
+  if (ownProps.match.params.noteId === undefined) {
+    id = null;
+  } else {
+    id = ownProps.match.params.noteId;
+  }
+
+  if (ownProps.match.params.noteId) {
+    body = state.entities.notes[id].body;
+    title = state.entities.notes[id].title;
+    oldNote = state.entities.notes[id];
+  }
+
+  return {
+    body: body,
+    title: title,
+    notebook_id: notebook_id,
+    author_id: author_id,
+    id: id,
+    oldNote: oldNote
+  };
 };
 
 var mdp = function mdp(dispatch) {
-  return {};
+  return {
+    createNote: function createNote(note) {
+      return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_3__["createNote"])(note));
+    },
+    updateNote: function updateNote(note) {
+      return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_3__["updateNote"])(note));
+    },
+    deleteNote: function (_deleteNote) {
+      function deleteNote(_x) {
+        return _deleteNote.apply(this, arguments);
+      }
+
+      deleteNote.toString = function () {
+        return _deleteNote.toString();
+      };
+
+      return deleteNote;
+    }(function (id) {
+      return dispatch(deleteNote(id));
+    })
+  };
 };
 
 var NoteContainer =
@@ -1336,18 +1395,45 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NoteContainer).call(this, props));
     _this.state = {
-      text: ''
+      body: _this.props.body,
+      title: _this.props.title
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleBody = _this.handleBody.bind(_assertThisInitialized(_this));
+    _this.handleTitle = _this.handleTitle.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(NoteContainer, [{
-    key: "handleChange",
-    value: function handleChange(value) {
+    key: "handleTitle",
+    value: function handleTitle(value) {
       this.setState({
-        text: value
+        title: value
       });
+    }
+  }, {
+    key: "handleBody",
+    value: function handleBody(value) {
+      this.setState({
+        body: value
+      });
+    }
+  }, {
+    key: "handleSave",
+    value: function handleSave(e) {
+      e.preventDefault();
+      var newNote = {
+        title: this.state.title,
+        body: this.state.body,
+        notebook_id: this.props.notebook_id,
+        author_id: this.props.author_id
+      };
+
+      if (this.props.id === null) {
+        this.props.createNote(newNote);
+      } else {
+        var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_4__["merge"])({}, this.props.oldNote, newNote);
+        this.props.updateNote(updatedNote);
+      }
     }
   }, {
     key: "render",
@@ -1355,14 +1441,22 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-outer-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "note-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "header-input",
+        type: "text",
+        value: this.state.title,
+        onChange: this.handleTitle
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "quil-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_quill__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        value: this.state.text,
+        value: this.state.body,
         onChange: this.handleChange,
         theme: "snow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "my-editing-area"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Save"));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "note-save-button",
+        onClick: this.handleSave
+      }, "Save"));
     }
   }]);
 
@@ -1868,6 +1962,9 @@ var mdp = function mdp(dispatch) {
   return {
     submitAction: function submitAction(user) {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewSession"])(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
   };
 };
@@ -1957,6 +2054,9 @@ var mdp = function mdp(dispatch) {
   return {
     submitAction: function submitAction(user) {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewUser"])(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
   };
 };
@@ -2026,6 +2126,11 @@ function (_React$Component) {
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
     }
   }, {
     key: "handleDemo",
@@ -2820,6 +2925,9 @@ var LoginErrorReducer = function LoginErrorReducer() {
       return action.errors;
 
     case _actions_session__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      return [];
+
+    case _actions_session__WEBPACK_IMPORTED_MODULE_0__["CLEAR_ERRORS"]:
       return [];
 
     default:
@@ -70022,7 +70130,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

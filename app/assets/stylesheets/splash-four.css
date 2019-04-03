@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   background-color: #00A94F;
-  padding-top: 50px;
+  padding-top: 0px;
   padding-bottom: 50px;
 }
 .splash4-inner-container {
@@ -18,8 +18,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 50px;
-  width: 420px;
+  /* margin-right: 50px; */
+  width: 600px;
   height: 550px;
 }
 
@@ -28,14 +28,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 500px;
 }
 
 .bottom-signup-form .form-button {
-  margin-bottom: 0px;
+  margin: 20px 0 0 0px;
+  width: 400px;
+}
+
+.bottom-signup-form .form-button-demo {
+  margin-left: 80px;
+  width: 400px;
+}
+
+.bottom-signup-form input {
+  width: 400px;
+}
+
+.bottom-signup-form .form-header {
+  margin-left: 80px;
+}
+
+.bottom-signup-form .or-line {
+  margin-left: 80px;
 }
 
 .bottom-signup .form-link-container {
   color: green;
+  margin-left: 80px;
+  
 }
 .splash4-inner-container h3 {
   font-family: 'Didact Gothic', sans-serif;

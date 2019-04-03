@@ -16,10 +16,15 @@ class SignUpForm extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.props.clearErrors();
+  }
+
   handleDemo(e){
     e.preventDefault();
     this.setState({'email': "demo_user@gmail.com", 'password': 'password'})
   }
+
   handleSubmit(e){
     e.preventDefault();
     this.props.submitAction(this.state);

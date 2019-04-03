@@ -1,4 +1,24 @@
 .note-outer-container {
   width: 100vw;
+  height: 80vh;
   padding: 20px;
+  
+}
+
+.quill {
+  height: 600px;
+}
+
+.note-title input {
+  width: 550px;
+  height: 80px;
+  margin-top: 300px 0;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 28px;
+  border: none;
+  color: #2b2b2b;
+}
+
+.header-input:focus {
+  outline: none;
 }

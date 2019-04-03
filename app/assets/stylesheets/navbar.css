@@ -34,6 +34,10 @@
   width: 60px;
 }
 
+.nav-logo h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+}
 .nav-buttons ul {
   display: flex;
   flex-direction: row;
