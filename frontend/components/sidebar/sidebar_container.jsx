@@ -7,14 +7,15 @@ import { logoutUser } from "../../actions/session";
 
 
 const msp = (state, ownProps) => {
+  const email = state.entities.users[state.session.currentUserId].email;
+  const notebooks = state.entities.notebooks;
+  const notebooksArr = Object.values(notebooks);
   let newNotePath = newNotePath;
   if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
     newNotePath = ownProps.location.pathname.replace(/[0-9]*(?=\/notebooks)\/\d*/, "");
   } else {
-     newNotePath = ownProps.location.pathname;
+     newNotePath = `/notes/notebooks/${notebooksArr.length -1}`;
   }
-  const email = state.entities.users[state.session.currentUserId].email;
-  const notebooks = state.entities.notebooks;
   return ({
     email,
     notebooks,

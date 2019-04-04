@@ -2502,16 +2502,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var msp = function msp(state, ownProps) {
+  var email = state.entities.users[state.session.currentUserId].email;
+  var notebooks = state.entities.notebooks;
+  var notebooksArr = Object.values(notebooks);
   var newNotePath = newNotePath;
 
   if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
     newNotePath = ownProps.location.pathname.replace(/[0-9]*(?=\/notebooks)\/\d*/, "");
   } else {
-    newNotePath = ownProps.location.pathname;
+    newNotePath = "/notes/notebooks/".concat(notebooksArr.length - 1);
   }
 
-  var email = state.entities.users[state.session.currentUserId].email;
-  var notebooks = state.entities.notebooks;
   return {
     email: email,
     notebooks: notebooks,
