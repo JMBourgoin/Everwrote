@@ -16,9 +16,9 @@ class SignUpForm extends React.Component {
     };
   }
 
-  componentDidMount(){
-    this.props.clearErrors();
-  }
+  // componentDidMount(){
+  //   this.props.clearErrors();
+  // }
 
   handleDemo(e){
     e.preventDefault();

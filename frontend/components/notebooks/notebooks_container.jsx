@@ -42,6 +42,7 @@ class NotebooksContainer extends React.Component {
 
   componentDidMount(){
     this.props.fetchAllNotebooks();
+
   }
 
   changeState(sort){

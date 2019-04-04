@@ -5,7 +5,7 @@ class Api::NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find(params[id])
+    @note = Note.find(params[:id])
     if @note && logged_in? && @note.author_id == current_user.id
       render :show
     else

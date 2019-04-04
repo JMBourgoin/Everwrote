@@ -1,12 +1,14 @@
 .note-outer-container {
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   padding: 20px;
+  border-left: 1px solid rgb(228, 228, 228);
+
   
 }
-
 .quill {
   height: 600px;
+  border: none;
 }
 
 .note-title input {
@@ -21,4 +23,42 @@
 
 .header-input:focus {
   outline: none;
+}
+
+.note-save-button {
+  background-color: #00A94F;  
+  width: 90px;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: white;
+  z-index: 99;
+}
+
+.note-save-button:hover{
+  background-color: rgb(0, 143, 67);
+  
+}
+
+.note-save-button:active {
+  width: 88px;
+  padding: 7px;
+}
+
+.save2 {
+  margin-top: 60px;
+  
+}
+
+.ql-toolbar.ql-snow {
+  border: none;
+}
+
+.ql-container.ql-snow {
+  border: none;
 }

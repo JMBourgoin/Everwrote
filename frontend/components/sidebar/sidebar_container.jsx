@@ -31,8 +31,12 @@ class SidebarContainer extends React.Component {
     this.closeMenu = this.closeMenu.bind(this);
     this.logoutClick = this.logoutClick.bind(this);
   }
+  
   componentDidMount(){
     this.props.fetchAllNotebooks();
+  }
+  componentWillUnmount(){
+    document.removeEventListener('click', this.closeMenu);
   }
 
   logoutClick(e) {
