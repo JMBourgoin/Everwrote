@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
  const NotesIndexItem = (props) => {
   const title = props.note.title;
   const body = props.note.body.slice(0,150);
+  const filteredBody = body.replace(/<(?:.|\n)*?>/gm, '');
   const created_at = props.note.created_at;
   const updated_at = props.note.updated_at;
 
@@ -38,7 +39,7 @@ import { Link } from "react-router-dom";
       <div className="notes-idx-item-outer-container">
           <div className="notes-idx-item-inner-container">
             <div className="notes-idx-title-container"><h3>{title}</h3></div>
-            <div className="notes-idx-body-container"><p>{body}...</p></div>
+            <div className="notes-idx-body-container"><p>{filteredBody}...</p></div>
             <div className="notes-idx-times-container">
               <div>
                 <p>created</p>
