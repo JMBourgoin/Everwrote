@@ -121,7 +121,7 @@ class SidebarContainer extends React.Component {
                 ) : null}
             </li>
             <li>
-              <Link to={"/notebooks"} className="sidebar-list">
+              <Link to={"/notebooks"} className="sidebar-list tags">
                 <img src={window.tagPic} alt="tags-icon" />
                 <h3>Tags</h3>
               </Link>

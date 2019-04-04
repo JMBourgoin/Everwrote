@@ -2646,7 +2646,7 @@ function (_React$Component) {
         className: "notebooks-sidebar-menu"
       }, nbButtons) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/notebooks",
-        className: "sidebar-list"
+        className: "sidebar-list tags"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.tagPic,
         alt: "tags-icon"

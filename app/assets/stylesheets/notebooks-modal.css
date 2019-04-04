@@ -29,6 +29,7 @@
   z-index:100;
   font-family: 'Didact Gothic', sans-serif;
   margin-left: 25%;
+  padding-bottom: 5px;
   
 }
 
@@ -59,7 +60,7 @@
 }
 
 .notebook-modal-form-input {
-  height: 30px;
+  height: 27px;
   border-radius: 5px;
   border: 1px solid lightgray;
   font-size: 16px;
@@ -88,24 +89,38 @@
 }
 
 .modal-button-continue{
+  background-color: #00A94F;  
   width: 90px;
-  height: 30px;
-  border: none;
+  padding: 8px;
   border-radius: 5px;
-  background-color: darkgray;
-  font-size: 16px;
-  color: lightgray;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: white;
+  z-index: 99;
+}
+
+.modal-button-continue:hover{
+  cursor: pointer;
 }
 
 .modal-button {
+  background-color: rgb(213, 228, 4);; 
   width: 90px;
-  height: 30px;
-  border: none;
+  padding: 8px;
   border-radius: 5px;
-  background-color: lightgray;
-  margin: 0 10px;
-  font-size: 16px;
-  color: gray;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  margin-left: 5px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: white;
+  z-index: 99;
 }
 
 .modal-button:hover {
@@ -113,4 +128,6 @@
   background-color: slate;
 }
 
- 
+ .notebook-modal-close {
+   font-size: 20px;
+ }
