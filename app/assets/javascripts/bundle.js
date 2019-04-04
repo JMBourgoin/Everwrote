@@ -1655,10 +1655,13 @@ function (_React$Component) {
 
       if (this.props.noteId === null) {
         this.props.createNote(newNote);
+        this.setState({
+          body: "Add note body",
+          title: "Add note title"
+        });
       } else {
         var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, this.props.oldNote, newNote);
         this.props.updateNote(updatedNote);
-        debugger;
         this.props.history.push("/notes/notebooks/".concat(this.props.match.params.notebookId));
       }
     }

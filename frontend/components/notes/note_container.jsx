@@ -72,10 +72,10 @@ componentDidUpdate(prevProps){
     
     if(this.props.noteId === null){
       this.props.createNote(newNote);
+      this.setState({body: "Add note body", title: "Add note title"});
     } else {
       let updatedNote = merge({}, this.props.oldNote, newNote);
       this.props.updateNote(updatedNote);
-      debugger
       this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`)
     }
   }
