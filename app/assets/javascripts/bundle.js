@@ -2508,7 +2508,7 @@ var msp = function msp(state, ownProps) {
   var newNotePath = newNotePath;
 
   if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
-    newNotePath = ownProps.location.pathname.replace(/[0-9]*(?=\/notebooks)\/\d*/, "");
+    newNotePath = ownProps.location.pathname.replace(/\/\d+(?=\/notebooks\/\d+)/, "");
   } else {
     newNotePath = "/notes/notebooks/".concat(notebooksArr.length - 1);
   }

@@ -12,7 +12,7 @@ const msp = (state, ownProps) => {
   const notebooksArr = Object.values(notebooks);
   let newNotePath = newNotePath;
   if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
-    newNotePath = ownProps.location.pathname.replace(/[0-9]*(?=\/notebooks)\/\d*/, "");
+    newNotePath = ownProps.location.pathname.replace(/\/\d+(?=\/notebooks\/\d+)/, "");
   } else {
      newNotePath = `/notes/notebooks/${notebooksArr.length -1}`;
   }
