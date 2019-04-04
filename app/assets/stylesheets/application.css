@@ -49,6 +49,9 @@ button {
   border: none;
 }
 
+.ql-editor p {
+  font-family: 'Times New Roman', Times, serif;
+}
 
 /* APP-container------------------------------------------------------------ */
 .main-container {

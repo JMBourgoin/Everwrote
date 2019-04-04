@@ -103,7 +103,7 @@ componentDidUpdate(prevProps){
     return (
       <div 
       className="note-outer-container"
-      key={this.props.history.listen()}
+  
       >
         <div className="note-title">
           <input className="header-input" type="text" value={this.state.title} onChange={this.handleTitle}/>

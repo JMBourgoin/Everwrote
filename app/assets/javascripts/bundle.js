@@ -1680,8 +1680,7 @@ function (_React$Component) {
       };
       var formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "note-outer-container",
-        key: this.props.history.listen()
+        className: "note-outer-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {

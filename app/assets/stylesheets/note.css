@@ -3,19 +3,22 @@
   height: 100vh;
   padding: 20px;
   border-left: 1px solid rgb(228, 228, 228);
+  z-index: 100;
+  background-color: white;
 
   
 }
 .quill {
   height: 600px;
   border: none;
+
 }
 
 .note-title input {
   width: 550px;
   height: 80px;
   margin-top: 300px 0;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 28px;
   border: none;
   color: #2b2b2b;
@@ -80,4 +83,8 @@
 
 .ql-container.ql-snow {
   border: none;
+}
+
+.ql-container > p {
+  font-family: 'Muli', sans-serif;
 }
