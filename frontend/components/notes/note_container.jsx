@@ -4,18 +4,18 @@ import { merge } from 'lodash';
 
 
 
-
 class NoteContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      body: this.props.body,
-      title: this.props.title,
+      body: this.props.oldNote.body,
+      title: this.props.oldNote.title,
    };
     
     this.handleBody = this.handleBody.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   
   componentDidMount(){
@@ -53,20 +53,30 @@ componentDidUpdate(prevProps){
    });
   }
 
+  handleDelete(e){
+    e.preventDefault();
+    this.props.deleteNote(this.props.noteId);
+    this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`)
+
+  }
+
   handleSave(e){
     e.preventDefault();
+    
     const newNote = {
       title: this.state.title,
       body: this.state.body,
-      notebook_id: this.props.notebook_id,
-      author_id: this.props.author_id
+      notebook_id: this.props.oldNote.notebookId,
+      author_id: this.props.oldNote.authorId
     };
-
+    
     if(this.props.noteId === null){
       this.props.createNote(newNote);
     } else {
-      let updatedNote = merge({}, this.state.oldNote, newNote);
+      let updatedNote = merge({}, this.props.oldNote, newNote);
       this.props.updateNote(updatedNote);
+      debugger
+      this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`)
     }
   }
 
@@ -113,7 +123,12 @@ componentDidUpdate(prevProps){
           className="note-save-button save2"
           onClick={this.handleSave}
         >Save note
-          </button>
+        </button>
+        <button
+          className={this.props.klass}
+          onClick={this.handleDelete}
+        >Delete
+        </button>
       </div>
     )
   }

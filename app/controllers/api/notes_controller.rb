@@ -23,14 +23,14 @@ class Api::NotesController < ApplicationController
   end
 
   def update
-    def edit
     @note = Note.find(params[:id])
+  
     if @note && logged_in? && @note.author_id == current_user.id
-      render :edit
+      @note.update(notes_params)
+      render :show
     else
       render @note.errors.full_messages, status: 404
     end
-  end
   end
 
   def destroy

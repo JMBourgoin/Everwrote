@@ -3,7 +3,8 @@ import React from 'react';
 import { fetchAllNotebooks, fetchNotebook } from '../../actions/notebooks';
 import NotebookIndexItem from './notebooks_index_item';
 import NotebookHeader from './notebooks_header_container';
-import AddNotebook from '../menus/notebooks_modal_container';
+import AddNotebook from '../menus/new_notebook_container';
+import EditNotebook from '../menus/edit_notebook_container';
 
 const msp = state => {    
   const userId = state.session.currentUserId;
@@ -29,14 +30,17 @@ class NotebooksContainer extends React.Component {
     super(props);
     this.state = {
       sortBy: 'created',
-      showModal: false,
+      showAddModal: false,
+      showEditModal: false,
+      notebook: "",
     };
 
     this.sortByCreated = this.sortByCreated.bind(this);
     this.sortByUpdated = this.sortByUpdated.bind(this);
     this.sortByTitle = this.sortByTitle.bind(this);
     this.changeState = this.changeState.bind(this);
-    this.showModal = this.showModal.bind(this);
+    this.showAddModal = this.showAddModal.bind(this);
+    this.showEditModal = this.showEditModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -77,12 +81,16 @@ class NotebooksContainer extends React.Component {
   }
 
   closeModal(e){
-    this.setState({showModal: false});
+    this.setState({showEditModal: false, showAddModal: false});
   }
 
-  showModal(e){
+  showAddModal(e){
     e.preventDefault();
-    this.setState({showModal: true});
+    this.setState({showAddModal: true, showEditModal: false });
+  }
+
+  showEditModal(notebook) {
+    this.setState({ showEditModal: true, showAddModal: false, notebook: notebook, });
   }
   
   render(){
@@ -106,6 +114,7 @@ class NotebooksContainer extends React.Component {
           // updated_at={notebook.updated_at}
           // title={notebook.title}
           key={notebook.id}
+          showEditModal={this.showEditModal}
           />
       )
     });
@@ -113,7 +122,7 @@ class NotebooksContainer extends React.Component {
     return (
       <div className="notebooks-container">
         {
-          this.state.showModal ?
+          this.state.showAddModal ?
           (
             <AddNotebook 
             closeModal={this.closeModal}
@@ -121,13 +130,23 @@ class NotebooksContainer extends React.Component {
           ) :
           (null)
           }
+        {
+          this.state.showEditModal ?
+            (
+              <EditNotebook
+                notebook={this.state.notebook}
+                closeModal={this.closeModal}
+              />
+            ) :
+            (null)
+        }
         <NotebookHeader 
           setIndexState={this.setIndexState}
           sortByTitle={this.sortByTitle}
           sortByUpdated={this.sortByUpdate}
           sortByCreated={this.sortByCreated}
           changeState={this.changeState}
-          showModal={this.showModal}
+          showAddModal={this.showAddModal}
         />
         <ul>
           { notebooks }

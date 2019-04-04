@@ -35,7 +35,7 @@ class NotebookHeader extends React.Component {
           <h6>My notebook list</h6>
           <div className="nb-header-sub-right">
             <div className="nb-header-notebook">
-              <button onClick={this.props.showModal}>
+              <button onClick={this.props.showAddModal}>
                 <img src={window.notebookPic} alt="new-notebook-icon"/>
                 <p>New Notebook</p>
               </button>

@@ -4,7 +4,7 @@ import NoteContainer from './note_container';
 
 
 const msp = (state, ownProps) => {
-  let notebook_id = parseInt(ownProps.location.pathname.substr(-1));
+  let notebook_id = parseInt(ownProps.match.params.notebookId);
   let author_id = state.session.currentUserId;
   let noteId = parseInt(ownProps.match.params.noteId);
   let title = "title";
@@ -23,7 +23,8 @@ const msp = (state, ownProps) => {
     notebook_id,
     author_id,
     noteId,
-    oldNote: note
+    oldNote: note,
+    klass: "active"
   });
 };
 

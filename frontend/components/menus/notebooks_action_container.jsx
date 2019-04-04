@@ -5,9 +5,12 @@ import React from 'react';
 const msp = (state, ownProps) => {
     let id = ownProps.id;
     let notebook = state.entities.notebooks[id];
+    let showEditModal = ownProps.showEditModal;
 
     return ({
         notebook,
+        showEditModal,
+        id
     });
 };
 
@@ -47,7 +50,7 @@ class NotebooksActionMenu extends React.Component {
     }
 
     editHandle(){
-
+        this.props.showEditModal(this.props.notebook);
     }
 
     render(){
@@ -59,7 +62,7 @@ class NotebooksActionMenu extends React.Component {
                     this.state.showMenu ? 
                     (
                         <div className="notebook-action-menu">
-                            <button onClick={this.editHandle} className="nb-action-button">edit</button>
+                            <button notebook={this.props.notebook} onClick={this.editHandle} className="nb-action-button">edit</button>
                             <button onClick={this.deleteHandle} className="nb-action-button">delete</button>
                         </div>
                     ) : (

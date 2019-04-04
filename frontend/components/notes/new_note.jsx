@@ -7,17 +7,19 @@ const msp = (state, ownProps) => {
   let body = "Add note body";
   let title = "Add note title";
   let noteId = null;
-  let notebook_id = parseInt(ownProps.location.pathname.substr(-1));
-  let author_id = state.session.currentUserId;
-  let oldNote = null;
-
-  return ({
+  let notebookId = parseInt(ownProps.match.params.notebookId);
+  let authorId = state.session.currentUserId;
+  let oldNote = {
     body,
     title,
-    notebook_id,
-    author_id,
+    notebookId,
+    authorId,
+  };
+
+  return ({
+    oldNote,
     noteId,
-    oldNote
+    klass: "nonactive"
   });
 };
 

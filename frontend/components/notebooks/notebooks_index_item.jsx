@@ -76,6 +76,7 @@ const mdp = dispatch => {
         <li key={`${id}5`} className="nb-actions">
           <NotebookActions 
             id={id}
+            showEditModal={this.props.showEditModal}
           />
         </li>
       </ul>

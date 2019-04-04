@@ -5,13 +5,21 @@ import { fetchAllNotebooks } from '../../actions/notebooks';
 import { logoutUser } from "../../actions/session";
 
 
-const msp = state => {
+
+const msp = (state, ownProps) => {
+  let newNotePath = newNotePath;
+  if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
+    newNotePath = ownProps.location.pathname.replace(/[0-9]*(?=\/notebooks)\/\d*/, "");
+  } else {
+     newNotePath = ownProps.location.pathname;
+  }
   const email = state.entities.users[state.session.currentUserId].email;
-  const notebooks = state.entities.notebooks
+  const notebooks = state.entities.notebooks;
   return ({
     email,
-    notebooks
-  })
+    notebooks,
+    newNotePath
+  });
 }
 
 const mdp = dispatch => {
@@ -30,6 +38,7 @@ class SidebarContainer extends React.Component {
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.logoutClick = this.logoutClick.bind(this);
+    this.newNotePath = this.newNotePath.bind(this);
   }
   
   componentDidMount(){
@@ -55,10 +64,13 @@ class SidebarContainer extends React.Component {
     this.setState({ showMenu: false });
     document.removeEventListener('click', this.closeMenu);
   }
-
+  newNotePath(e){
+    this.props.history.push(this.props.newNotePath);
+  }
 
   render(){
     let notebooks = Object.values(this.props.notebooks);
+
     let nbButtons = notebooks.map(notebook =>{
       return (
         <Link
@@ -80,7 +92,7 @@ class SidebarContainer extends React.Component {
               <p>{this.props.email}</p>
             </button>
           </div>
-          <button className="add-note">
+          <button onClick={this.newNotePath} className="add-note">
             <img src={window.newNote} alt="new-note-icon" />
             <h2>New Note</h2>
           </button>

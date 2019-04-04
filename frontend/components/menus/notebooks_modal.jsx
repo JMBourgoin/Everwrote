@@ -1,41 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createNotebook } from '../../actions/notebooks';
-import { NotebooksContainer } from '../notebooks/notebooks_container';
-
-const msp = (state, ownProps) => {
-  let author_id = state.session.currentUserId;
-  let closeModal = ownProps.closeModal;
-  return ({
-    author_id,
-    closeModal,
-  });
-};
-
-const mdp = dispatch => {
-  return ({
-    createNotebook: notebook => dispatch(createNotebook(notebook)),
-  });
-};
+import { merge } from 'lodash';
 
 class AddNotebook extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       show: false,
-      title: "",
+      title: this.props.title,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleSubmit(e){
     e.preventDefault();
-    const notebook = {
-        title: this.state.title,
-        author_id: this.props.author_id
-    };
+    let notebook = notebook;
 
-    this.props.createNotebook(notebook);
+    if(this.props.notebook === undefined){
+       notebook = {
+          title: this.state.title,
+          author_id: this.props.author_id
+      };
+    } else {
+      notebook = merge({}, this.props.notebook, {title: this.state.title});
+    }
+
+    this.props.submitAction(notebook);
     this.setState({title: ""});
     this.props.closeModal();
   }
@@ -53,14 +42,14 @@ class AddNotebook extends React.Component {
         </div>
           <div className="modal-form-container">
             <div className="modal-header-container">
-                <h3 className="notebook-modal-header">Create new notebook</h3>
+                <h3 className="notebook-modal-header">{this.props.menuTitle}</h3>
                 <button onClick={this.props.closeModal} className="notebook-modal-close">X</button>
             </div>
               <p className="sub-head-modal">Notebooks are useful for grouping notes around a common topic.</p>
             <div className="notebook-modal-form">
               <form id="nb-submit-button" onSubmit={this.handleSubmit} className="notebook-modal-form">
                 <p>Name</p>
-                <input className="notebook-modal-form-input" placeholder="Notebook name" value={this.state.title} onChange={this.inputHandle()} type="text"/>
+                <input className="notebook-modal-form-input" value={this.state.title} onChange={this.inputHandle()} type="text"/>
                 <div className="modal-horizontal-line"></div>
                 <div className="modal-buttons-container">
                   <input className="modal-button-continue" type="submit" value="Continue"/>
@@ -74,4 +63,4 @@ class AddNotebook extends React.Component {
   }
 }
 
-export default connect(msp, mdp)(AddNotebook);
+export default AddNotebook;
