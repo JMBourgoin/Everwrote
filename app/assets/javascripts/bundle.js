@@ -1496,6 +1496,20 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.match.params.noteId !== prevProps.match.params.noteId) {
+        this.props.fetchAllNotes();
+
+        if (this.props.noteId !== null) {
+          this.setState({
+            body: this.props.oldNote.body,
+            title: this.props.oldNote.title
+          });
+        }
+      }
+    }
+  }, {
     key: "handleTitle",
     value: function handleTitle(e) {
       this.setState({
