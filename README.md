@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Everwrote is an Evernote clone built with React, Redux, Ruby-On-Rails and PostgreSQL.  Users can create notebooks and fill them with notes using imbedded font styling, images and links.
 
-Things you may want to cover:
+## Features
+• Secure user authentication<br>
+• Create and edit notes in a rich text editor<br>
+• Save and organize notes to notebooks<br>
+• Filter notes by notebook, date created / updated, and title.
 
-* Ruby version
+## Technologies
+### Frontend
 
-* System dependencies
+• REACT (JS library)<br>
+• REDUX (state manager)<br>
+• REACT-QUILL (rich text editor API)<br>
+• AJAX 
 
-* Configuration
+### Backend
+• RUBY ON RAILS<br>
+• POSTGRESQL<br>
+ 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Featured Highlights 
