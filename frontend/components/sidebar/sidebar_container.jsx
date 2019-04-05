@@ -35,6 +35,7 @@ class SidebarContainer extends React.Component {
     super(props);
     this.state = {
       showMenu: false,
+      notebookPic: window.notebook2Pic,
     }
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
@@ -56,13 +57,13 @@ class SidebarContainer extends React.Component {
   
   openMenu(e) {
     e.preventDefault();
-    this.setState({ showMenu: true });
+    this.setState({ showMenu: true, notebookPic: window.notebookOpenPic });
     document.addEventListener('click', this.closeMenu);
   }
 
   closeMenu(e) {
     e.preventDefault();
-    this.setState({ showMenu: false });
+    this.setState({ showMenu: false, notebookPic: window.notebook2Pic });
     document.removeEventListener('click', this.closeMenu);
   }
   newNotePath(e){
@@ -88,10 +89,10 @@ class SidebarContainer extends React.Component {
       <div className="sidebar-outer-container">
         <div className="sidebar-container">
           <div className="profile-container">
-            <button className="profile">
+            <Link to='/' className="profile">
               <img src={window.logoPic} alt="user-profile" />
               <p>{this.props.email}</p>
-            </button>
+            </Link>
           </div>
           <button onClick={this.newNotePath} className="add-note">
             <img src={window.newNote} alt="new-note-icon" />
@@ -110,7 +111,7 @@ class SidebarContainer extends React.Component {
                   onClick={this.openMenu}
                   className="sidebar-list sidebar-button"
                 >
-                  <img className="sidebar-notebook-img" src={window.notebook2Pic} alt="Notes-icon" />
+                  <img className="sidebar-notebook-img" src={this.state.notebookPic} alt="Notes-icon" />
                 </button>
                   <Link className="sidebar-list-a" to={"/notebooks"}>
                     <h3>Notebooks</h3>

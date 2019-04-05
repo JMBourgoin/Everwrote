@@ -2545,7 +2545,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SidebarContainer).call(this, props));
     _this.state = {
-      showMenu: false
+      showMenu: false,
+      notebookPic: window.notebook2Pic
     };
     _this.openMenu = _this.openMenu.bind(_assertThisInitialized(_this));
     _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
@@ -2575,7 +2576,8 @@ function (_React$Component) {
     value: function openMenu(e) {
       e.preventDefault();
       this.setState({
-        showMenu: true
+        showMenu: true,
+        notebookPic: window.notebookOpenPic
       });
       document.addEventListener('click', this.closeMenu);
     }
@@ -2584,7 +2586,8 @@ function (_React$Component) {
     value: function closeMenu(e) {
       e.preventDefault();
       this.setState({
-        showMenu: false
+        showMenu: false,
+        notebookPic: window.notebook2Pic
       });
       document.removeEventListener('click', this.closeMenu);
     }
@@ -2613,7 +2616,8 @@ function (_React$Component) {
         className: "sidebar-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/",
         className: "profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.logoPic,
@@ -2639,7 +2643,7 @@ function (_React$Component) {
         className: "sidebar-list sidebar-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "sidebar-notebook-img",
-        src: window.notebook2Pic,
+        src: this.state.notebookPic,
         alt: "Notes-icon"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         className: "sidebar-list-a",
@@ -2688,20 +2692,26 @@ var FooterContainer = function FooterContainer() {
     className: "foot-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-buttons"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "https://www.instagram.com/jmb.shots/?hl=en"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://www.instagram.com/jmb.shots/?hl=en"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "nav-footer-insta",
     src: window.instaPic,
     alt: "insta"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "https://jmbourgoin.com"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://www.linkedin.com/in/jason-bourgoin-060a6a116"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "nav-footer-linked",
     src: window.linkedPic,
     alt: "linked"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "https://jmbourgoin.com"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/JMBourgoin"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "nav-footer-git",
+    src: window.gitPic,
+    alt: "jmb"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://jmbourgoin.com"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "nav-footer-jmb",
     src: window.jmbPic,

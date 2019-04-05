@@ -42,7 +42,6 @@
 .input-fields {
   border-radius: 8px;
   height: 45px;
-
   box-sizing: border-box;
   margin: 5px 0;
   border: 1px solid;
@@ -52,7 +51,9 @@
   padding: 10px;
   font-weight: 350;
 }
-
+.input-fields:focus{
+  outline-color: #009A4C;
+}
 .form-button {
   height: 50px;
   color: white;
