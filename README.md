@@ -22,3 +22,16 @@
  
 
 ## Featured Highlights 
+• New Notes custom routes functionality: <br>
+
+Handling the proper render of clicking the "NEW NOTE" button was a challenge that
+uses Regular Expressions to creatively solve.  The buttons effect needed to change depending on 
+the current path. 
+
+```javascript
+if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
+    newNotePath = ownProps.location.pathname.replace(/\/\d+(?=\/notebooks\/\d+)/, "");
+  } else {
+     newNotePath = `/notes/notebooks/${notebooksArr[lastNbId].id}`;
+  } 
+```
