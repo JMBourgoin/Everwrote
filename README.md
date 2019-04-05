@@ -1,6 +1,6 @@
 # README
 
-(https://everwrote.herokuapp.com/Everwrote "Everwrote") is an Evernote clone built with React, Redux, Ruby-On-Rails and PostgreSQL.  Users can create notebooks and fill them with notes using imbedded font styling, images and links.
+[Everwrote](https://everwrote.herokuapp.com/Everwrote) is an Evernote clone built with React, Redux, Ruby-On-Rails and PostgreSQL.  Users can create notebooks and fill them with notes using imbedded font styling, images and links.
 
 ## Features
 • Secure user authentication<br>
