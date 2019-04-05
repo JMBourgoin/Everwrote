@@ -67,7 +67,9 @@
   padding: 10px;
   font-weight: 200;
 }
-
+.notebook-modal-form-input-:focus{
+  outline-color: #009A4C;
+}
 .notebook-modal-form p {
   color: gray;
   font-size: 16px;
