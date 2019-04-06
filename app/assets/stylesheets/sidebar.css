@@ -10,6 +10,9 @@
   width: 240px;
   background-color: rgb(24, 24, 24);
   z-index: 5;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+
 }
 
 .profile {
@@ -17,17 +20,21 @@
   flex-direction: row;
   align-items: center;
   height: 70px;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   color: lightgray;
-  font-size: 13px;
+  font-size: 14px;
   background-color: transparent;
   border: none;
+  text-decoration: none;
 }
 
 .profile-container {
   display: flex;
+  text-decoration: none;
   flex-direction: column;
   margin: 10px 5px 15px 10px;
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
 }
 .profile img{
   width: 50px;
@@ -41,9 +48,10 @@
   margin: 20px 15px;
   font-family: 'Didact Gothic', sans-serif;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   background-color: transparent;
   border: none;
+  text-decoration: none;
 }
 
 .add-note img {
@@ -56,15 +64,19 @@
   flex-direction: row;
   color: lightgray;
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 15px;
+  font-size: 13px;
   margin: 15px 25px;
   list-style: none;
   background-color: transparent;
   border: none;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  font-weight: 800;
+
 }
 
 .sidebar-list-ul {
-  list-style: none;
+  list-style: none
 }
 
 .sidebar-list img {
@@ -77,7 +89,7 @@
   border-radius: 5px;
   width: 80px;
   height: 30px;
-  font-size: 12px;
+  font-size: 13px;
   color: white;
   margin: 200px 20px;
 }
@@ -99,6 +111,7 @@
   list-style: none;
   background-color: transparent;
   border: none;
+  text-decoration: none;
 }
 
 .sidebar-small img {
@@ -127,9 +140,11 @@
 
 .sidebar-list-a {
   color: lightgray;
-  font-size: 15px;
+  font-size: 13px;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+
 }
 .sidebar-list .sidebar-button {
   margin-right: 0;

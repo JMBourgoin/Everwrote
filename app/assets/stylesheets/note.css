@@ -6,7 +6,6 @@
   z-index: 100;
   background-color: white;
 
-  
 }
 .quill {
   height: 600px;
@@ -35,7 +34,7 @@
   border-radius: 5px;
   margin-bottom: 10px;
   margin-left: 0px;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -54,7 +53,7 @@
   border-radius: 5px;
   margin-bottom: 10px;
   margin-left: 5px;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -83,5 +82,6 @@
 
 .ql-container.ql-snow {
   border: none;
+  font-size: 14px;
 }
 

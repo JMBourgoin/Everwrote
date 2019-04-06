@@ -7,7 +7,7 @@
   margin-right: 30px;
   }
 .nb-header {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   border-top: lightgray;
   margin-left: 30px;
 }
@@ -25,6 +25,7 @@
   justify-content: space-between;
   margin: 10px 0;
   font-weight: 600;
+  font-size: 22px;
 }
 
 .nb-header-sub-right {
@@ -54,7 +55,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
 }
 .nb-header-notebook button p {
   margin: 0 2px 2px 0;
@@ -66,7 +67,7 @@
 
 .notebook-item {
   text-decoration: none;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 14px;
   color: rgb(105, 104, 104);
   
@@ -81,6 +82,7 @@
   padding: 12px 0;
   margin-left: 30px;
   background-color: white;
+
 }
 
 .nb-title, .nb-createby, .nb-created, .nb-updated, .nb-actions {
@@ -89,7 +91,8 @@
 }
 
 .nb-title {
-  width: 150px;
+  width: 450px;
+  font-size: 16px;
 }
 .nb-createdby{
   width: 150px;
@@ -110,7 +113,7 @@
   align-items: center;
   list-style: none;
   padding: 12px 0;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .nb-row-head {
@@ -160,8 +163,10 @@
   display: flex;
   align-items: center;
   font-weight: 900px;
-  font-size: 13px;
-  color: gray;
+  font-size: 14px;
+  color: rgb(28, 28, 28);
+  text-decoration: none;
+
 }
 .nb-action-button {
   border: none;
@@ -188,7 +193,6 @@
   .nb-sorting-button {
   border: none;
   width: 100%;
-
   background-color: transparent;
   font-size: 14px;
   font-weight: 300px;
@@ -213,4 +217,5 @@
 
 .small-icon {
   height: 17px;
+  margin-right: 3px;
 }

@@ -84,7 +84,7 @@ componentDidUpdate(prevProps){
 
     const modules = {
       toolbar: [
-        [{ 'header': [1, 2, false] }],
+        [{ 'header': [1, 2, 3, 4, false] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
         ['link', 'image'],
@@ -122,7 +122,7 @@ componentDidUpdate(prevProps){
         <button
           className="note-save-button save2"
           onClick={this.handleSave}
-        >Save note
+        >Save
         </button>
         <button
           className={this.props.klass}

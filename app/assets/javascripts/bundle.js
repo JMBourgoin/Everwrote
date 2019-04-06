@@ -1680,7 +1680,7 @@ function (_React$Component) {
     value: function render() {
       var modules = {
         toolbar: [[{
-          'header': [1, 2, false]
+          'header': [1, 2, 3, 4, false]
         }], ['bold', 'italic', 'underline', 'strike', 'blockquote'], [{
           'list': 'ordered'
         }, {
@@ -1712,7 +1712,7 @@ function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "note-save-button save2",
         onClick: this.handleSave
-      }, "Save note"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Save"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: this.props.klass,
         onClick: this.handleDelete
       }, "Delete"));
