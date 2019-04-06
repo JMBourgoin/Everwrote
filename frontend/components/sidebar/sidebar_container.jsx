@@ -13,12 +13,15 @@ const msp = (state, ownProps) => {
   let newNotePath = newNotePath;
   if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
     newNotePath = ownProps.location.pathname.replace(/\/\d+(?=\/notebooks\/\d+)/, "");
+  } else if(notebooksArr.length > 0){
+     newNotePath = `/notes/notebooks/${notebooksArr[notebooksArr.length - 1].id}`;
   } else {
-     newNotePath = `/notes/notebooks/${notebooksArr.length -1}`;
+    newNotePath = false;
   }
   return ({
     email,
     notebooks,
+    notebooksArr,
     newNotePath
   });
 }
@@ -36,6 +39,7 @@ class SidebarContainer extends React.Component {
     this.state = {
       showMenu: false,
       notebookPic: window.notebook2Pic,
+      newNotePath: this.props.newNotePath
     }
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
@@ -45,6 +49,11 @@ class SidebarContainer extends React.Component {
   
   componentDidMount(){
     this.props.fetchAllNotebooks();
+  }
+  componentDidUpdate(){
+    if(this.props.notebooksArr.length === 0){
+      this.props.fetchAllNotebooks();
+    }
   }
   componentWillUnmount(){
     document.removeEventListener('click', this.closeMenu);
@@ -72,6 +81,7 @@ class SidebarContainer extends React.Component {
 
   render(){
     let notebooks = Object.values(this.props.notebooks);
+    debugger
 
     let nbButtons = notebooks.map(notebook =>{
       return (

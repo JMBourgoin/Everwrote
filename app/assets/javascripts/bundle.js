@@ -2511,13 +2511,16 @@ var msp = function msp(state, ownProps) {
 
   if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
     newNotePath = ownProps.location.pathname.replace(/\/\d+(?=\/notebooks\/\d+)/, "");
+  } else if (notebooksArr.length > 0) {
+    newNotePath = "/notes/notebooks/".concat(notebooksArr[notebooksArr.length - 1].id);
   } else {
-    newNotePath = "/notes/notebooks/".concat(notebooksArr.length - 1);
+    newNotePath = false;
   }
 
   return {
     email: email,
     notebooks: notebooks,
+    notebooksArr: notebooksArr,
     newNotePath: newNotePath
   };
 };
@@ -2546,7 +2549,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SidebarContainer).call(this, props));
     _this.state = {
       showMenu: false,
-      notebookPic: window.notebook2Pic
+      notebookPic: window.notebook2Pic,
+      newNotePath: _this.props.newNotePath
     };
     _this.openMenu = _this.openMenu.bind(_assertThisInitialized(_this));
     _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
@@ -2559,6 +2563,13 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchAllNotebooks();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.props.notebooksArr.length === 0) {
+        this.props.fetchAllNotebooks();
+      }
     }
   }, {
     key: "componentWillUnmount",
@@ -2600,6 +2611,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var notebooks = Object.values(this.props.notebooks);
+      debugger;
       var nbButtons = notebooks.map(function (notebook) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           key: notebook.id,

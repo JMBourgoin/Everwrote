@@ -2,6 +2,11 @@ class Api::NotebooksController < ApplicationController
   def index
     collection = Notebook.all
     @notebooks = collection.select{|book| book.author_id == current_user.id}
+    if @notebooks.length == 0
+      new_nb = Notebook.new(author_id: current_user.id, title: "My first notebook")
+      new_nb.save
+      @notebooks = collection.select{|book| book.author_id == current_user.id}
+    end
   end
 
   def create

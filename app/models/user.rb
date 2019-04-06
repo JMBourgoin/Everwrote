@@ -8,7 +8,7 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token
 
     has_many :notebooks, dependent: :destroy
-    has_many :notes
+    has_many :notes, dependent: :destroy
 
     def password=(password)
         @password = password
