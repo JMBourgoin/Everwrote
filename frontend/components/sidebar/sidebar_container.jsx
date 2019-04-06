@@ -81,8 +81,6 @@ class SidebarContainer extends React.Component {
 
   render(){
     let notebooks = Object.values(this.props.notebooks);
-    debugger
-
     let nbButtons = notebooks.map(notebook =>{
       return (
         <Link

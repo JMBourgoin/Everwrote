@@ -103,6 +103,7 @@
   letter-spacing: 1px;
   color: white;
   z-index: 99;
+  min-height: max-content;
 }
 
 .modal-button-continue:hover{
@@ -123,6 +124,7 @@
   letter-spacing: 1px;
   color: white;
   z-index: 99;
+  min-height: max-content;
 }
 
 .modal-button:hover {

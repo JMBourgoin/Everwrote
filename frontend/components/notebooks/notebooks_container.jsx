@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { fetchAllNotebooks, fetchNotebook } from '../../actions/notebooks';
+import { fetchAllNotes } from '../../actions/notes';
 import NotebookIndexItem from './notebooks_index_item';
 import NotebookHeader from './notebooks_header_container';
 import AddNotebook from '../menus/new_notebook_container';
@@ -22,6 +23,7 @@ const mdp = dispatch => {
   return ({
     fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
     fetchNotebook: id => dispatch(fetchNotebook(id)),
+    fetchAllNotes: () => dispatch(fetchAllNotes())
   });
 };
 
@@ -46,6 +48,7 @@ class NotebooksContainer extends React.Component {
 
   componentDidMount(){
     this.props.fetchAllNotebooks();
+    this.props.fetchAllNotes();
 
   }
 

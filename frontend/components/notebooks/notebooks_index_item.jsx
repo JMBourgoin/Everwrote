@@ -7,9 +7,11 @@ const msp = (state, ownProps) => {
   let id = ownProps.id;
   let notebook = state.entities.notebooks[id];
   let author = state.entities.users[notebook.author_id].email;
+  let notes = Object.values(state.entities.notes).filter(note => note.notebook_id === id);
   return({
     notebook,
-    author
+    author,
+    notes
   });
 };
 
@@ -68,7 +70,7 @@ const mdp = dispatch => {
   return (
     <div onClick={this.showNotebook} className={`notebook-item`} key={id} to={`/notebooks/${id}`}>
       <ul className='notebook-item-list' key={id}>
-        <li><Link to={`/notes/notebooks/${id}`} key={`${id}1`} className="nb-title"><img className="small-icon" src={window.notebook2Pic} alt=""/>{title}</Link></li>
+        <li><Link to={`/notes/notebooks/${id}`} key={`${id}1`} className="nb-title"><img className="small-icon" src={window.notebook2Pic} alt=""/>{title} ({this.props.notes.length})</Link></li>
         <li key={`${id}2`} className="nb-createdby">{this.props.author}</li>
         <li key={`${id}3`} className="nb-created">{created}</li>
         <li key={`${id}4`} className="nb-updated">{updated}</li>
