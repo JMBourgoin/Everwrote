@@ -1,6 +1,7 @@
 /* Splash4---------------------------------------------------------------- */
 .splash4-outer-container{
   display: flex;
+  flex-direction: row;
   justify-content: center;
   background-color: #00A94F;
   padding-top: 0px;
@@ -18,7 +19,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* margin-right: 50px; */
+  margin-left: 50px;
   width: 600px;
   height: 550px;
 }
@@ -59,17 +60,18 @@
   
 }
 .splash4-inner-container h3 {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 50px;
   letter-spacing: 1px;
-  line-height: 50px;
+  line-height: 1.2;
   margin-top: 150px;
 }
 
 .splash4-inner-container h6 {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 25px;
   font-weight: 100;
+  line-height: 1.5;
 }
 
 .splash4-inner-container p {

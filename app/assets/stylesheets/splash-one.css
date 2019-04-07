@@ -34,16 +34,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   color: white;
   min-width: 350px;
-  max-width: 450px;
-  margin: 60px 10px 40px 80px;
+  max-width: 500px;
+  margin: 60px 10px 40px 40px;
 }
 
 .splash-text h2 {
   color: white;
-  font-size: 55px;
+  font-size: 58px;
   font-weight: 600;
   margin-bottom: 25px;
 }
@@ -59,13 +59,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 45px;
+  width: 220px;
+  height: 50px;
   border-radius: 3px;
   background-color: white;
   margin-top: 30px;
-  font-size: 13px;
-  font-weight: 550;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
 }
 
 .splash-signup {

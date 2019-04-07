@@ -46,9 +46,9 @@
 }
 
 .nav-buttons li {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   margin: 0 10px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
 }
 .nav-buttons li link {
@@ -57,14 +57,14 @@
 }
 
 .nav-signup {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   text-decoration: none;
   color: #00A94F;
   
 }
 
 .nav-login {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   text-decoration: none;
   width: 10px;
   padding: 8px 38px 8px 38px;
@@ -72,6 +72,7 @@
   border: 1.5px solid #00A94F;
   border-radius: 3.75px;
   color: #00A94F;
+  font-weight: 700;
 }
 
 .or {

@@ -62,8 +62,21 @@ class NotebooksActionMenu extends React.Component {
                     this.state.showMenu ? 
                     (
                         <div className="notebook-action-menu">
-                            <button notebook={this.props.notebook} onClick={this.editHandle} className="nb-action-button">edit</button>
-                            <button onClick={this.deleteHandle} className="nb-action-button">delete</button>
+                            <ul className="nb-action-list">
+                                <li>
+                                    <button 
+                                        notebook={this.props.notebook} 
+                                        onClick={this.editHandle} 
+                                        className="nb-action-button">edit
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                    onClick={this.deleteHandle} 
+                                    className="nb-action-button">delete
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     ) : (
                         null

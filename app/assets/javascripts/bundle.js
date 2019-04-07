@@ -688,14 +688,16 @@ function (_React$Component) {
         onClick: this.openMenu
       }, "\u2022\u2022\u2022"), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
         className: "notebook-action-menu"
-      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("ul", {
+        className: "nb-action-list"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         notebook: this.props.notebook,
         onClick: this.editHandle,
         className: "nb-action-button"
-      }, "edit"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+      }, "edit")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         onClick: this.deleteHandle,
         className: "nb-action-button"
-      }, "delete")) : null);
+      }, "delete")))) : null);
     }
   }]);
 
@@ -923,22 +925,24 @@ function (_React$Component) {
         alt: "sort"
       })), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.props.klass
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "nb-sorting-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nb-sorting"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.titleClick,
         className: "nb-sorting-button"
-      }, "Sort by Title")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Sort by Title"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nb-sorting"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.createdClick,
         className: "nb-sorting-button"
-      }, "Sort by Created")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Sort by Created"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nb-sorting"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.props.updatedClick,
         className: "nb-sorting-button"
-      }, "Sort by Updated"))) : null);
+      }, "Sort by Updated"))))) : null);
     }
   }]);
 

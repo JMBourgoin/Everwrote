@@ -46,7 +46,7 @@
   flex-direction: row;
   align-items: center;
   margin: 20px 15px;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   color: white;
   font-size: 12px;
   background-color: transparent;
@@ -63,7 +63,6 @@
   display: flex;
   flex-direction: row;
   color: lightgray;
-  font-family: 'Didact Gothic', sans-serif;
   font-size: 13px;
   margin: 15px 25px;
   list-style: none;
@@ -105,13 +104,17 @@
   display: flex;
   flex-direction: row;
   color: lightgray;
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 12px;
   margin: 15px 20px;
   list-style: none;
   background-color: transparent;
   border: none;
   text-decoration: none;
+}
+
+.sidebar-small:hover {
+  color: gray;
 }
 
 .sidebar-small img {
@@ -144,8 +147,8 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-
 }
+
 .sidebar-list .sidebar-button {
   margin-right: 0;
   padding: 0;
