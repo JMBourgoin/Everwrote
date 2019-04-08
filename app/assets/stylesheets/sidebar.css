@@ -91,6 +91,8 @@
   font-size: 13px;
   color: white;
   margin: 200px 20px;
+  min-height: 30px;
+
 }
 
 .logoutButton {
@@ -98,6 +100,7 @@
   border-radius: 50px;
   margin-left: 20px;
   margin-top: 60vh;
+
 }
 
 .sidebar-small {
