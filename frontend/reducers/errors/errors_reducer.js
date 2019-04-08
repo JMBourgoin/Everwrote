@@ -1,17 +1,20 @@
-import { combineReducers } from 'redux';
-import LoginErrorReducer from './login_error_reducer';
-import NoteTitleErrorReducer from './note_title_error_reducer';
-import NoteBodyErrorReducer from './note_body_error_reducer';
-import TagErrorReducer from './tag_error_reducer';
+import { 
+  RECEIVE_ERRORS, 
+  RECEIVE_CURRENT_USER, 
+  CLEAR_ERRORS } from '../../actions/session';
 
-
-
-
-const ErrorsReducer = combineReducers({
-  login: LoginErrorReducer,
-  noteTitle: NoteTitleErrorReducer,
-  noteBody: NoteBodyErrorReducer,
-  tag: TagErrorReducer
-});
+const ErrorsReducer = (oldState = [], action) => {
+  Object.freeze(oldState);
+  switch (action.type) {
+    case RECEIVE_ERRORS:
+      return action.errors;
+    case RECEIVE_CURRENT_USER:
+      return [];
+    case CLEAR_ERRORS:
+      return [];
+    default:
+      return oldState;
+  }
+};
 
 export default ErrorsReducer;

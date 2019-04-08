@@ -90,7 +90,7 @@
 /*!***************************************!*\
   !*** ./frontend/actions/notebooks.js ***!
   \***************************************/
-/*! exports provided: RECEIVE_ALL_NOTEBOOKS, RECEIVE_NOTEBOOK, DELETE_NOTEBOOK, receiveErrors, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook */
+/*! exports provided: RECEIVE_ALL_NOTEBOOKS, RECEIVE_NOTEBOOK, DELETE_NOTEBOOK, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,7 +98,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_NOTEBOOKS", function() { return RECEIVE_ALL_NOTEBOOKS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_NOTEBOOK", function() { return RECEIVE_NOTEBOOK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_NOTEBOOK", function() { return DELETE_NOTEBOOK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllNotebooks", function() { return fetchAllNotebooks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchNotebook", function() { return fetchNotebook; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNotebook", function() { return createNotebook; });
@@ -109,6 +112,8 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_ALL_NOTEBOOKS = "RECEIVE_ALL_NOTEBOOKS";
 var RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 var DELETE_NOTEBOOK = "DELETE_NOTEBOOK";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
+var CLEAR_ERRORS = "CLEAR_ERRORS";
 
 var receiveAllNotebooks = function receiveAllNotebooks(notebooks) {
   return {
@@ -133,8 +138,13 @@ var removeNotebook = function removeNotebook(id) {
 
 var receiveErrors = function receiveErrors(errors) {
   return {
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_ERRORS,
     errors: errors
+  };
+};
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
   };
 };
 var fetchAllNotebooks = function fetchAllNotebooks() {
@@ -189,7 +199,7 @@ var deleteNotebook = function deleteNotebook(id) {
 /*!***********************************!*\
   !*** ./frontend/actions/notes.js ***!
   \***********************************/
-/*! exports provided: RECEIVE_ALL_NOTES, RECEIVE_NOTE, DELETE_NOTE, receiveErrors, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote */
+/*! exports provided: RECEIVE_ALL_NOTES, RECEIVE_NOTE, DELETE_NOTE, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -197,7 +207,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_NOTES", function() { return RECEIVE_ALL_NOTES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_NOTE", function() { return RECEIVE_NOTE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_NOTE", function() { return DELETE_NOTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllNotes", function() { return fetchAllNotes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchNote", function() { return fetchNote; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNote", function() { return createNote; });
@@ -208,6 +221,8 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_ALL_NOTES = "RECEIVE_ALL_NOTES";
 var RECEIVE_NOTE = "RECEIVE_NOTE";
 var DELETE_NOTE = "DELETE_NOTE";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
+var CLEAR_ERRORS = "CLEAR_ERRORS";
 
 var receiveAllNotes = function receiveAllNotes(notes) {
   return {
@@ -232,8 +247,13 @@ var removeNote = function removeNote(id) {
 
 var receiveErrors = function receiveErrors(errors) {
   return {
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_ERRORS,
     errors: errors
+  };
+};
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
   };
 };
 var fetchAllNotes = function fetchAllNotes() {
@@ -288,14 +308,14 @@ var deleteNote = function deleteNote(id) {
 /*!*************************************!*\
   !*** ./frontend/actions/session.js ***!
   \*************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_SESSION_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, createNewUser, createNewSession, logoutUser */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, createNewUser, createNewSession, logoutUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_CURRENT_USER", function() { return LOGOUT_CURRENT_USER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SESSION_ERRORS", function() { return RECEIVE_SESSION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
@@ -306,7 +326,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
-var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
 
 var receiveCurrentUser = function receiveCurrentUser(user) {
@@ -324,7 +344,7 @@ var logoutCurrentUser = function logoutCurrentUser() {
 
 var receiveErrors = function receiveErrors(errors) {
   return {
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_ERRORS,
     errors: errors
   };
 };
@@ -1019,6 +1039,9 @@ var mdp = function mdp(dispatch) {
     },
     fetchAllNotes: function fetchAllNotes() {
       return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_3__["fetchAllNotes"])());
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_notebooks__WEBPACK_IMPORTED_MODULE_2__["clearErrors"])());
     }
   };
 };
@@ -1115,6 +1138,17 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+        className: "errors"
+      }, this.props.errors.map(function (error, index) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: "".concat(index)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -1143,7 +1177,7 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "notebooks-container"
-      }, this.state.showAddModal ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_menus_new_notebook_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, this.renderErrors, this.state.showAddModal ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_menus_new_notebook_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
         closeModal: this.closeModal
       }) : null, this.state.showEditModal ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_menus_edit_notebook_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
         notebook: this.state.notebook,
@@ -1479,6 +1513,9 @@ var mdp = function mdp(dispatch) {
     },
     fetchAllNotes: function fetchAllNotes() {
       return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["fetchAllNotes"])());
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
   };
 };
@@ -1542,6 +1579,9 @@ var mdp = function mdp(dispatch) {
     }),
     fetchAllNotes: function fetchAllNotes() {
       return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["fetchAllNotes"])());
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
   };
 };
@@ -1606,6 +1646,7 @@ function (_React$Component) {
     _this.handleTitle = _this.handleTitle.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1620,6 +1661,8 @@ function (_React$Component) {
           title: this.props.oldNote.title
         });
       }
+
+      this.props.clearErrors();
     }
   }, {
     key: "componentDidUpdate",
@@ -1680,6 +1723,17 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "errors"
+      }, this.props.errors.map(function (error, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "".concat(index)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       var modules = {
@@ -1698,7 +1752,7 @@ function (_React$Component) {
       var formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-outer-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderErrors, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "header-input",
@@ -2213,7 +2267,7 @@ var msp = function msp(state) {
       email: "",
       password: ""
     },
-    errors: state.errors.login,
+    errors: state.errors,
     formMessage: "Don't have an account?",
     formLink: "/signup",
     formName: "Create Account",
@@ -2261,7 +2315,7 @@ var msp = function msp(state) {
       email: "",
       password: ""
     },
-    errors: state.errors.login,
+    errors: state.errors,
     formMessage: "Already have an account?",
     formLink: "/login",
     formName: "Sign In",
@@ -2275,6 +2329,9 @@ var mdp = function mdp(dispatch) {
   return {
     submitAction: function submitAction(user) {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewUser"])(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
   };
 };
@@ -2305,7 +2362,7 @@ var msp = function msp(state) {
       email: "",
       password: ""
     },
-    errors: state.errors.login,
+    errors: state.errors,
     formMessage: "Already have an account?",
     formLink: "/login",
     formName: "Sign In",
@@ -2392,10 +2449,12 @@ function (_React$Component) {
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
-    } // componentDidMount(){
-    //   this.props.clearErrors();
-    // }
-
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
+    }
   }, {
     key: "handleDemo",
     value: function handleDemo(e) {
@@ -2452,7 +2511,7 @@ function (_React$Component) {
         value: this.state.email,
         onChange: this.display('email'),
         placeholder: "Email"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "input-fields",
         type: "password",
         value: this.state.password,
@@ -2462,7 +2521,7 @@ function (_React$Component) {
         className: "form-button",
         type: "submit",
         value: "Continue"
-      }), this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-link-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.formMessage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "form-link",
@@ -3190,45 +3249,16 @@ var UsersReducer = function UsersReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _login_error_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login_error_reducer */ "./frontend/reducers/errors/login_error_reducer.js");
-/* harmony import */ var _note_title_error_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./note_title_error_reducer */ "./frontend/reducers/errors/note_title_error_reducer.js");
-/* harmony import */ var _note_body_error_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./note_body_error_reducer */ "./frontend/reducers/errors/note_body_error_reducer.js");
-/* harmony import */ var _tag_error_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tag_error_reducer */ "./frontend/reducers/errors/tag_error_reducer.js");
-
-
-
-
-
-var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  login: _login_error_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  noteTitle: _note_title_error_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  noteBody: _note_body_error_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  tag: _tag_error_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
-});
-/* harmony default export */ __webpack_exports__["default"] = (ErrorsReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/errors/login_error_reducer.js":
-/*!*********************************************************!*\
-  !*** ./frontend/reducers/errors/login_error_reducer.js ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session */ "./frontend/actions/session.js");
 
 
-var LoginErrorReducer = function LoginErrorReducer() {
+var ErrorsReducer = function ErrorsReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
 
   switch (action.type) {
-    case _actions_session__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
+    case _actions_session__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ERRORS"]:
       return action.errors;
 
     case _actions_session__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
@@ -3242,76 +3272,7 @@ var LoginErrorReducer = function LoginErrorReducer() {
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (LoginErrorReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/errors/note_body_error_reducer.js":
-/*!*************************************************************!*\
-  !*** ./frontend/reducers/errors/note_body_error_reducer.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var NoteBodyErrorReducer = function NoteBodyErrorReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    default:
-      return oldState;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (NoteBodyErrorReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/errors/note_title_error_reducer.js":
-/*!**************************************************************!*\
-  !*** ./frontend/reducers/errors/note_title_error_reducer.js ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var NoteTitleErrorReducer = function NoteTitleErrorReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    default:
-      return oldState;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (NoteTitleErrorReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/errors/tag_error_reducer.js":
-/*!*******************************************************!*\
-  !*** ./frontend/reducers/errors/tag_error_reducer.js ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var TagErrorReducer = function TagErrorReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    default:
-      return oldState;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (TagErrorReducer);
+/* harmony default export */ __webpack_exports__["default"] = (ErrorsReducer);
 
 /***/ }),
 

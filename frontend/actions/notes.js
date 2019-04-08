@@ -2,6 +2,8 @@ import * as ApiUtil from '../util/api_util';
 export const RECEIVE_ALL_NOTES = "RECEIVE_ALL_NOTES";
 export const RECEIVE_NOTE = "RECEIVE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
+export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receiveAllNotes = (notes) => {
   return ({
@@ -25,8 +27,12 @@ const removeNote = (id) => {
 };
 
 export const receiveErrors = errors => ({
-  type: RECEIVE_SESSION_ERRORS,
+  type: RECEIVE_ERRORS,
   errors,
+});
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
 });
 
 export const fetchAllNotes = () => dispatch => {

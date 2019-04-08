@@ -16,9 +16,9 @@ class SignUpForm extends React.Component {
     };
   }
 
-  // componentDidMount(){
-  //   this.props.clearErrors();
-  // }
+  componentDidMount(){
+    this.props.clearErrors();
+  }
 
   handleDemo(e){
     e.preventDefault();
@@ -66,7 +66,7 @@ class SignUpForm extends React.Component {
               onChange={this.display('email')}
               placeholder="Email"
             />
-
+              {this.renderErrors()}
             <input 
               className="input-fields"
               type="password"
@@ -80,7 +80,6 @@ class SignUpForm extends React.Component {
               type="submit"
               value="Continue"
             />
-            {this.renderErrors()}
           </form>
           <div className="form-link-container">
             <div>{this.props.formMessage}</div>

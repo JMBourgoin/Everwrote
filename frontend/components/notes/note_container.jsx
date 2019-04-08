@@ -16,6 +16,7 @@ class NoteContainer extends React.Component {
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
   
   componentDidMount(){
@@ -27,7 +28,10 @@ class NoteContainer extends React.Component {
         title: this.props.oldNote.title
       });
     }
+    this.props.clearErrors();
+
   }
+
 componentDidUpdate(prevProps){
   if(this.props.match.params.noteId !== prevProps.match.params.noteId){
     this.props.fetchAllNotes();
@@ -80,6 +84,15 @@ componentDidUpdate(prevProps){
     }
   }
 
+renderErrors() {
+    return (
+      <ul className="errors">
+        {this.props.errors.map((error, index) => (
+          <li key={`${index}`}>{error}</li>
+        ))}
+      </ul>
+    );
+  }
   render() {
 
     const modules = {
@@ -103,8 +116,8 @@ componentDidUpdate(prevProps){
     return (
       <div 
       className="note-outer-container"
-  
       >
+      {this.renderErrors}
         <div className="note-title">
           <input className="header-input" type="text" value={this.state.title} onChange={this.handleTitle}/>
         </div>

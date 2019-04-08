@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createNewUser } from '../../actions/session';
+import { createNewUser, clearErrors } from '../../actions/session';
 import signUpForm from './signup_form';
 
 const msp = state => {
@@ -8,7 +8,7 @@ const msp = state => {
       email: "",
       password: "",
     },
-    errors: state.errors.login,
+    errors: state.errors,
     formMessage: "Already have an account?",
     formLink: "/login",
     formName: "Sign In",
@@ -20,6 +20,7 @@ const msp = state => {
 const mdp = dispatch => {
   return ({
     submitAction: user => dispatch(createNewUser(user)),
+    clearErrors: () => dispatch(clearErrors())
   });
 };
 

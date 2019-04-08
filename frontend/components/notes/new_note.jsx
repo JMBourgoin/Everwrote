@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchAllNotes, createNote, updateNote } from '../../actions/notes';
+import { fetchAllNotes, createNote, updateNote, clearErrors } from '../../actions/notes';
 import NoteContainer from './note_container';
 
 
@@ -27,7 +27,8 @@ const mdp = dispatch => {
   return ({
     createNote: note => dispatch(createNote(note)),
     deleteNote: id => dispatch(deleteNote(id)),
-    fetchAllNotes: () => dispatch(fetchAllNotes())
+    fetchAllNotes: () => dispatch(fetchAllNotes()),
+    clearErrors: () => dispatch(clearErrors())
   });
 };
 

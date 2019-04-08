@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { fetchAllNotebooks, fetchNotebook } from '../../actions/notebooks';
+import { fetchAllNotebooks, fetchNotebook, clearErrors } from '../../actions/notebooks';
 import { fetchAllNotes } from '../../actions/notes';
 import NotebookIndexItem from './notebooks_index_item';
 import NotebookHeader from './notebooks_header_container';
@@ -23,7 +23,8 @@ const mdp = dispatch => {
   return ({
     fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
     fetchNotebook: id => dispatch(fetchNotebook(id)),
-    fetchAllNotes: () => dispatch(fetchAllNotes())
+    fetchAllNotes: () => dispatch(fetchAllNotes()),
+    clearErrors: () => dispatch(clearErrors())
   });
 };
 
@@ -96,6 +97,16 @@ class NotebooksContainer extends React.Component {
     this.setState({ showEditModal: true, showAddModal: false, notebook: notebook, });
   }
   
+  renderErrors() {
+    return (
+      <ul className="errors">
+        {this.props.errors.map((error, index) => (
+          <li key={`${index}`}>{error}</li>
+        ))}
+      </ul>
+    );
+  }
+
   render(){
     const notebooksArr = Object.values(this.props.notebooks);
     let sortedNotebooks = [];
@@ -124,6 +135,7 @@ class NotebooksContainer extends React.Component {
     
     return (
       <div className="notebooks-container">
+      {this.renderErrors}
         {
           this.state.showAddModal ?
           (

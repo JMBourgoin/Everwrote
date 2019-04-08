@@ -8,7 +8,7 @@ const msp = state => {
       email: "",
       password: "",
     },
-    errors: state.errors.login,
+    errors: state.errors,
     formMessage: "Don't have an account?",
     formLink: "/signup",
     formName: "Create Account",

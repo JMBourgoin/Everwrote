@@ -9,6 +9,7 @@ class NotesHeader extends React.Component {
     this.titleClick = this.titleClick.bind(this);
     this.updatedClick = this.updatedClick.bind(this);
     this.createdClick = this.createdClick.bind(this);
+
   }
 
   titleClick(e) {

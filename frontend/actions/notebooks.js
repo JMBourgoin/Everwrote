@@ -2,6 +2,8 @@ import * as ApiUtil from '../util/api_util';
 export const RECEIVE_ALL_NOTEBOOKS = "RECEIVE_ALL_NOTEBOOKS";
 export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 export const DELETE_NOTEBOOK = "DELETE_NOTEBOOK";
+export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receiveAllNotebooks = (notebooks) => {
   return ({
@@ -25,8 +27,12 @@ const removeNotebook = (id) => {
 };
 
 export const receiveErrors = errors => ({
-  type: RECEIVE_SESSION_ERRORS,
+  type: RECEIVE_ERRORS,
   errors,
+});
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
 });
 
 export const fetchAllNotebooks = () => dispatch => {
