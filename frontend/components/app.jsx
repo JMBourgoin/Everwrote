@@ -15,6 +15,7 @@ import NotesIndex from './notes/notes_index_container';
 import NotebookNotesIndex from './notes/notebook_notes_index_container';
 import NewNoteContainer from './notes/new_note';
 import EditNoteContainer from './notes/edit_note';
+import TagsIndex from './tags/tags_index_container';
 
 const App = () => {
   return (
@@ -39,6 +40,8 @@ const App = () => {
         <ProtectedRoute path="/notes" component={SidebarContainer} />
         <ProtectedRoute exact path="/notes/:noteId/notebooks/:notebookId" component={EditNoteContainer} />
         <ProtectedRoute exact path="/notes/:noteId/notebooks/:notebookId" component={NotebookNotesIndex} />
+        <ProtectedRoute exact path="/tags" component={TagsIndex} />
+
       </div>
     </div>
   );

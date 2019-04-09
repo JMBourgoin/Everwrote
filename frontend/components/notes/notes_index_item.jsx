@@ -36,7 +36,9 @@ import { Link } from "react-router-dom";
   
   
    return (
-     <Link to={`/notes/${props.note.id}/notebooks/${props.note.notebook_id}`}>
+     <Link 
+      to={`/notes/${props.note.id}/notebooks/${props.note.notebook_id}`}
+     >
       <div className="notes-idx-item-outer-container">
           <div className="notes-idx-item-inner-container">
             <div className="notes-idx-title-container"><h3>{title}</h3></div>

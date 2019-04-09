@@ -103,3 +103,41 @@ export const deleteNote = id => {
   });
 };
 
+//Tags-----------------------------------------------------------------------------------------**
+
+export const fetchAllTags = () => {
+  return $.ajax({
+    url: 'api/tags',
+    method: 'GET',
+  });
+};
+
+export const fetchTag = (id) => {
+  return $.ajax({
+    url: `api/tags/${id}`,
+    method: 'GET',
+  });
+};
+
+export const createTag = (tag) => {
+  return $.ajax({
+    url: `api/tags/`,
+    method: 'POST',
+    data: { tag }
+  });
+};
+
+export const updateTag = (tag) => {
+  return $.ajax({
+    url: `api/tags/${tag.id}`,
+    method: 'PATCH',
+    data: { tag }
+  });
+};
+
+export const deleteTag = (id) => {
+  return $.ajax({
+    url: `api/tags/${id}`,
+    method: "DELETE",
+  });
+};

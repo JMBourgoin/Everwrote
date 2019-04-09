@@ -381,6 +381,115 @@ var logoutUser = function logoutUser() {
 
 /***/ }),
 
+/***/ "./frontend/actions/tags.js":
+/*!**********************************!*\
+  !*** ./frontend/actions/tags.js ***!
+  \**********************************/
+/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, fetchAllTags, fetchTag, createTag, updateTag, deleteTag */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_TAGS", function() { return RECEIVE_ALL_TAGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TAG", function() { return RECEIVE_TAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_TAG", function() { return DELETE_TAG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTags", function() { return fetchAllTags; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTag", function() { return fetchTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTag", function() { return updateTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTag", function() { return deleteTag; });
+/* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./frontend/util/api_util.js");
+
+var RECEIVE_ALL_TAGS = "RECEIVE_ALL_TAGS";
+var RECEIVE_TAG = "RECEIVE_TAG";
+var DELETE_TAG = "DELETE_TAG";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
+var CLEAR_ERRORS = "CLEAR_ERRORS";
+
+var receiveAllTags = function receiveAllTags(tags) {
+  return {
+    type: RECEIVE_ALL_TAGS,
+    tags: tags
+  };
+};
+
+var receiveTag = function receiveTag(tag) {
+  return {
+    type: RECEIVE_TAG,
+    tag: tag
+  };
+};
+
+var removeTag = function removeTag(id) {
+  return {
+    type: DELETE_TAG,
+    id: id
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_ERRORS,
+    errors: errors
+  };
+};
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
+var fetchAllTags = function fetchAllTags() {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllTags"]().then(function (tags) {
+      return dispatch(receiveAllTags(tags));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var fetchTag = function fetchTag(id) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchTag"](id).then(function (tag) {
+      return dispatch(receiveTag(tag));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var createTag = function createTag(tag) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["createTag"](tag).then(function (tag) {
+      return dispatch(receiveTag(tag));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var updateTag = function updateTag(tag) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["updateTag"](tag).then(function (tag) {
+      return dispatch(receiveTag(tag));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var deleteTag = function deleteTag(id) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteTag"](id).then(function (id) {
+      return dispatch(removeTag(id));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -408,6 +517,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _notes_notebook_notes_index_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./notes/notebook_notes_index_container */ "./frontend/components/notes/notebook_notes_index_container.jsx");
 /* harmony import */ var _notes_new_note__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./notes/new_note */ "./frontend/components/notes/new_note.jsx");
 /* harmony import */ var _notes_edit_note__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./notes/edit_note */ "./frontend/components/notes/edit_note.jsx");
+/* harmony import */ var _tags_tags_index_container__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tags/tags_index_container */ "./frontend/components/tags/tags_index_container.jsx");
+
 
 
 
@@ -496,6 +607,10 @@ var App = function App() {
     exact: true,
     path: "/notes/:noteId/notebooks/:notebookId",
     component: _notes_notebook_notes_index_container__WEBPACK_IMPORTED_MODULE_14__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+    exact: true,
+    path: "/tags",
+    component: _tags_tags_index_container__WEBPACK_IMPORTED_MODULE_17__["default"]
   })));
 };
 
@@ -3035,6 +3150,180 @@ var SplashPageContainer = function SplashPageContainer() {
 
 /***/ }),
 
+/***/ "./frontend/components/tags/tags_index.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/tags/tags_index.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var TagsIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TagsIndex, _React$Component);
+
+  function TagsIndex(props) {
+    var _this;
+
+    _classCallCheck(this, TagsIndex);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TagsIndex).call(this, props));
+    _this.handleNew = _this.handleNew.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TagsIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllTags();
+    }
+  }, {
+    key: "handleNew",
+    value: function handleNew(e) {
+      e.preventDefault();
+      this;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var tagIndex = Object.values(this.props.tags);
+      var alphaIndex = tagIndex.sort(function (a, b) {
+        a.name - b.name;
+      });
+      var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var sortedTagsArr = [];
+      alpha.split('').forEach(function (letter) {
+        var subArr = alphaIndex.filter(function (tag) {
+          return tag.name[0].toUpperCase() === letter;
+        });
+        debugger;
+
+        if (subArr.length > 0) {
+          sortedTagsArr.push([letter, subArr]);
+        }
+      });
+      var sortedIndex = sortedTagsArr.map(function (letterTags) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tags-index-letter-groups"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, letterTags[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "tags-index-inner-list"
+        }, letterTags[1].map(function (tag) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: tag.id
+          }, tag.name);
+        })));
+      });
+      debugger;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-index-outer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-index-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-index-header-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tags")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-index-header-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        onClick: this.handleNew,
+        src: "",
+        alt: ""
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleNew
+      }, "Tags"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-index-body"
+      }, sortedIndex));
+    }
+  }]);
+
+  return TagsIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagsIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/tags/tags_index_container.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/tags/tags_index_container.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/tags */ "./frontend/actions/tags.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _tags_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tags_index */ "./frontend/components/tags/tags_index.jsx");
+
+
+
+
+var msp = function msp(state) {
+  var tags = {};
+
+  if (state.entities.tags !== undefined) {
+    tags = state.entities.tags;
+  }
+
+  debugger;
+  return {
+    tags: tags
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchAllTags: function fetchAllTags() {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_0__["fetchAllTags"])());
+    },
+    fetchTag: function fetchTag(id) {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_0__["fetchTag"])(id));
+    },
+    createTag: function (_createTag) {
+      function createTag(_x) {
+        return _createTag.apply(this, arguments);
+      }
+
+      createTag.toString = function () {
+        return _createTag.toString();
+      };
+
+      return createTag;
+    }(function (tag) {
+      return dispatch(createTag(tag));
+    })
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_tags_index__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/everwrote.jsx":
 /*!********************************!*\
   !*** ./frontend/everwrote.jsx ***!
@@ -3213,11 +3502,34 @@ var NotesReducer = function NotesReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/tags */ "./frontend/actions/tags.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
 var TagsReducer = function TagsReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState = newState;
 
   switch (action.type) {
+    case _actions_tags__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_TAGS"]:
+      return action.tags;
+
+    case _actions_tags__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TAG"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState, _defineProperty({}, action.tag.id, action.tag));
+      return newState;
+
+    case _actions_tags__WEBPACK_IMPORTED_MODULE_0__["DELETE_TAG"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
+      var id = action.id;
+      delete newState[id];
+      return newState;
+
     default:
       return oldState;
   }
@@ -3401,7 +3713,7 @@ var configureStore = function configureStore() {
 /*!***********************************!*\
   !*** ./frontend/util/api_util.js ***!
   \***********************************/
-/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote */
+/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote, fetchAllTags, fetchTag, createTag, updateTag, deleteTag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3419,6 +3731,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNote", function() { return createNote; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateNote", function() { return updateNote; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteNote", function() { return deleteNote; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTags", function() { return fetchAllTags; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTag", function() { return fetchTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTag", function() { return updateTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTag", function() { return deleteTag; });
 // SESSION----------------------------------------------------------------------
 var createUser = function createUser(user) {
   return $.ajax({
@@ -3522,6 +3839,43 @@ var deleteNote = function deleteNote(id) {
     data: {
       id: id
     }
+  });
+}; //Tags-----------------------------------------------------------------------------------------**
+
+var fetchAllTags = function fetchAllTags() {
+  return $.ajax({
+    url: 'api/tags',
+    method: 'GET'
+  });
+};
+var fetchTag = function fetchTag(id) {
+  return $.ajax({
+    url: "api/tags/".concat(id),
+    method: 'GET'
+  });
+};
+var createTag = function createTag(tag) {
+  return $.ajax({
+    url: "api/tags/",
+    method: 'POST',
+    data: {
+      tag: tag
+    }
+  });
+};
+var updateTag = function updateTag(tag) {
+  return $.ajax({
+    url: "api/tags/".concat(tag.id),
+    method: 'PATCH',
+    data: {
+      tag: tag
+    }
+  });
+};
+var deleteTag = function deleteTag(id) {
+  return $.ajax({
+    url: "api/tags/".concat(id),
+    method: "DELETE"
   });
 };
 

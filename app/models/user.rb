@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
     has_many :notebooks, dependent: :destroy
     has_many :notes, dependent: :destroy
+    has_many :tags, dependent: :destroy
 
     def password=(password)
         @password = password
