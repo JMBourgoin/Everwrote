@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
 import { merge } from 'lodash';
+import { Delta } from 'quill';
 
 
 
@@ -8,8 +9,8 @@ class NoteContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      body: this.props.oldNote.body,
-      title: this.props.oldNote.title,
+      body: "Add Note Body",
+      title: "Add Note Title",
    };
     
     this.handleBody = this.handleBody.bind(this);
@@ -17,31 +18,33 @@ class NoteContainer extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleBodyValue = this.handleBodyValue.bind(this);
   }
   
-  componentDidMount(){
+  componentDidMount(prevProps, prevState){
     this.props.fetchAllNotes();
-    if(this.props.noteId !== null){
 
+    if(this.props.noteId !== null){
       this.setState({
         body: this.props.oldNote.body,
         title: this.props.oldNote.title
       });
     }
-    this.props.clearErrors();
-
   }
 
-componentDidUpdate(prevProps){
-  if(this.props.match.params.noteId !== prevProps.match.params.noteId){
-    this.props.fetchAllNotes();
-    if (this.props.noteId !== null) {
 
-      this.setState({
-        body: this.props.oldNote.body,
-        title: this.props.oldNote.title
-      });
-    }
+componentDidUpdate(prevProps, prevState){
+  debugger
+  if(this.props.match.params.noteId !== prevProps.match.params.noteId){
+    this.props.fetchAllNotes().then(() => {
+        if (this.props.noteId !== null) {
+          this.setState({
+            body: this.props.oldNote.body,
+            title: this.props.oldNote.title
+          });
+        }
+      }
+    );
   }
 }
 
@@ -51,8 +54,21 @@ componentDidUpdate(prevProps){
     });
   }
   
+  // handleBody(content, delta, source, editor) {
+  //   let value = editor.getContents();
+  //   debugger
+  //   this.setState({
+  //    body: value,
+  //  });
+  // }
+  handleBodyValue(content, delta, source, editor){
+    content = this.state.body;
+    const value = content;
+    return value;
+  }
+
   handleBody(value) {
-   this.setState({
+    this.setState({
      body: value,
    });
   }
@@ -60,13 +76,11 @@ componentDidUpdate(prevProps){
   handleDelete(e){
     e.preventDefault();
     this.props.deleteNote(this.props.noteId);
-    this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`)
-
+    this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
   }
 
   handleSave(e){
     e.preventDefault();
-    
     const newNote = {
       title: this.state.title,
       body: this.state.body,
@@ -93,8 +107,8 @@ renderErrors() {
       </ul>
     );
   }
-  render() {
 
+  render() {
     const modules = {
       toolbar: [
         [{ 'header': [1, 2, 3, 4, false] }],
@@ -117,11 +131,13 @@ renderErrors() {
       <div 
       className="note-outer-container"
       >
-      {this.renderErrors}
+      {/* {this.renderErrors()} */}
         <div className="note-title">
-          <input className="header-input" type="text" value={this.state.title} onChange={this.handleTitle}/>
-        </div>
-        <div>
+          <input 
+          className="header-input" 
+          type="text" value={this.state.title} 
+          onChange={this.handleTitle}
+          />
         </div>
         <div className="quil-container">
           <ReactQuill 

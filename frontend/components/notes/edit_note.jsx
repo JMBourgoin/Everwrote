@@ -4,24 +4,27 @@ import NoteContainer from './note_container';
 
 
 const msp = (state, ownProps) => {
-  let notebook_id = parseInt(ownProps.match.params.notebookId);
-  let author_id = state.session.currentUserId;
+  let notebookId = parseInt(ownProps.match.params.notebookId);
+  let authorId = state.session.currentUserId;
   let noteId = parseInt(ownProps.match.params.noteId);
-  let title = "title";
-  let body = "body";
-  let note = "";
+  let body = "Add Note Body";
+  let title = "Add Note Title";
+  
+  let note = {
+    body,
+    title,
+    notebookId,
+    authorId,
+  };
 
   if(state.entities.notes[noteId] !== undefined){
-    title = state.entities.notes[noteId].title;
-     body = state.entities.notes[noteId].body;
-     note = state.entities.notes[noteId];
+    note = state.entities.notes[noteId];
+    debugger
   }
   
   return ({
-    body,
-    title,
-    notebook_id,
-    author_id,
+    notebookId,
+    authorId,
     noteId,
     oldNote: note,
     klass: "active"

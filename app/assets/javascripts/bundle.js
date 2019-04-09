@@ -471,10 +471,6 @@ var App = function App() {
     component: _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
     exact: true,
-    path: "/notes/:noteId/notebooks/:notebookId",
-    component: _notes_edit_note__WEBPACK_IMPORTED_MODULE_16__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
-    exact: true,
     path: "/notes",
     component: _notes_new_note__WEBPACK_IMPORTED_MODULE_15__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
@@ -487,15 +483,19 @@ var App = function App() {
     component: _notes_notes_index_container__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
     exact: true,
-    path: "/notes/:noteId/notebooks/:notebookId",
-    component: _notes_notebook_notes_index_container__WEBPACK_IMPORTED_MODULE_14__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
-    exact: true,
     path: "/notes/notebooks/:notebookId",
     component: _notes_notebook_notes_index_container__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
     path: "/notes",
     component: _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+    exact: true,
+    path: "/notes/:noteId/notebooks/:notebookId",
+    component: _notes_edit_note__WEBPACK_IMPORTED_MODULE_16__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+    exact: true,
+    path: "/notes/:noteId/notebooks/:notebookId",
+    component: _notes_notebook_notes_index_container__WEBPACK_IMPORTED_MODULE_14__["default"]
   })));
 };
 
@@ -1476,24 +1476,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  var notebook_id = parseInt(ownProps.match.params.notebookId);
-  var author_id = state.session.currentUserId;
+  var notebookId = parseInt(ownProps.match.params.notebookId);
+  var authorId = state.session.currentUserId;
   var noteId = parseInt(ownProps.match.params.noteId);
-  var title = "title";
-  var body = "body";
-  var note = "";
+  var body = "Add Note Body";
+  var title = "Add Note Title";
+  var note = {
+    body: body,
+    title: title,
+    notebookId: notebookId,
+    authorId: authorId
+  };
 
   if (state.entities.notes[noteId] !== undefined) {
-    title = state.entities.notes[noteId].title;
-    body = state.entities.notes[noteId].body;
     note = state.entities.notes[noteId];
+    debugger;
   }
 
   return {
-    body: body,
-    title: title,
-    notebook_id: notebook_id,
-    author_id: author_id,
+    notebookId: notebookId,
+    authorId: authorId,
     noteId: noteId,
     oldNote: note,
     klass: "active"
@@ -1605,6 +1607,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_quill__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_quill__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
+/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1627,6 +1631,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var NoteContainer =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1639,20 +1644,21 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NoteContainer).call(this, props));
     _this.state = {
-      body: _this.props.oldNote.body,
-      title: _this.props.oldNote.title
+      body: "Add Note Body",
+      title: "Add Note Title"
     };
     _this.handleBody = _this.handleBody.bind(_assertThisInitialized(_this));
     _this.handleTitle = _this.handleTitle.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    _this.handleBodyValue = _this.handleBodyValue.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(NoteContainer, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
+    value: function componentDidMount(prevProps, prevState) {
       this.props.fetchAllNotes();
 
       if (this.props.noteId !== null) {
@@ -1661,21 +1667,23 @@ function (_React$Component) {
           title: this.props.oldNote.title
         });
       }
-
-      this.props.clearErrors();
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (this.props.match.params.noteId !== prevProps.match.params.noteId) {
-        this.props.fetchAllNotes();
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this2 = this;
 
-        if (this.props.noteId !== null) {
-          this.setState({
-            body: this.props.oldNote.body,
-            title: this.props.oldNote.title
-          });
-        }
+      debugger;
+
+      if (this.props.match.params.noteId !== prevProps.match.params.noteId) {
+        this.props.fetchAllNotes().then(function () {
+          if (_this2.props.noteId !== null) {
+            _this2.setState({
+              body: _this2.props.oldNote.body,
+              title: _this2.props.oldNote.title
+            });
+          }
+        });
       }
     }
   }, {
@@ -1684,6 +1692,20 @@ function (_React$Component) {
       this.setState({
         title: e.target.value
       });
+    } // handleBody(content, delta, source, editor) {
+    //   let value = editor.getContents();
+    //   debugger
+    //   this.setState({
+    //    body: value,
+    //  });
+    // }
+
+  }, {
+    key: "handleBodyValue",
+    value: function handleBodyValue(content, delta, source, editor) {
+      content = this.state.body;
+      var value = content;
+      return value;
     }
   }, {
     key: "handleBody",
@@ -1752,14 +1774,14 @@ function (_React$Component) {
       var formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-outer-container"
-      }, this.renderErrors, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "header-input",
         type: "text",
         value: this.state.title,
         onChange: this.handleTitle
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "quil-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_quill__WEBPACK_IMPORTED_MODULE_1___default.a, {
         value: this.state.body,
@@ -2183,8 +2205,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var NotesIndexItem = function NotesIndexItem(props) {
   var title = props.note.title;
-  var body = props.note.body.slice(0, 150);
+  var body = props.note.body.slice(0, 100);
   var filteredBody = body.replace(/<(?:.|\n)*?>/gm, '');
+  var filteredImages = filteredBody.replace(/<img\ssrc=.*/gmi, " (image file)");
   var created_at = props.note.created_at;
   var updated_at = props.note.updated_at;
   var monthStr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -2206,7 +2229,7 @@ var NotesIndexItem = function NotesIndexItem(props) {
     className: "notes-idx-title-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notes-idx-body-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, filteredBody, "...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, filteredImages, "... ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notes-idx-times-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "created"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, created)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "updated"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, updated))))));
 };
