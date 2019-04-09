@@ -14,7 +14,6 @@ class TagsIndex extends React.Component {
 
     handleNew(e){
         e.preventDefault();
-        this
     }
 
     render(){

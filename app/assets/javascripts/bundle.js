@@ -3207,7 +3207,6 @@ function (_React$Component) {
     key: "handleNew",
     value: function handleNew(e) {
       e.preventDefault();
-      this;
     }
   }, {
     key: "render",
