@@ -18,12 +18,18 @@
 .tags-index-body {
     margin: 20px 50px;
 }
+
 .tags-index-letter-groups > h3 {
+    margin: 15px 0;
     font-size: 16px;
 }
 
 .tags-index-inner-list {
     list-style: none;
     font-size: 14px;
+}
+
+.tags-index-inner-list li {
+    margin-bottom: 5px;
 }
 

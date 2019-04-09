@@ -671,6 +671,59 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/menus/edit_tag_container.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/menus/edit_tag_container.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/tags */ "./frontend/actions/tags.js");
+/* harmony import */ var _tags_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tags_modal */ "./frontend/components/menus/tags_modal.jsx");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  var author_id = state.session.currentUserId;
+  var closeModal = ownProps.closeModal;
+  var tag = ownProps.tag;
+  return {
+    author_id: author_id,
+    tag: tag,
+    closeModal: closeModal,
+    menuTitle: tag.name
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    submitAction: function submitAction(tag) {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_1__["updateTag"])(tag));
+    },
+    fetchTag: function (_fetchTag) {
+      function fetchTag(_x) {
+        return _fetchTag.apply(this, arguments);
+      }
+
+      fetchTag.toString = function () {
+        return _fetchTag.toString();
+      };
+
+      return fetchTag;
+    }(function (id) {
+      return dispatch(fetchTag(id));
+    })
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_tags_modal__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/menus/new_notebook_container.jsx":
 /*!**************************************************************!*\
   !*** ./frontend/components/menus/new_notebook_container.jsx ***!
@@ -706,6 +759,44 @@ var mdp = function mdp(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_notebooks_modal__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/menus/new_tag_container.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/menus/new_tag_container.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/tags */ "./frontend/actions/tags.js");
+/* harmony import */ var _tags_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tags_modal */ "./frontend/components/menus/tags_modal.jsx");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  var author_id = state.session.currentUserId;
+  var closeModal = ownProps.closeModal;
+  return {
+    author_id: author_id,
+    closeModal: closeModal,
+    menuTitle: "Create new Tag."
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    submitAction: function submitAction(tag) {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_1__["createTag"])(tag));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_tags_modal__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -1085,6 +1176,145 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (NotebooksSortingMenu);
+
+/***/ }),
+
+/***/ "./frontend/components/menus/tags_modal.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/menus/tags_modal.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var TagModal =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TagModal, _React$Component);
+
+  function TagModal(props) {
+    var _this;
+
+    _classCallCheck(this, TagModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TagModal).call(this, props));
+    _this.state = {
+      show: false,
+      name: _this.props.name
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TagModal, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var tag = tag;
+
+      if (this.props.tag === undefined) {
+        tag = {
+          name: this.state.name,
+          author_id: this.props.author_id
+        };
+      } else {
+        tag = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, this.props.tag, {
+          name: this.state.name
+        });
+      }
+
+      debugger;
+      this.props.submitAction(tag);
+      this.setState({
+        name: ""
+      });
+      this.props.closeModal();
+    }
+  }, {
+    key: "inputHandle",
+    value: function inputHandle(e) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState({
+          name: e.target.value
+        });
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-outer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-background"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "notebook-modal-header"
+      }, this.props.menuTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.closeModal,
+        className: "notebook-modal-close"
+      }, "X")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "sub-head-modal"
+      }, "Tags are useful for viewing notes around a common topic."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "notebook-modal-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "nb-submit-button",
+        onSubmit: this.handleSubmit,
+        className: "notebook-modal-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "notebook-modal-form-input",
+        value: this.state.name,
+        onChange: this.inputHandle(),
+        type: "text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-horizontal-line"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-buttons-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "modal-button-continue",
+        type: "submit",
+        value: "Continue"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "modal-button",
+        onClick: this.props.closeModal
+      }, "Cancel"))))));
+    }
+  }]);
+
+  return TagModal;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagModal);
 
 /***/ }),
 
@@ -3162,6 +3392,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _menus_new_tag_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menus/new_tag_container */ "./frontend/components/menus/new_tag_container.jsx");
+/* harmony import */ var _menus_edit_tag_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../menus/edit_tag_container */ "./frontend/components/menus/edit_tag_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3183,6 +3415,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var TagsIndex =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3194,7 +3428,15 @@ function (_React$Component) {
     _classCallCheck(this, TagsIndex);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TagsIndex).call(this, props));
+    _this.state = {
+      showAddModal: false,
+      showEditModal: false,
+      tag: ""
+    };
     _this.handleNew = _this.handleNew.bind(_assertThisInitialized(_this));
+    _this.showAddModal = _this.showAddModal.bind(_assertThisInitialized(_this));
+    _this.showEditModal = _this.showEditModal.bind(_assertThisInitialized(_this));
+    _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3209,6 +3451,32 @@ function (_React$Component) {
       e.preventDefault();
     }
   }, {
+    key: "closeModal",
+    value: function closeModal(e) {
+      this.setState({
+        showEditModal: false,
+        showAddModal: false
+      });
+    }
+  }, {
+    key: "showAddModal",
+    value: function showAddModal(e) {
+      e.preventDefault();
+      this.setState({
+        showAddModal: true,
+        showEditModal: false
+      });
+    }
+  }, {
+    key: "showEditModal",
+    value: function showEditModal(tag) {
+      this.setState({
+        showEditModal: true,
+        showAddModal: false,
+        notebook: notebook
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var tagIndex = Object.values(this.props.tags);
@@ -3221,7 +3489,6 @@ function (_React$Component) {
         var subArr = alphaIndex.filter(function (tag) {
           return tag.name[0].toUpperCase() === letter;
         });
-        debugger;
 
         if (subArr.length > 0) {
           sortedTagsArr.push([letter, subArr]);
@@ -3238,10 +3505,14 @@ function (_React$Component) {
           }, tag.name);
         })));
       });
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-index-outer-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.showAddModal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_new_tag_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        closeModal: this.closeModal
+      }) : null, this.state.showEditModal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_edit_tag_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        notebook: this.state.tag,
+        closeModal: this.closeModal
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-index-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-index-header-title"
@@ -3252,7 +3523,7 @@ function (_React$Component) {
         src: "",
         alt: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleNew
+        onClick: this.showAddModal
       }, "Tags"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-index-body"
       }, sortedIndex));
@@ -3289,7 +3560,6 @@ var msp = function msp(state) {
     tags = state.entities.tags;
   }
 
-  debugger;
   return {
     tags: tags
   };

@@ -8,7 +8,6 @@ let tags = {};
 if(state.entities.tags !== undefined){
     tags = state.entities.tags;
 }
-debugger
     return({
         tags,
     });
