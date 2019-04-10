@@ -24,7 +24,7 @@ class NoteContainer extends React.Component {
   }
   
   componentDidMount(prevProps, prevState){
-    this.props.fetchAllNotes().then(this.props.fetchAllTags());
+    this.props.fetchAllNotes().then(this.props.fetchAllTags()).then(this.props.fetchAllJoins());
 
     if(this.props.noteId !== null){
       this.setState({
@@ -127,12 +127,22 @@ renderErrors() {
       'link', 'image'
     ];
 
+    const tags = this.props.filteredTags.map(tag => {
+      return (
+        <li key={tag.id}>
+          <button className="note-tag-button">{tag.name}</button>
+        </li>
+      )
+    })
     
     return (
       <div 
       className="note-outer-container"
       >
-      {/* {this.renderErrors()} */}
+        <ul className="note-tags-list">
+          { tags }
+        </ul>
+
         <div className="note-title">
           <input 
           className="header-input" 
@@ -162,7 +172,9 @@ renderErrors() {
             >Delete
             </button>
           </div>
-            <TagsMenu />
+            <TagsMenu 
+            noteId={this.props.noteId}
+            />
         </div>
       </div>
     )

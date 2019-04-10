@@ -4,6 +4,8 @@ export const RECEIVE_TAG = "RECEIVE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const RECEIVE_ALL_JOINS = "RECEIVE_ALL_JOINS";
+export const RECEIVE_JOIN = "RECEIVE_JOIN";
 
 const receiveAllTags = (tags) => {
   return ({
@@ -35,9 +37,14 @@ export const clearErrors = () => ({
   type: CLEAR_ERRORS,
 });
 
-export const receiveNoteTag = (noteTag) => ({
-        type: RECEIVE_NOTE_TAG,
-        noteTag
+export const receiveAllJoins= joins => ({
+      type: RECEIVE_ALL_JOINS,
+      joins,
+});
+
+export const receiveJoin = (join) => ({
+        type: RECEIVE_JOIN,
+        join
 });
 
 export const fetchAllTags = () => dispatch => {
@@ -70,7 +77,11 @@ export const deleteTag = (id) => dispatch => {
     ));
 };
 
-export const addTagToNote = (id) => dispatch => {
-    return ApiUtil.addTagToNote(id).then(tag => dispatch(ReceiveNoteTag(tag))
+export const fetchAllJoins = () => dispatch => {
+  return ApiUtil.fetchAllJoins().then(joins => dispatch(receiveAllJoins(joins))
+  )};
+
+export const addTagToNote = (join) => dispatch => {
+    return ApiUtil.addTagToNote(join).then(join => dispatch(receiveJoin(join))
     )
 }

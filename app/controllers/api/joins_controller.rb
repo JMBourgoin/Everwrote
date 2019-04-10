@@ -1,16 +1,21 @@
 class Api::JoinsController < ApplicationController
     def index
-        @note_tags = NoteTag.all
+        @joins = Join.all
         render :index
     end
     
     def create
-        @note_tag = NoteTag.new(note_tag_params)
-        @note_tag.save
+        @join = Join.new(joins_params)
+        @join.save
+        render :show
     end
 
     def destroy
-        @note_tag.find(params[:id])
-        @note_tag.destroy
+        @join.find(params[:id])
+        @join.destroy
+    end
+
+    def joins_params 
+        params.require(:join).permit(:note_id, :tag_id)
     end
 end

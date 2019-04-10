@@ -385,7 +385,7 @@ var logoutUser = function logoutUser() {
 /*!**********************************!*\
   !*** ./frontend/actions/tags.js ***!
   \**********************************/
-/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, receiveNoteTag, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, addTagToNote */
+/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, RECEIVE_ALL_JOINS, RECEIVE_JOIN, receiveErrors, clearErrors, receiveAllJoins, receiveJoin, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, fetchAllJoins, addTagToNote */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -395,14 +395,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_TAG", function() { return DELETE_TAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_JOINS", function() { return RECEIVE_ALL_JOINS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_JOIN", function() { return RECEIVE_JOIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveNoteTag", function() { return receiveNoteTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllJoins", function() { return receiveAllJoins; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveJoin", function() { return receiveJoin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTags", function() { return fetchAllTags; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTag", function() { return fetchTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTag", function() { return updateTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTag", function() { return deleteTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllJoins", function() { return fetchAllJoins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTagToNote", function() { return addTagToNote; });
 /* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./frontend/util/api_util.js");
 
@@ -411,6 +415,8 @@ var RECEIVE_TAG = "RECEIVE_TAG";
 var DELETE_TAG = "DELETE_TAG";
 var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
+var RECEIVE_ALL_JOINS = "RECEIVE_ALL_JOINS";
+var RECEIVE_JOIN = "RECEIVE_JOIN";
 
 var receiveAllTags = function receiveAllTags(tags) {
   return {
@@ -444,10 +450,16 @@ var clearErrors = function clearErrors() {
     type: CLEAR_ERRORS
   };
 };
-var receiveNoteTag = function receiveNoteTag(noteTag) {
+var receiveAllJoins = function receiveAllJoins(joins) {
   return {
-    type: RECEIVE_NOTE_TAG,
-    noteTag: noteTag
+    type: RECEIVE_ALL_JOINS,
+    joins: joins
+  };
+};
+var receiveJoin = function receiveJoin(join) {
+  return {
+    type: RECEIVE_JOIN,
+    join: join
   };
 };
 var fetchAllTags = function fetchAllTags() {
@@ -495,10 +507,17 @@ var deleteTag = function deleteTag(id) {
     });
   };
 };
-var addTagToNote = function addTagToNote(id) {
+var fetchAllJoins = function fetchAllJoins() {
   return function (dispatch) {
-    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["addTagToNote"](id).then(function (tag) {
-      return dispatch(ReceiveNoteTag(tag));
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllJoins"]().then(function (joins) {
+      return dispatch(receiveAllJoins(joins));
+    });
+  };
+};
+var addTagToNote = function addTagToNote(join) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["addTagToNote"](join).then(function (join) {
+      return dispatch(receiveJoin(join));
     });
   };
 };
@@ -1206,6 +1225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/tags */ "./frontend/actions/tags.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1227,28 +1247,21 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var msp = function msp(state) {
+
+var msp = function msp(state, ownProps) {
   var tags = state.entities.tags;
+  var noteId = ownProps.noteId;
   return {
-    tags: tags
+    tags: tags,
+    noteId: noteId
   };
 };
 
 var mdp = function mdp(dispatch) {
   return {
-    addTagToNote: function (_addTagToNote) {
-      function addTagToNote(_x) {
-        return _addTagToNote.apply(this, arguments);
-      }
-
-      addTagToNote.toString = function () {
-        return _addTagToNote.toString();
-      };
-
-      return addTagToNote;
-    }(function (id) {
-      return dispatch(addTagToNote(id));
-    })
+    addTagToNote: function addTagToNote(join) {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["addTagToNote"])(join));
+    }
   };
 };
 
@@ -1292,7 +1305,14 @@ function (_React$Component) {
     }
   }, {
     key: "addTag",
-    value: function addTag(id) {}
+    value: function addTag(id, e) {
+      e.preventDefault();
+      var join = {
+        note_id: this.props.noteId,
+        tag_id: id
+      };
+      this.props.addTagToNote(join);
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1300,9 +1320,13 @@ function (_React$Component) {
 
       var tagsArr = Object.values(this.props.tags);
       var tags = tagsArr.map(function (tag) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this2.addTag(tag.id)
-        }, tag.name)));
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: tag.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick(e) {
+            return _this2.addTag(tag.id, e);
+          }
+        }, tag.name));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.showMenu
@@ -1313,7 +1337,7 @@ function (_React$Component) {
         alt: "tags"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Add Tag"))), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-menu"
-      }, tags) : null);
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, tags)) : null);
     }
   }]);
 
@@ -1960,15 +1984,35 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_notes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/notes */ "./frontend/actions/notes.js");
-/* harmony import */ var _note_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./note_container */ "./frontend/components/notes/note_container.jsx");
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/tags */ "./frontend/actions/tags.js");
+/* harmony import */ var _note_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./note_container */ "./frontend/components/notes/note_container.jsx");
+
 
 
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   var notebookId = parseInt(ownProps.match.params.notebookId);
   var authorId = state.session.currentUserId;
   var noteId = parseInt(ownProps.match.params.noteId);
+  var joins = Object.values(state.joins);
+  var filteredJoins = joins.filter(function (join) {
+    return join.note_id === noteId;
+  });
+  var tagIdsArr = [];
+  filteredJoins.forEach(function (join) {
+    return tagIdsArr.push(join.tag_id);
+  });
+  var allTags = [];
+
+  if (state.entities.tags !== undefined) {
+    allTags = Object.values(state.entities.tags);
+  }
+
+  var filteredTags = allTags.filter(function (tag) {
+    return tagIdsArr.includes(tag.id);
+  });
   var body = "Add Note Body";
   var title = "Add Note Title";
   var note = {
@@ -1980,7 +2024,6 @@ var msp = function msp(state, ownProps) {
 
   if (state.entities.notes[noteId] !== undefined) {
     note = state.entities.notes[noteId];
-    debugger;
   }
 
   return {
@@ -1988,7 +2031,8 @@ var msp = function msp(state, ownProps) {
     authorId: authorId,
     noteId: noteId,
     oldNote: note,
-    klass: "active"
+    klass: "active",
+    filteredTags: filteredTags
   };
 };
 
@@ -2008,11 +2052,17 @@ var mdp = function mdp(dispatch) {
     },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
+    },
+    fetchAllTags: function fetchAllTags() {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["fetchAllTags"])());
+    },
+    fetchAllJoins: function fetchAllJoins() {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["fetchAllJoins"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_note_container__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_note_container__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -2051,7 +2101,7 @@ var msp = function msp(state, ownProps) {
     oldNote: oldNote,
     noteId: noteId,
     klass: "nonactive",
-    tags: tags
+    filteredTags: []
   };
 };
 
@@ -2078,6 +2128,9 @@ var mdp = function mdp(dispatch) {
     },
     fetchAllTags: function fetchAllTags() {
       return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["fetchAllTags"])());
+    },
+    fetchAllJoins: function fetchAllJoins() {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["fetchAllJoins"])());
     },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
@@ -2159,7 +2212,7 @@ function (_React$Component) {
   _createClass(NoteContainer, [{
     key: "componentDidMount",
     value: function componentDidMount(prevProps, prevState) {
-      this.props.fetchAllNotes().then(this.props.fetchAllTags());
+      this.props.fetchAllNotes().then(this.props.fetchAllTags()).then(this.props.fetchAllJoins());
 
       if (this.props.noteId !== null) {
         this.setState({
@@ -2270,9 +2323,18 @@ function (_React$Component) {
         }], ['link', 'image'], ['clean']]
       };
       var formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
+      var tags = this.props.filteredTags.map(function (tag) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: tag.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "note-tag-button"
+        }, tag.name));
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-outer-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "note-tags-list"
+      }, tags), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "header-input",
@@ -2297,7 +2359,9 @@ function (_React$Component) {
       }, "Save"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: this.props.klass,
         onClick: this.handleDelete
-      }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_tags_menu_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+      }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_tags_menu_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        noteId: this.props.noteId
+      })));
     }
   }]);
 
@@ -4037,6 +4101,46 @@ var ErrorsReducer = function ErrorsReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/joins_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/joins_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tags__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/tags */ "./frontend/actions/tags.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var JoinsReducer = function JoinsReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState = newState;
+
+  switch (action.type) {
+    case _actions_tags__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_JOINS"]:
+      return action.joins;
+
+    case _actions_tags__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOIN"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState, _defineProperty({}, action.join.id, action.join));
+      return newState;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (JoinsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -4050,6 +4154,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
 /* harmony import */ var _entities_entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities/entities_reducer */ "./frontend/reducers/entities/entities_reducer.js");
 /* harmony import */ var _errors_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors/errors_reducer */ "./frontend/reducers/errors/errors_reducer.js");
+/* harmony import */ var _joins_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./joins_reducer */ "./frontend/reducers/joins_reducer.js");
+
 
 
 
@@ -4057,6 +4163,7 @@ __webpack_require__.r(__webpack_exports__);
 var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   entities: _entities_entities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  joins: _joins_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   errors: _errors_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (RootReducer);
@@ -4139,7 +4246,7 @@ var configureStore = function configureStore() {
 /*!***********************************!*\
   !*** ./frontend/util/api_util.js ***!
   \***********************************/
-/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, addTagToNote */
+/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, fetchAllJoins, addTagToNote */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4162,6 +4269,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTag", function() { return updateTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTag", function() { return deleteTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllJoins", function() { return fetchAllJoins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTagToNote", function() { return addTagToNote; });
 // SESSION----------------------------------------------------------------------
 var createUser = function createUser(user) {
@@ -4305,9 +4413,19 @@ var deleteTag = function deleteTag(id) {
     method: "DELETE"
   });
 };
-var addTagToNote = function addTagToNote(id) {
+var fetchAllJoins = function fetchAllJoins() {
   return $.ajax({
-    url: 'api/'
+    url: 'api/joins',
+    method: "GET"
+  });
+};
+var addTagToNote = function addTagToNote(join) {
+  return $.ajax({
+    method: "POST",
+    url: 'api/joins',
+    data: {
+      join: join
+    }
   });
 };
 
@@ -71207,7 +71325,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

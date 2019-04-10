@@ -46,4 +46,18 @@
     list-style: none;
 }
 
+.note-tags-list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
 
+.note-tag-button {
+    background-color: #00A94F;
+    min-width: 50px;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    font-size: 9px;
+    margin: 5px;
+}

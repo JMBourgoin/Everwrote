@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addTagToNote } from '../../actions/tags';
 
-const msp = state => {
+const msp = (state, ownProps) => {
     let tags = state.entities.tags;
+    let noteId = ownProps.noteId;
     
     return({
         tags,
+        noteId,
     });
 };
 
 const mdp = dispatch => {
     return ({
-        addTagToNote: id => dispatch(addTagToNote(id)),
+        addTagToNote: join => dispatch(addTagToNote(join)),
     });
 };
 
@@ -40,19 +43,22 @@ class TagsMenu extends React.Component{
         document.removeEventListener("click", this.closeMenu);
     }
 
-    addTag(id){
-
+    addTag(id, e){
+        e.preventDefault();
+        let join = {
+            note_id: this.props.noteId,
+            tag_id: id
+        }
+        this.props.addTagToNote(join);
     }
 
     render(){
         let tagsArr = Object.values(this.props.tags);
         let tags = tagsArr.map(tag => {
             return (
-                <ul>
-                    <li>
-                        <button onClick={this.addTag(tag.id)}>{tag.name}</button>
+                    <li key={tag.id}>
+                        <button onClick={(e) => this.addTag(tag.id, e)}>{tag.name}</button>
                     </li>
-                </ul>
             )
         });
 
@@ -66,7 +72,9 @@ class TagsMenu extends React.Component{
                 </button>
                 { this.state.showMenu ? (
                     <div className="tags-menu">
+                        <ul>
                             { tags }
+                        </ul>
                     </div>
                 ) : null
             }

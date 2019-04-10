@@ -6,5 +6,5 @@ class Tag < ApplicationRecord
     foreign_key: :author_id,
     primary_key: :id
 
-
+    has_many :joins, dependent: :destroy
 end

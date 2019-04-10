@@ -10,5 +10,7 @@ class Note < ApplicationRecord
   class_name: :Notebook,
   primary_key: :id,
   foreign_key: :notebook_id
+
+  has_many :joins, dependent: :destroy
   
 end

@@ -142,8 +142,17 @@ export const deleteTag = (id) => {
   });
 };
 
-export const addTagToNote = id => {
+export const fetchAllJoins = () => {
   return $.ajax({
-    url: 'api/'
+    url: 'api/joins',
+    method: "GET",
+  });
+};
+
+export const addTagToNote = join => {
+  return $.ajax({
+    method: "POST",
+    url: 'api/joins',
+    data: { join }
   });
 }
