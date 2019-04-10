@@ -31,5 +31,19 @@
 
 .tags-index-inner-list li {
     margin-bottom: 5px;
+    
 }
+
+.tags-menu {
+    position: absolute;
+    width: 80px;
+    min-height: 50px;
+    box-shadow: 1px 1px 10px lightgray;
+    padding: 10px;
+}
+
+.tags-menu ul{
+    list-style: none;
+}
+
 

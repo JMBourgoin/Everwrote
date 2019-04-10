@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactQuill, { Quill } from 'react-quill';
+import TagsMenu from '../menus/tags_menu_container';
 import { merge } from 'lodash';
 import { Delta } from 'quill';
 
@@ -11,6 +12,7 @@ class NoteContainer extends React.Component {
     this.state = { 
       body: "Add Note Body",
       title: "Add Note Title",
+      tags: []
    };
     
     this.handleBody = this.handleBody.bind(this);
@@ -22,7 +24,7 @@ class NoteContainer extends React.Component {
   }
   
   componentDidMount(prevProps, prevState){
-    this.props.fetchAllNotes();
+    this.props.fetchAllNotes().then(this.props.fetchAllTags());
 
     if(this.props.noteId !== null){
       this.setState({
@@ -34,7 +36,6 @@ class NoteContainer extends React.Component {
 
 
 componentDidUpdate(prevProps, prevState){
-  debugger
   if(this.props.match.params.noteId !== prevProps.match.params.noteId){
     this.props.fetchAllNotes().then(() => {
         if (this.props.noteId !== null) {
@@ -148,16 +149,21 @@ renderErrors() {
           formats={formats}
           />
         </div>
-        <button
-          className="note-save-button save2"
-          onClick={this.handleSave}
-        >Save
-        </button>
-        <button
-          className={this.props.klass}
-          onClick={this.handleDelete}
-        >Delete
-        </button>
+        <div className="note-bottom-container">
+          <div className="note-buttons-container">
+            <button
+              className="note-save-button save2"
+              onClick={this.handleSave}
+            >Save
+            </button>
+            <button
+              className={this.props.klass}
+              onClick={this.handleDelete}
+            >Delete
+            </button>
+          </div>
+            <TagsMenu />
+        </div>
       </div>
     )
   }

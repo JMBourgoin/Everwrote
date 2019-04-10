@@ -141,3 +141,9 @@ export const deleteTag = (id) => {
     method: "DELETE",
   });
 };
+
+export const addTagToNote = id => {
+  return $.ajax({
+    url: 'api/'
+  });
+}

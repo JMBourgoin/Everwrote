@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import { fetchAllNotes, createNote, updateNote, clearErrors } from '../../actions/notes';
+import { fetchAllTags } from '../../actions/tags';
 import NoteContainer from './note_container';
 
 
 const msp = (state, ownProps) => {
+  let tags = state.tags;
   let body = "Add note body";
   let title = "Add note title";
   let noteId = null;
@@ -19,7 +21,8 @@ const msp = (state, ownProps) => {
   return ({
     oldNote,
     noteId,
-    klass: "nonactive"
+    klass: "nonactive",
+    tags
   });
 };
 
@@ -28,6 +31,7 @@ const mdp = dispatch => {
     createNote: note => dispatch(createNote(note)),
     deleteNote: id => dispatch(deleteNote(id)),
     fetchAllNotes: () => dispatch(fetchAllNotes()),
+    fetchAllTags: ()=> dispatch(fetchAllTags()),
     clearErrors: () => dispatch(clearErrors())
   });
 };

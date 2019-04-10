@@ -35,6 +35,8 @@ export const clearErrors = () => ({
   type: CLEAR_ERRORS,
 });
 
+export const receiveNoteTag = (tag)
+
 export const fetchAllTags = () => dispatch => {
   return ApiUtil.fetchAllTags().then(tags => dispatch(receiveAllTags(tags)),
     err => (dispatch(receiveErrors(err.responseJSON))
@@ -64,3 +66,8 @@ export const deleteTag = (id) => dispatch => {
     err => (dispatch(receiveErrors(err.responseJSON))
     ));
 };
+
+export const addTagToNote = (id) => dispatch => {
+    return ApiUtil.addTagToNote(id).then(tag => dispatch(ReceiveNoteTag(tag))
+    )
+}

@@ -85,3 +85,27 @@
   font-size: 14px;
 }
 
+.note-bottom-container {
+  width: 50vw;
+  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-tags-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 60px;
+  font-size: 14px;
+  font-weight: 700;
+  color: grey;
+
+}
+
+.note-tags-container img {
+  height: 20px;
+  margin-right: 5px;
+
+}
