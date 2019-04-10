@@ -35,7 +35,10 @@ export const clearErrors = () => ({
   type: CLEAR_ERRORS,
 });
 
-export const receiveNoteTag = (tag)
+export const receiveNoteTag = (noteTag) => ({
+        type: RECEIVE_NOTE_TAG,
+        noteTag
+});
 
 export const fetchAllTags = () => dispatch => {
   return ApiUtil.fetchAllTags().then(tags => dispatch(receiveAllTags(tags)),

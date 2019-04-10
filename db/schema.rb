@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_160513) do
+ActiveRecord::Schema.define(version: 2019_04_10_135831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "note_tags", force: :cascade do |t|
+  create_table "joins", force: :cascade do |t|
     t.integer "tag_id", null: false
     t.integer "note_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["note_id"], name: "index_note_tags_on_note_id", unique: true
-    t.index ["tag_id"], name: "index_note_tags_on_tag_id", unique: true
+    t.index ["note_id"], name: "index_joins_on_note_id", unique: true
+    t.index ["tag_id"], name: "index_joins_on_tag_id", unique: true
   end
 
   create_table "notebooks", force: :cascade do |t|

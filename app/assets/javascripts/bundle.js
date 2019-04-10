@@ -385,7 +385,7 @@ var logoutUser = function logoutUser() {
 /*!**********************************!*\
   !*** ./frontend/actions/tags.js ***!
   \**********************************/
-/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, addTagToNote */
+/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors, receiveNoteTag, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, addTagToNote */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -397,6 +397,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveNoteTag", function() { return receiveNoteTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTags", function() { return fetchAllTags; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTag", function() { return fetchTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
@@ -441,6 +442,12 @@ var receiveErrors = function receiveErrors(errors) {
 var clearErrors = function clearErrors() {
   return {
     type: CLEAR_ERRORS
+  };
+};
+var receiveNoteTag = function receiveNoteTag(noteTag) {
+  return {
+    type: RECEIVE_NOTE_TAG,
+    noteTag: noteTag
   };
 };
 var fetchAllTags = function fetchAllTags() {
@@ -490,8 +497,8 @@ var deleteTag = function deleteTag(id) {
 };
 var addTagToNote = function addTagToNote(id) {
   return function (dispatch) {
-    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["addTagToNote"](id).then(function (id) {
-      return dispatch(addTagToNote(id));
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["addTagToNote"](id).then(function (tag) {
+      return dispatch(ReceiveNoteTag(tag));
     });
   };
 };
@@ -71200,7 +71207,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
