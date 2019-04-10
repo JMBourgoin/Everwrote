@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     margin: 10px 40px;
+    margin-left: 270px;
 }
 
 .tags-index-header {
@@ -34,16 +35,21 @@
     
 }
 
+.note-tags-container {
+    position: relative;
+}
+
 .tags-menu {
     position: absolute;
-    width: 80px;
+    min-width: 80px;
     min-height: 50px;
     box-shadow: 1px 1px 10px lightgray;
-    padding: 10px;
+    bottom: 50px;
 }
 
 .tags-menu ul{
     list-style: none;
+    margin: none;
 }
 
 .note-tags-list {
@@ -60,4 +66,19 @@
     color: white;
     font-size: 9px;
     margin: 5px;
+}
+
+.tags-menu li {
+    padding: 1px 3px;
+}
+
+.tags-menu li:first-child {
+    padding-top: 7px;
+}
+
+.tags-menu li:last-child {
+    padding-bottom: 7px;
+}
+.tags-menu li:hover{
+    background-color: lightgrey;
 }

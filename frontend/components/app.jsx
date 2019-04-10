@@ -41,6 +41,8 @@ const App = () => {
         <ProtectedRoute exact path="/notes/:noteId/notebooks/:notebookId" component={EditNoteContainer} />
         <ProtectedRoute exact path="/notes/:noteId/notebooks/:notebookId" component={NotebookNotesIndex} />
         <ProtectedRoute exact path="/tags" component={TagsIndex} />
+        <ProtectedRoute exact path="/tags" component={SidebarContainer} />
+
 
       </div>
     </div>

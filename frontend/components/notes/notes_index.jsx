@@ -17,8 +17,8 @@ class NotesIndex extends React.Component {
 
 
   componentDidMount(){
-    this.props.fetchAllNotebooks();
-    this.props.fetchAllNotes();
+    this.props.fetchAllNotebooks().then(this.props.fetchAllNotes());
+    
   }
   
   changeState(sort) {

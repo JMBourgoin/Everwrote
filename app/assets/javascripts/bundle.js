@@ -645,6 +645,10 @@ var App = function App() {
     exact: true,
     path: "/tags",
     component: _tags_tags_index_container__WEBPACK_IMPORTED_MODULE_17__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__["ProtectedRoute"], {
+    exact: true,
+    path: "/tags",
+    component: _sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_12__["default"]
   })));
 };
 
@@ -1484,6 +1488,113 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (TagModal);
+
+/***/ }),
+
+/***/ "./frontend/components/menus/tags_sorting_container.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/components/menus/tags_sorting_container.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var TagsSortingMenu =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TagsSortingMenu, _React$Component);
+
+  function TagsSortingMenu(props) {
+    var _this;
+
+    _classCallCheck(this, TagsSortingMenu);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TagsSortingMenu).call(this, props));
+    _this.state = {
+      showMenu: false
+    };
+    _this.openMenu = _this.openMenu.bind(_assertThisInitialized(_this));
+    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TagsSortingMenu, [{
+    key: "openMenu",
+    value: function openMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: true
+      });
+      document.addEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu(e) {
+      e.preventDefault();
+      this.setState({
+        showMenu: false
+      });
+      document.removeEventListener('click', this.closeMenu);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button-text",
+        onClick: this.openMenu
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.tagPic,
+        alt: "sort"
+      })), this.state.showMenu ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.props.klass
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "nb-sorting-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-sorting"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.titleClick,
+        className: "nb-sorting-button"
+      }, "Sort by Title"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-sorting"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.createdClick,
+        className: "nb-sorting-button"
+      }, "Sort by Created"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "nb-sorting"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.updatedClick,
+        className: "nb-sorting-button"
+      }, "Sort by Updated"))))) : null);
+    }
+  }]);
+
+  return TagsSortingMenu;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagsSortingMenu);
 
 /***/ }),
 
@@ -2448,6 +2559,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _menus_notebooks_sorting_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menus/notebooks_sorting_container */ "./frontend/components/menus/notebooks_sorting_container.jsx");
+/* harmony import */ var _menus_tags_sorting_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../menus/tags_sorting_container */ "./frontend/components/menus/tags_sorting_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2470,6 +2582,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var NotesHeader =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2484,6 +2597,7 @@ function (_React$Component) {
     _this.titleClick = _this.titleClick.bind(_assertThisInitialized(_this));
     _this.updatedClick = _this.updatedClick.bind(_assertThisInitialized(_this));
     _this.createdClick = _this.createdClick.bind(_assertThisInitialized(_this));
+    _this.byTagClick = _this.byTagClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2506,6 +2620,12 @@ function (_React$Component) {
       this.props.changeState('created');
     }
   }, {
+    key: "byTagClick",
+    value: function byTagClick(tag, e) {
+      e.preventDefault(e);
+      this.props.changeState('tag');
+    }
+  }, {
     key: "render",
     value: function render() {
       var noteCount = Object.values(this.props.notes).length;
@@ -2516,12 +2636,17 @@ function (_React$Component) {
         className: "notes-idx-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.header), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "notes-idx-sub-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, noteCount, " notes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_sorting_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, noteCount, " notes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "index-sorting-buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_sorting_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         notes: this.props.notes,
         titleClick: this.titleClick,
         updatedClick: this.updatedClick,
         createdClick: this.createdClick,
         klass: "notes-sorting-menu"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_tags_sorting_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        notes: this.props.notes,
+        byTagClick: this.byTagClick
       }))))));
     }
   }]);
@@ -2624,8 +2749,7 @@ function (_React$Component) {
   _createClass(NotesIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchAllNotebooks();
-      this.props.fetchAllNotes();
+      this.props.fetchAllNotebooks().then(this.props.fetchAllNotes());
     }
   }, {
     key: "changeState",

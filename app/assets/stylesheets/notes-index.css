@@ -93,6 +93,9 @@
   width: 20px;
 }
 
+.note-bottom-container {
+  position: relative;
+}
 
 .notes-sorting-menu {
   position: absolute;
