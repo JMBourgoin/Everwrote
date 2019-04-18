@@ -20,14 +20,13 @@ class SignUpForm extends React.Component {
     this.props.clearErrors();
   }
 
-  handleDemo(e){
     handleDemo(e){
       e.preventDefault();
       let user = {'email': "demo_user@gmail.com", 'password': 'password'};
       this.setState(user);
       setTimeout(this.props.submitAction(user), 3000);
     }
-  }
+  
 
   handleSubmit(e){
     e.preventDefault();

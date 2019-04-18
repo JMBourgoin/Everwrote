@@ -3106,9 +3106,149 @@ var mdp = function mdp(dispatch) {
   !*** ./frontend/components/session/signup_form.jsx ***!
   \*****************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/emerifetzer/Desktop/Everwrote/frontend/components/session/signup_form.jsx: Unexpected token, expected \";\" (24:17)\n\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m  handleDemo(e){\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 | \u001b[39m    handleDemo(e){\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m      e\u001b[33m.\u001b[39mpreventDefault()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 26 | \u001b[39m      let user \u001b[33m=\u001b[39m {\u001b[32m'email'\u001b[39m\u001b[33m:\u001b[39m \u001b[32m\"demo_user@gmail.com\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'password'\u001b[39m\u001b[33m:\u001b[39m \u001b[32m'password'\u001b[39m}\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 27 | \u001b[39m      \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msetState(user)\u001b[33m;\u001b[39m\u001b[0m\n    at Object.raise (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:3851:17)\n    at Object.unexpected (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:5165:16)\n    at Object.semicolon (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:5147:40)\n    at Object.parseExpressionStatement (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7838:10)\n    at Object.parseStatementContent (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7427:19)\n    at Object.parseStatement (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7293:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7879:25)\n    at Object.parseBlockBody (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7866:10)\n    at Object.parseBlock (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7850:10)\n    at Object.parseFunctionBody (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:6911:24)\n    at Object.parseFunctionBodyAndFinish (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:6881:10)\n    at Object.parseMethod (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:6837:10)\n    at Object.pushClassMethod (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8272:30)\n    at Object.parseClassMemberWithIsStatic (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8197:12)\n    at Object.parseClassMember (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8136:10)\n    at withTopicForbiddingContext (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8091:14)\n    at Object.withTopicForbiddingContext (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7187:14)\n    at Object.parseClassBody (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8068:10)\n    at Object.parseClass (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8042:22)\n    at Object.parseStatementContent (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7335:21)\n    at Object.parseStatement (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7293:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7879:25)\n    at Object.parseBlockBody (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7866:10)\n    at Object.parseTopLevel (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:7222:10)\n    at Object.parse (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:8871:17)\n    at parse (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/parser/lib/index.js:11133:38)\n    at parser (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/emerifetzer/Desktop/Everwrote/node_modules/@babel/core/lib/transformation/index.js:35:14)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var SignUpForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SignUpForm, _React$Component);
+
+  function SignUpForm(props) {
+    var _this;
+
+    _classCallCheck(this, SignUpForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SignUpForm).call(this, props));
+    _this.state = _this.props.user;
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SignUpForm, [{
+    key: "display",
+    value: function display(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearErrors();
+    }
+  }, {
+    key: "handleDemo",
+    value: function handleDemo(e) {
+      e.preventDefault();
+      var user = {
+        'email': "demo_user@gmail.com",
+        'password': 'password'
+      };
+      this.setState(user);
+      setTimeout(this.props.submitAction(user), 3000);
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.submitAction(this.state);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "errors"
+      }, this.props.errors.map(function (error, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "".concat(index)
+        }, error);
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.props.background
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.props.klass
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "logo",
+        src: this.props.logo
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Everwrote"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Remember everything important.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDemo,
+        className: "form-button-demo"
+      }, "Continue with demo-user"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "signup-form",
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "or-line"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hr"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "or"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hr"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "input-fields",
+        type: "text",
+        value: this.state.email,
+        onChange: this.display('email'),
+        placeholder: "Email"
+      }), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "input-fields",
+        type: "password",
+        value: this.state.password,
+        onChange: this.display('password'),
+        placeholder: "Password"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "form-button",
+        type: "submit",
+        value: "Continue"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-link-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.formMessage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "form-link",
+        to: this.props.formLink
+      }, this.props.formName))));
+    }
+  }]);
+
+  return SignUpForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SignUpForm);
 
 /***/ }),
 
