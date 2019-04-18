@@ -7,11 +7,13 @@ import NotesIndex from './notes_index';
 
 const msp = state => {
   const notes = Object.values(state.entities.notes);
-  const tags = state.entities.tags;
+  const tags = Object.values(state.entities.tags);
+  const joins = Object.values(state.joins);
   const author = state.entities.users[state.session.currentUserId];
   return ({
     notes,
     tags,
+    joins,
     author,
     header: "All Notes"
   });

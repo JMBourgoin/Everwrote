@@ -29,16 +29,16 @@ class NotesHeader extends React.Component {
     this.props.changeState('created');
   }
 
-  byTagClick(tag, e){
-    e.preventDefault(e);
-    this.props.changeState('tag');
+  byTagClick(e){
+    e.preventDefault();
+    let tagId = parseInt(e.target.name);
+    this.props.changeState('tag', tagId);
   }
 
   
 
   render() {
     const noteCount = Object.values(this.props.notes).length;
-    this
     return (
       <div className="notes-idx-header-outer">
         <div className="notes-idx-header">
@@ -57,6 +57,8 @@ class NotesHeader extends React.Component {
                 <TagsSortingMenu
                   notes={this.props.notes}
                   byTagClick={this.byTagClick}
+                  tags={this.props.tags}
+                  klass="tags-sorting-menu"
                 />
               </div>
             </div>

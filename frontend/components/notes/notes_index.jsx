@@ -8,21 +8,26 @@ class NotesIndex extends React.Component {
     super(props);
     this.state = {
       sortBy: 'created',
-    };
+      sortTag: ''
+    }
+
     this.changeState = this.changeState.bind(this);
     this.sortByCreated = this.sortByCreated.bind(this);
     this.sortByTitle = this.sortByTitle.bind(this);
     this.sortByUpdated = this.sortByUpdated.bind(this);
+    this.sortByTag = this.sortByTag.bind(this);
   }
 
 
   componentDidMount(){
     this.props.fetchAllNotebooks().then(this.props.fetchAllNotes());
-    
   }
   
-  changeState(sort) {
-    this.setState({ sortBy: sort })
+  changeState(sort, tagId='') {
+    this.setState({ 
+      sortBy: sort,
+      sortTag: tagId 
+    });
   }
 
   sortByCreated(arr) {
@@ -34,7 +39,6 @@ class NotesIndex extends React.Component {
     );
   }
 
-
   sortByUpdated(arr) {
     let newArr = arr.concat([]);
     return (
@@ -44,7 +48,6 @@ class NotesIndex extends React.Component {
     );
   }
 
-
   sortByTitle(arr) {
     let newArr = arr.concat([]);
     return (
@@ -52,6 +55,25 @@ class NotesIndex extends React.Component {
         return (a.title[0].toUpperCase() < b.title[0].toUpperCase() ? -1 : 1);
       })
     );
+  }
+
+  sortByTag(arr, tagId){
+    let newArr = arr.concat([]);
+    
+    let filteredJoins = this.props.joins.filter(join=>{
+      return join.tag_id === tagId;
+    });
+    
+    let noteIds = [];
+    filteredJoins.forEach(join => {
+      noteIds.push(join.note_id);
+    })
+    
+    let filteredNotes = newArr.filter(note => {
+       return noteIds.includes(note.id);
+    });
+  
+    return filteredNotes;
   }
 
   render(){
@@ -63,7 +85,9 @@ class NotesIndex extends React.Component {
       sortedNotes = this.sortByUpdated(notesArr)
     } else if (this.state.sortBy === 'created') {
       sortedNotes = this.sortByCreated(notesArr);
-    }
+    } else if (this.state.sortBy === 'tag'){
+      sortedNotes = this.sortByTag(notesArr, this.state.sortTag);
+    } 
     const notes = sortedNotes.map(note => {
       return (
         <NotesIndexItem 
@@ -72,15 +96,17 @@ class NotesIndex extends React.Component {
             />
       )
     });
-
+  
     return (
       <div className="notes-index-component">
         <NotesHeader 
           sortByTitle={this.sortByTitle}
           sortByUpdated={this.sortByUpdate}
           sortByCreated={this.sortByCreated}
+          sortByTag={this.sortByTag}
           changeState={this.changeState}
           notes={this.props.notes}
+          tags={this.props.tags}
           header={this.props.header}
         />
         <div className="notes-idx-outer-container">

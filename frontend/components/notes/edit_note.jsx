@@ -5,7 +5,6 @@ import NoteContainer from './note_container';
 
 
 const msp = (state, ownProps) => {
-  debugger
   const notebookId = parseInt(ownProps.match.params.notebookId);
   const authorId = state.session.currentUserId;
   const noteId = parseInt(ownProps.match.params.noteId);

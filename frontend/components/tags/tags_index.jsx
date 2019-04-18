@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddTag from '../menus/new_tag_container';
 import EditTag from '../menus/edit_tag_container';
 
@@ -53,15 +53,15 @@ class TagsIndex extends React.Component {
                 }
         });
         
-        const sortedIndex = sortedTagsArr.map(letterTags => {
+        const sortedIndex = sortedTagsArr.map((letterTags, index) => {
             return (
-                <div className="tags-index-letter-groups">
+                <div key={index} className="tags-index-letter-groups">
                     <h3>{letterTags[0]}</h3>
                     <ul className= "tags-index-inner-list">
                       {
                          letterTags[1].map(tag => {
                           return (
-                              <li key={tag.id}>{tag.name}</li>
+                              <li key={tag.id}><Link to={`/notes/${tag.id}`}>{tag.name}</Link></li>
                           )
                       })
                     }  

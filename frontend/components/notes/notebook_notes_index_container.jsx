@@ -8,6 +8,7 @@ const msp = (state, ownProps) => {
   const notebookId = ownProps.match.params.notebookId;
   const notebook = state.entities.notebooks[notebookId];
   const allNotes = state.entities.notes;
+  const joins = Object.values(state.joins);
   let header = null;
   
   if(notebook === undefined){
@@ -29,7 +30,8 @@ const msp = (state, ownProps) => {
     tags,
     author,
     notebookId,
-    header
+    header,
+    joins
   });
 };
 

@@ -1562,6 +1562,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var tags = this.props.tags.map(function (tag) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: tag.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "nb-sorting"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          name: tag.id,
+          onClick: _this2.props.byTagClick,
+          className: "nb-sorting-button"
+        }, tag.name)));
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button-text",
         onClick: this.openMenu
@@ -1572,22 +1585,7 @@ function (_React$Component) {
         className: this.props.klass
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nb-sorting-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "nb-sorting"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.props.titleClick,
-        className: "nb-sorting-button"
-      }, "Sort by Title"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "nb-sorting"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.props.createdClick,
-        className: "nb-sorting-button"
-      }, "Sort by Created"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "nb-sorting"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.props.updatedClick,
-        className: "nb-sorting-button"
-      }, "Sort by Updated"))))) : null);
+      }, tags)) : null);
     }
   }]);
 
@@ -2103,7 +2101,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   var notebookId = parseInt(ownProps.match.params.notebookId);
   var authorId = state.session.currentUserId;
   var noteId = parseInt(ownProps.match.params.noteId);
@@ -2505,6 +2502,7 @@ var msp = function msp(state, ownProps) {
   var notebookId = ownProps.match.params.notebookId;
   var notebook = state.entities.notebooks[notebookId];
   var allNotes = state.entities.notes;
+  var joins = Object.values(state.joins);
   var header = null;
 
   if (notebook === undefined) {
@@ -2524,7 +2522,8 @@ var msp = function msp(state, ownProps) {
     tags: tags,
     author: author,
     notebookId: notebookId,
-    header: header
+    header: header,
+    joins: joins
   };
 };
 
@@ -2621,15 +2620,15 @@ function (_React$Component) {
     }
   }, {
     key: "byTagClick",
-    value: function byTagClick(tag, e) {
-      e.preventDefault(e);
-      this.props.changeState('tag');
+    value: function byTagClick(e) {
+      e.preventDefault();
+      var tagId = parseInt(e.target.name);
+      this.props.changeState('tag', tagId);
     }
   }, {
     key: "render",
     value: function render() {
       var noteCount = Object.values(this.props.notes).length;
-      this;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "notes-idx-header-outer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2646,7 +2645,9 @@ function (_React$Component) {
         klass: "notes-sorting-menu"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_tags_sorting_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         notes: this.props.notes,
-        byTagClick: this.byTagClick
+        byTagClick: this.byTagClick,
+        tags: this.props.tags,
+        klass: "tags-sorting-menu"
       }))))));
     }
   }]);
@@ -2677,8 +2678,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state, ownProps) {
   var header = ownProps.header;
+  var tags = Object.values(state.entities.tags);
   return {
-    header: header
+    header: header,
+    tags: tags
   };
 };
 
@@ -2737,12 +2740,14 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NotesIndex).call(this, props));
     _this.state = {
-      sortBy: 'created'
+      sortBy: 'created',
+      sortTag: ''
     };
     _this.changeState = _this.changeState.bind(_assertThisInitialized(_this));
     _this.sortByCreated = _this.sortByCreated.bind(_assertThisInitialized(_this));
     _this.sortByTitle = _this.sortByTitle.bind(_assertThisInitialized(_this));
     _this.sortByUpdated = _this.sortByUpdated.bind(_assertThisInitialized(_this));
+    _this.sortByTag = _this.sortByTag.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2754,8 +2759,10 @@ function (_React$Component) {
   }, {
     key: "changeState",
     value: function changeState(sort) {
+      var tagId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       this.setState({
-        sortBy: sort
+        sortBy: sort,
+        sortTag: tagId
       });
     }
   }, {
@@ -2784,6 +2791,22 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "sortByTag",
+    value: function sortByTag(arr, tagId) {
+      var newArr = arr.concat([]);
+      var filteredJoins = this.props.joins.filter(function (join) {
+        return join.tag_id === tagId;
+      });
+      var noteIds = [];
+      filteredJoins.forEach(function (join) {
+        noteIds.push(join.note_id);
+      });
+      var filteredNotes = newArr.filter(function (note) {
+        return noteIds.includes(note.id);
+      });
+      return filteredNotes;
+    }
+  }, {
     key: "render",
     value: function render() {
       var notesArr = this.props.notes;
@@ -2795,6 +2818,8 @@ function (_React$Component) {
         sortedNotes = this.sortByUpdated(notesArr);
       } else if (this.state.sortBy === 'created') {
         sortedNotes = this.sortByCreated(notesArr);
+      } else if (this.state.sortBy === 'tag') {
+        sortedNotes = this.sortByTag(notesArr, this.state.sortTag);
       }
 
       var notes = sortedNotes.map(function (note) {
@@ -2809,8 +2834,10 @@ function (_React$Component) {
         sortByTitle: this.sortByTitle,
         sortByUpdated: this.sortByUpdate,
         sortByCreated: this.sortByCreated,
+        sortByTag: this.sortByTag,
         changeState: this.changeState,
         notes: this.props.notes,
+        tags: this.props.tags,
         header: this.props.header
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "notes-idx-outer-container"
@@ -2850,11 +2877,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state) {
   var notes = Object.values(state.entities.notes);
-  var tags = state.entities.tags;
+  var tags = Object.values(state.entities.tags);
+  var joins = Object.values(state.joins);
   var author = state.entities.users[state.session.currentUserId];
   return {
     notes: notes,
     tags: tags,
+    joins: joins,
     author: author,
     header: "All Notes"
   };
@@ -3841,15 +3870,18 @@ function (_React$Component) {
           sortedTagsArr.push([letter, subArr]);
         }
       });
-      var sortedIndex = sortedTagsArr.map(function (letterTags) {
+      var sortedIndex = sortedTagsArr.map(function (letterTags, index) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: index,
           className: "tags-index-letter-groups"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, letterTags[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "tags-index-inner-list"
         }, letterTags[1].map(function (tag) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: tag.id
-          }, tag.name);
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: "/notes/".concat(tag.id)
+          }, tag.name));
         })));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

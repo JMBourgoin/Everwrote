@@ -105,12 +105,34 @@
   align-items: flex-start;
   left: -170;
   width: 140px;
-  height: 140px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px lightgray;
+  border-radius: 2px;
+  z-index: 22;
+  right: 60px;
+}
+
+.notes-sorting-menu li:last-child {
+  margin-bottom: 15px;
+}
+
+.tags-sorting-menu {
+  position: absolute;
+  display: flex; 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  left: -1700;
+  width: 140px;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 10px lightgray;
   border-radius: 2px;
   z-index: 22;
   right: 20px;
+}
+
+.tags-sorting-menu li:last-child {
+  margin-bottom: 10px;
 }
 
 .nb-sorting {
