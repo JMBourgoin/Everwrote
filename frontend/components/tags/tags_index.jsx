@@ -96,8 +96,9 @@ class TagsIndex extends React.Component {
                         <h3>Tags</h3>
                     </div>
                     <div className="tags-index-header-button">
-                        <img onClick={this.handleNew}src="" alt=""/>
-                        <button onClick={this.showAddModal}>Tags</button>
+                        <button onClick={this.showAddModal}>
+                        <img onClick={this.handleNew}src={window.newNote} alt=""/>
+                        </button>
                     </div>
                 </div>
 
