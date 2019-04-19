@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchAllNotes, updateNote, deleteNote, fetchNote, clearErrors } from '../../actions/notes';
-import { fetchAllTags, fetchAllJoins } from '../../actions/tags';
+import { fetchAllTags, fetchAllJoins, deleteJoin } from '../../actions/tags';
 import NoteContainer from './note_container';
 
 
@@ -41,7 +41,8 @@ const msp = (state, ownProps) => {
     noteId,
     oldNote: note,
     klass: "active",
-    filteredTags
+    filteredTags,
+    joins
   });
 };
 
@@ -53,7 +54,8 @@ const mdp = dispatch => {
     fetchAllNotes: ()=> dispatch(fetchAllNotes()),
     clearErrors: () => dispatch(clearErrors()),
     fetchAllTags: () => dispatch(fetchAllTags()),
-    fetchAllJoins: () => dispatch(fetchAllJoins())
+    fetchAllJoins: () => dispatch(fetchAllJoins()),
+    deleteJoin: join => dispatch(deleteJoin(join))
   });
 };
 

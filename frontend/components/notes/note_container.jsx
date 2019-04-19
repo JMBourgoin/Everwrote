@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import TagsMenu from '../menus/tags_menu_container';
 import { merge } from 'lodash';
-import { Delta } from 'quill';
+
 
 
 
@@ -12,12 +12,13 @@ class NoteContainer extends React.Component {
     this.state = { 
       body: "Add Note Body",
       title: "Add Note Title",
-      tags: []
+      tags: [],
    };
     
     this.handleBody = this.handleBody.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.tagDelete = this.tagDelete.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.handleBodyValue = this.handleBodyValue.bind(this);
@@ -72,6 +73,15 @@ componentDidUpdate(prevProps, prevState){
     this.setState({
      body: value,
    });
+  }
+  tagDelete(e){
+    e.preventDefault();
+    const tagId = parseInt(e.target.getAttribute('name'));
+    const noteId = this.props.noteId;
+    const join = this.props.joins.filter(join=>{
+      return join.tag_id === tagId && join.note_id === noteId;
+    });
+    this.props.deleteJoin(join);
   }
 
   handleDelete(e){
@@ -130,7 +140,7 @@ renderErrors() {
     const tags = this.props.filteredTags.map(tag => {
       return (
         <li key={tag.id}>
-          <button className="note-tag-button">{tag.name}</button>
+          <button name={tag.id} onClick={this.tagDelete} className="note-tag-button">{tag.name}</button>
         </li>
       )
     })

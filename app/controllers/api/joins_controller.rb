@@ -11,8 +11,9 @@ class Api::JoinsController < ApplicationController
     end
 
     def destroy
-        @join.find(params[:id])
+        @join = Join.find(params[:id])
         @join.destroy
+        render json: { id: @join.id }
     end
 
     def joins_params 

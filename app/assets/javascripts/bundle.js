@@ -385,7 +385,7 @@ var logoutUser = function logoutUser() {
 /*!**********************************!*\
   !*** ./frontend/actions/tags.js ***!
   \**********************************/
-/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, RECEIVE_ALL_JOINS, RECEIVE_JOIN, receiveErrors, clearErrors, receiveAllJoins, receiveJoin, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, fetchAllJoins, addTagToNote */
+/*! exports provided: RECEIVE_ALL_TAGS, RECEIVE_TAG, DELETE_TAG, RECEIVE_ERRORS, CLEAR_ERRORS, RECEIVE_ALL_JOINS, RECEIVE_JOIN, DELETE_JOIN, receiveErrors, clearErrors, receiveAllJoins, receiveJoin, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, fetchAllJoins, addTagToNote, deleteJoin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -397,6 +397,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_JOINS", function() { return RECEIVE_ALL_JOINS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_JOIN", function() { return RECEIVE_JOIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_JOIN", function() { return DELETE_JOIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllJoins", function() { return receiveAllJoins; });
@@ -408,6 +409,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTag", function() { return deleteTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllJoins", function() { return fetchAllJoins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTagToNote", function() { return addTagToNote; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteJoin", function() { return deleteJoin; });
 /* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./frontend/util/api_util.js");
 
 var RECEIVE_ALL_TAGS = "RECEIVE_ALL_TAGS";
@@ -417,6 +419,7 @@ var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
 var RECEIVE_ALL_JOINS = "RECEIVE_ALL_JOINS";
 var RECEIVE_JOIN = "RECEIVE_JOIN";
+var DELETE_JOIN = "DELETE_JOIN";
 
 var receiveAllTags = function receiveAllTags(tags) {
   return {
@@ -432,10 +435,17 @@ var receiveTag = function receiveTag(tag) {
   };
 };
 
-var removeTag = function removeTag(id) {
+var destroyTag = function destroyTag(id) {
   return {
     type: DELETE_TAG,
     id: id
+  };
+};
+
+var removeTag = function removeTag(join) {
+  return {
+    type: DELETE_JOIN,
+    join: join
   };
 };
 
@@ -501,7 +511,7 @@ var updateTag = function updateTag(tag) {
 var deleteTag = function deleteTag(id) {
   return function (dispatch) {
     return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteTag"](id).then(function (id) {
-      return dispatch(removeTag(id));
+      return dispatch(destroyTag(id));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
     });
@@ -518,6 +528,13 @@ var addTagToNote = function addTagToNote(join) {
   return function (dispatch) {
     return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["addTagToNote"](join).then(function (join) {
       return dispatch(receiveJoin(join));
+    });
+  };
+};
+var deleteJoin = function deleteJoin(join) {
+  return function (dispatch) {
+    return _util_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteJoin"](join).then(function (join) {
+      return dispatch(removeTag(join));
     });
   };
 };
@@ -2150,7 +2167,8 @@ var msp = function msp(state, ownProps) {
     noteId: noteId,
     oldNote: note,
     klass: "active",
-    filteredTags: filteredTags
+    filteredTags: filteredTags,
+    joins: joins
   };
 };
 
@@ -2176,6 +2194,9 @@ var mdp = function mdp(dispatch) {
     },
     fetchAllJoins: function fetchAllJoins() {
       return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["fetchAllJoins"])());
+    },
+    deleteJoin: function deleteJoin(join) {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["deleteJoin"])(join));
     }
   };
 };
@@ -2250,6 +2271,19 @@ var mdp = function mdp(dispatch) {
     fetchAllJoins: function fetchAllJoins() {
       return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_2__["fetchAllJoins"])());
     },
+    deleteJoin: function (_deleteJoin) {
+      function deleteJoin(_x2) {
+        return _deleteJoin.apply(this, arguments);
+      }
+
+      deleteJoin.toString = function () {
+        return _deleteJoin.toString();
+      };
+
+      return deleteJoin;
+    }(function (join) {
+      return dispatch(deleteJoin(join));
+    }),
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_notes__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
@@ -2276,8 +2310,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menus_tags_menu_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menus/tags_menu_container */ "./frontend/components/menus/tags_menu_container.jsx");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
-/* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2295,7 +2327,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -2321,6 +2352,7 @@ function (_React$Component) {
     _this.handleBody = _this.handleBody.bind(_assertThisInitialized(_this));
     _this.handleTitle = _this.handleTitle.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
+    _this.tagDelete = _this.tagDelete.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     _this.handleBodyValue = _this.handleBodyValue.bind(_assertThisInitialized(_this));
@@ -2384,6 +2416,17 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "tagDelete",
+    value: function tagDelete(e) {
+      e.preventDefault();
+      var tagId = parseInt(e.target.getAttribute('name'));
+      var noteId = this.props.noteId;
+      var join = this.props.joins.filter(function (join) {
+        return join.tag_id === tagId && join.note_id === noteId;
+      });
+      this.props.deleteJoin(join);
+    }
+  }, {
     key: "handleDelete",
     value: function handleDelete(e) {
       e.preventDefault();
@@ -2427,6 +2470,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var modules = {
         toolbar: [[{
           'header': [1, 2, 3, 4, false]
@@ -2445,6 +2490,8 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: tag.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          name: tag.id,
+          onClick: _this3.tagDelete,
           className: "note-tag-button"
         }, tag.name));
       });
@@ -4370,6 +4417,11 @@ var JoinsReducer = function JoinsReducer() {
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState, _defineProperty({}, action.join.id, action.join));
       return newState;
 
+    case _actions_tags__WEBPACK_IMPORTED_MODULE_0__["DELETE_JOIN"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState);
+      delete newState[action.join.id];
+      return newState;
+
     default:
       return oldState;
   }
@@ -4484,7 +4536,7 @@ var configureStore = function configureStore() {
 /*!***********************************!*\
   !*** ./frontend/util/api_util.js ***!
   \***********************************/
-/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, fetchAllJoins, addTagToNote */
+/*! exports provided: createUser, createSession, deleteSession, fetchAllNotebooks, fetchNotebook, createNotebook, updateNotebook, deleteNotebook, fetchAllNotes, fetchNote, createNote, updateNote, deleteNote, fetchAllTags, fetchTag, createTag, updateTag, deleteTag, fetchAllJoins, addTagToNote, deleteJoin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4509,6 +4561,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTag", function() { return deleteTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllJoins", function() { return fetchAllJoins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTagToNote", function() { return addTagToNote; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteJoin", function() { return deleteJoin; });
 // SESSION----------------------------------------------------------------------
 var createUser = function createUser(user) {
   return $.ajax({
@@ -4664,6 +4717,12 @@ var addTagToNote = function addTagToNote(join) {
     data: {
       join: join
     }
+  });
+};
+var deleteJoin = function deleteJoin(join) {
+  return $.ajax({
+    method: "DELETE",
+    url: "api/joins/".concat(join[0].id)
   });
 };
 

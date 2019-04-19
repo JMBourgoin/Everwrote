@@ -156,3 +156,10 @@ export const addTagToNote = join => {
     data: { join }
   });
 }
+
+export const deleteJoin = join => {
+  return $.ajax({
+    method: "DELETE",
+    url: `api/joins/${join[0].id}`,
+  });
+}

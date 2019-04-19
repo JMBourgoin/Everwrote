@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchAllNotes, createNote, updateNote, clearErrors } from '../../actions/notes';
-import { fetchAllTags, fetchAllJoins } from '../../actions/tags';
+import { fetchAllTags, fetchAllJoins, deleteTag } from '../../actions/tags';
 import NoteContainer from './note_container';
 
 
@@ -33,6 +33,7 @@ const mdp = dispatch => {
     fetchAllNotes: () => dispatch(fetchAllNotes()),
     fetchAllTags: ()=> dispatch(fetchAllTags()),
     fetchAllJoins: () => dispatch(fetchAllJoins()),
+    deleteJoin: join => dispatch(deleteJoin(join)),
     clearErrors: () => dispatch(clearErrors())
   });
 };
