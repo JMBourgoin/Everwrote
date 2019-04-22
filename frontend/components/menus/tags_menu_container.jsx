@@ -53,8 +53,18 @@ class TagsMenu extends React.Component{
     }
 
     render(){
-        let tagsArr = Object.values(this.props.tags);
+        
+        let tagsArr = Object.values(this.props.tags).sort((a,b)=>{
+            if(a.name.toUpperCase() < b.name.toUpperCase()){
+                return -1;
+            }else if(a.name.toUpperCase() > b.name.toUpperCase()){
+                return 1;
+            }else{
+                return 0;
+            }
+        });
 
+        
         let tags = tagsArr.map(tag => {
             return (
                     <li key={tag.id}>
