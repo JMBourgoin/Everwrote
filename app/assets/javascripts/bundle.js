@@ -1349,18 +1349,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var tagsArr = Object.values(this.props.tags).sort(function (a, b) {
-        var aC = a.toLowerCase();
-        var bC = b.toLoverCase();
-
-        if (aC < bC) {
-          return -1;
-        } else if (aC > bC) {
-          return 1;
-        } else {
-          return 1;
-        }
-      });
+      var tagsArr = Object.values(this.props.tags);
       var tags = tagsArr.map(function (tag) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: tag.id
