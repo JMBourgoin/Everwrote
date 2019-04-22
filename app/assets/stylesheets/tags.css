@@ -95,6 +95,10 @@
     margin: 5px;
 }
 
+.note-tag-button:hover{
+    background-color: red;
+}
+
 .tags-menu li {
     padding: 1px 3px;
 }
