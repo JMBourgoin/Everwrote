@@ -34,7 +34,7 @@ class Api::TagsController < ApplicationController
     end
 
      def destroy
-       @tag = tag.find(params[:id])
+       @tag = Tag.find(params[:id])
        if @tag && current_user.id == @tag.author_id
          @tag_id = @tag.id;
          @tag.destroy

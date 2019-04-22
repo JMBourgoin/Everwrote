@@ -1,5 +1,5 @@
 
-import { fetchAllTags, fetchTag } from '../../actions/tags';
+import { fetchAllTags, fetchTag, deleteTag } from '../../actions/tags';
 import { connect } from 'react-redux';
 import TagsIndex from './tags_index';
 
@@ -17,7 +17,8 @@ const mdp = dispatch => {
     return({
         fetchAllTags: () => dispatch(fetchAllTags()),
         fetchTag: id => dispatch(fetchTag(id)),
-        createTag: tag => dispatch(createTag(tag))
+        createTag: tag => dispatch(createTag(tag)),
+        deleteTag: id => dispatch(deleteTag(id))
     });
 };
 

@@ -1449,7 +1449,6 @@ function (_React$Component) {
         });
       }
 
-      debugger;
       this.props.submitAction(tag);
       this.setState({
         name: ""
@@ -3945,6 +3944,7 @@ function (_React$Component) {
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_this));
     _this.hover = _this.hover.bind(_assertThisInitialized(_this));
     _this.classReset = _this.classReset.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3958,7 +3958,12 @@ function (_React$Component) {
     value: function handleDelete(e) {
       e.preventDefault();
       var tagId = parseInt(e.target.getAttribute('name'));
-      this.deleteTag(tagId);
+      this.props.deleteTag(tagId);
+      var tagsCopy = Object.assign(this.props.tags);
+      delete tagsCopy[tagId];
+      this.setState({
+        tags: tagsCopy
+      });
     }
   }, {
     key: "handleNew",
@@ -4128,7 +4133,10 @@ var mdp = function mdp(dispatch) {
       return createTag;
     }(function (tag) {
       return dispatch(createTag(tag));
-    })
+    }),
+    deleteTag: function deleteTag(id) {
+      return dispatch(Object(_actions_tags__WEBPACK_IMPORTED_MODULE_0__["deleteTag"])(id));
+    }
   };
 };
 

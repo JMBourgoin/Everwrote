@@ -22,7 +22,7 @@ class TagModal extends React.Component {
     } else {
       tag = merge({}, this.props.tag, {name: this.state.name});
     }
-    debugger
+    
     this.props.submitAction(tag);
     this.setState({name: ""});
     this.props.closeModal();

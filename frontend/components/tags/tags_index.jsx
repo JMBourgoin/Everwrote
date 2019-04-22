@@ -21,15 +21,22 @@ class TagsIndex extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.hover = this.hover.bind(this);
         this.classReset = this.classReset.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchAllTags();
     }
+
+
     handleDelete(e){
         e.preventDefault();
         const tagId = parseInt(e.target.getAttribute('name'));
-        this.deleteTag(tagId);
+
+        this.props.deleteTag(tagId);
+        let tagsCopy = Object.assign(this.props.tags);  
+        delete tagsCopy[tagId];
+        this.setState({tags: tagsCopy});  
     }
 
     handleNew(e){
