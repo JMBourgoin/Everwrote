@@ -3,15 +3,19 @@
     font-family: 'Muli', sans-serif;
     display: flex;
     flex-direction: column;
-    margin: 10px 40px;
-    margin-left: 270px;
+    margin: 0px 40px;
+    margin-left: 240px;
+}
+
+.tags-index-inner-container {
+    margin-left: 30px;
 }
 
 .tags-index-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 30px 10px;
+    padding: 30px 10px 30px 50px;
     border-bottom: 2px solid rgb(46, 46, 46);
     font-weight: 400;
 }

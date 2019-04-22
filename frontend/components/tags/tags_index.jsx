@@ -106,38 +106,39 @@ class TagsIndex extends React.Component {
 
         return (
             <div className="tags-index-outer-container">
-                {
-                this.state.showAddModal ?
-                (
-                    <AddTag 
-                    closeModal={this.closeModal}
+                <div className="tags-index-inner-container">
+                    {
+                    this.state.showAddModal ?
+                    (
+                        <AddTag 
+                        closeModal={this.closeModal}
+                        />
+                    ) :
+                    (null)
+                    }
+                    {
+                    this.state.showEditModal ?
+                    (
+                    <EditTag
+                        notebook={this.state.tag}
+                        closeModal={this.closeModal}
                     />
-                ) :
-                (null)
-                }
-                {
-                this.state.showEditModal ?
-                (
-                <EditTag
-                    notebook={this.state.tag}
-                    closeModal={this.closeModal}
-                />
-                ) :
-                (null)
-                }
-                <div className="tags-index-header">
-                    <div className="tags-index-header-title">
-                        <h3>Tags</h3>
+                    ) :
+                    (null)
+                    }
+                    <div className="tags-index-header">
+                        <div className="tags-index-header-title">
+                            <h3>Tags</h3>
+                        </div>
+                        <div className="tags-index-header-button">
+                            <button onClick={this.showAddModal}>
+                            <img onClick={this.handleNew}src={window.newNote} alt=""/>
+                            </button>
+                        </div>
                     </div>
-                    <div className="tags-index-header-button">
-                        <button onClick={this.showAddModal}>
-                        <img onClick={this.handleNew}src={window.newNote} alt=""/>
-                        </button>
+                    <div className="tags-index-body">
+                        { sortedIndex }
                     </div>
-                </div>
-
-                <div className="tags-index-body">
-                    { sortedIndex }
                 </div>
             </div>
         )

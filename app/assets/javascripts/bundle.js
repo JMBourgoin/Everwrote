@@ -4055,6 +4055,8 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-index-outer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-index-inner-container"
       }, this.state.showAddModal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_new_tag_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         closeModal: this.closeModal
       }) : null, this.state.showEditModal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_edit_tag_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -4074,7 +4076,7 @@ function (_React$Component) {
         alt: ""
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-index-body"
-      }, sortedIndex));
+      }, sortedIndex)));
     }
   }]);
 
