@@ -53,7 +53,8 @@ class TagsMenu extends React.Component{
     }
 
     render(){
-        let tagsArr = Object.values(this.props.tags);
+        let tagsArr = Object.values(this.props.tags).sort();
+
         let tags = tagsArr.map(tag => {
             return (
                     <li key={tag.id}>
