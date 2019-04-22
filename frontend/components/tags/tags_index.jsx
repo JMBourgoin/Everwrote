@@ -9,17 +9,27 @@ class TagsIndex extends React.Component {
         this.state = {
             showAddModal: false,
             showEditModal: false,
-            tag: ""
+            tag: "",
+            klass: {
+
+            }
         }
 
         this.handleNew = this.handleNew.bind(this);
         this.showAddModal = this.showAddModal.bind(this);
         this.showEditModal = this.showEditModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.hover = this.hover.bind(this);
+        this.classReset = this.classReset.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchAllTags();
+    }
+    handleDelete(e){
+        e.preventDefault();
+        const tagId = parseInt(e.target.getAttribute('name'));
+        this.deleteTag(tagId);
     }
 
     handleNew(e){
@@ -37,6 +47,18 @@ class TagsIndex extends React.Component {
 
     showEditModal(tag){
         this.setState({ showEditModal: true, showAddModal: false, notebook: notebook, });
+    }
+    
+    hover(e){
+        e.preventDefault();
+       let key = e.getAttribute('key');
+        this.setState({klass: {[key]: 'delete-tag-button'}});
+    }
+
+    classReset(e){
+        e.preventDefault();
+        let key = e.getAttribute('key');
+        this.setState({klass: {[key]: 'hide'}});
     }
 
     render(){
@@ -59,9 +81,14 @@ class TagsIndex extends React.Component {
                     <h3>{letterTags[0]}</h3>
                     <ul className= "tags-index-inner-list">
                       {
-                         letterTags[1].map(tag => {
+                         letterTags[1].map(tag => {    
                           return (
-                              <li key={tag.id}><Link to={`/notes/${tag.id}`}>{tag.name}</Link></li>
+                              <li 
+                              className="tag-button"
+                              key={tag.id}>
+                                <Link to={`/notes/${tag.id}`}>{tag.name}</Link>
+                                <button className="delete-button" name={tag.id} onClick={this.handleDelete}>delete</button>
+                              </li>
                           )
                       })
                     }  

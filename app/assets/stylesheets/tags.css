@@ -101,6 +101,20 @@
 .tags-menu li:last-child {
     padding-bottom: 7px;
 }
-.tags-menu li:hover{
+.tags-menu li:hover {
     background-color: lightgrey;
+}
+
+.delete-button {
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #00A94F;
+    min-width: 50px;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    font-size: 9px;
+    margin-left: 2px;
 }

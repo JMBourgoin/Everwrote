@@ -3899,6 +3899,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menus_edit_tag_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../menus/edit_tag_container */ "./frontend/components/menus/edit_tag_container.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3934,12 +3936,15 @@ function (_React$Component) {
     _this.state = {
       showAddModal: false,
       showEditModal: false,
-      tag: ""
+      tag: "",
+      klass: {}
     };
     _this.handleNew = _this.handleNew.bind(_assertThisInitialized(_this));
     _this.showAddModal = _this.showAddModal.bind(_assertThisInitialized(_this));
     _this.showEditModal = _this.showEditModal.bind(_assertThisInitialized(_this));
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_this));
+    _this.hover = _this.hover.bind(_assertThisInitialized(_this));
+    _this.classReset = _this.classReset.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3947,6 +3952,13 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchAllTags();
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.preventDefault();
+      var tagId = parseInt(e.target.getAttribute('name'));
+      this.deleteTag(tagId);
     }
   }, {
     key: "handleNew",
@@ -3980,8 +3992,28 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "hover",
+    value: function hover(e) {
+      e.preventDefault();
+      var key = e.getAttribute('key');
+      this.setState({
+        klass: _defineProperty({}, key, 'delete-tag-button')
+      });
+    }
+  }, {
+    key: "classReset",
+    value: function classReset(e) {
+      e.preventDefault();
+      var key = e.getAttribute('key');
+      this.setState({
+        klass: _defineProperty({}, key, 'hide')
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var tagIndex = Object.values(this.props.tags);
       var alphaIndex = tagIndex.sort(function (a, b) {
         a.name - b.name;
@@ -4005,10 +4037,15 @@ function (_React$Component) {
           className: "tags-index-inner-list"
         }, letterTags[1].map(function (tag) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: "tag-button",
             key: tag.id
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             to: "/notes/".concat(tag.id)
-          }, tag.name));
+          }, tag.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "delete-button",
+            name: tag.id,
+            onClick: _this2.handleDelete
+          }, "delete"));
         })));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
