@@ -3180,6 +3180,9 @@ var mdp = function mdp(dispatch) {
     submitAction: function submitAction(user) {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewSession"])(user));
     },
+    demoAction: function demoAction(user) {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewSession"])(user));
+    },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
