@@ -97,7 +97,7 @@ class SidebarContainer extends React.Component {
       <div className="sidebar-outer-container">
         <div className="sidebar-container">
           <div className="profile-container">
-            <Link to='/' className="profile">
+            <Link to='/notebooks' className="profile">
               <img src={window.logoPic} alt="user-profile" />
               <p>{this.props.email}</p>
             </Link>

@@ -1370,7 +1370,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.showMenu
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "note-tags-container"
+        className: this.props.className
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.tagPic,
         alt: "tags"
@@ -1715,7 +1715,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebooksContainer).call(this, props));
     _this.state = {
-      sortBy: 'created',
+      sortBy: 'updated',
       showAddModal: false,
       showEditModal: false,
       notebook: ""
@@ -2174,8 +2174,10 @@ var msp = function msp(state, ownProps) {
     noteId: noteId,
     oldNote: note,
     klass: "active",
+    tagKlass: "note-tags-container",
     filteredTags: filteredTags,
-    joins: joins
+    joins: joins,
+    count: 0
   };
 };
 
@@ -2247,7 +2249,9 @@ var msp = function msp(state, ownProps) {
     oldNote: oldNote,
     noteId: noteId,
     klass: "nonactive",
-    filteredTags: []
+    tagKlass: "nonactive",
+    filteredTags: [],
+    count: 0
   };
 };
 
@@ -2354,7 +2358,9 @@ function (_React$Component) {
     _this.state = {
       body: "Add Note Body",
       title: "Add Note Title",
-      tags: []
+      count: 0,
+      tags: [],
+      klass: "nonactive"
     };
     _this.handleBody = _this.handleBody.bind(_assertThisInitialized(_this));
     _this.handleTitle = _this.handleTitle.bind(_assertThisInitialized(_this));
@@ -2388,7 +2394,9 @@ function (_React$Component) {
           if (_this2.props.noteId !== null) {
             _this2.setState({
               body: _this2.props.oldNote.body,
-              title: _this2.props.oldNote.title
+              title: _this2.props.oldNote.title,
+              count: 0,
+              klass: "nonactive"
             });
           }
         });
@@ -2398,7 +2406,8 @@ function (_React$Component) {
     key: "handleTitle",
     value: function handleTitle(e) {
       this.setState({
-        title: e.target.value
+        title: e.target.value,
+        klass: 'note-save-button save2'
       });
     } // handleBody(content, delta, source, editor) {
     //   let value = editor.getContents();
@@ -2419,8 +2428,15 @@ function (_React$Component) {
     key: "handleBody",
     value: function handleBody(value) {
       this.setState({
-        body: value
+        body: value,
+        count: this.state.count + 1
       });
+
+      if (this.state.count > 1) {
+        this.setState({
+          klass: 'note-save-button save2'
+        });
+      }
     }
   }, {
     key: "tagDelete",
@@ -2443,7 +2459,10 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
-      e.preventDefault();
+      if (e !== undefined) {
+        e.preventDefault();
+      }
+
       var newNote = {
         title: this.state.title,
         body: this.state.body,
@@ -2453,15 +2472,16 @@ function (_React$Component) {
 
       if (this.props.noteId === null) {
         this.props.createNote(newNote);
-        this.setState({
-          body: "Add note body",
-          title: "Add note title"
-        });
+        this.props.history.push("/notes/notebooks/".concat(this.props.match.params.notebookId));
       } else {
         var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, this.props.oldNote, newNote);
         this.props.updateNote(updatedNote);
-        this.props.history.push("/notes/notebooks/".concat(this.props.match.params.notebookId));
+        this.props.history.push("/notes/".concat(updatedNote.id, "/notebooks/").concat(this.props.match.params.notebookId));
       }
+
+      this.setState({
+        klass: 'nonactive'
+      });
     }
   }, {
     key: "renderErrors",
@@ -2526,13 +2546,14 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "note-buttons-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "note-save-button save2",
+        className: this.state.klass,
         onClick: this.handleSave
       }, "Save"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: this.props.klass,
         onClick: this.handleDelete
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_tags_menu_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        noteId: this.props.noteId
+        noteId: this.props.noteId,
+        className: this.props.tagKlass
       })));
     }
   }]);
@@ -2804,7 +2825,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NotesIndex).call(this, props));
     _this.state = {
-      sortBy: 'created',
+      sortBy: 'updated',
       sortTag: ''
     };
     _this.changeState = _this.changeState.bind(_assertThisInitialized(_this));
@@ -3579,7 +3600,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/",
+        to: "/notebooks",
         className: "profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.logoPic,

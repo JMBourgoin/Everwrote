@@ -32,7 +32,7 @@ class NotebooksContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      sortBy: 'created',
+      sortBy: 'updated',
       showAddModal: false,
       showEditModal: false,
       notebook: "",

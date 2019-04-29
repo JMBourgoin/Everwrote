@@ -41,8 +41,10 @@ const msp = (state, ownProps) => {
     noteId,
     oldNote: note,
     klass: "active",
+    tagKlass: "note-tags-container",
     filteredTags,
-    joins
+    joins,
+    count: 0,
   });
 };
 

@@ -76,7 +76,7 @@ class TagsMenu extends React.Component{
         return (
             <div>
                 <button onClick={this.showMenu}>
-                      <div className="note-tags-container">
+                      <div className={this.props.className}>
                           <img src={window.tagPic} alt="tags"/>
                           <p>Add Tag</p>
                       </div>

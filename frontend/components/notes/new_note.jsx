@@ -22,7 +22,9 @@ const msp = (state, ownProps) => {
     oldNote,
     noteId,
     klass: "nonactive",
-    filteredTags: []
+    tagKlass: "nonactive",
+    filteredTags: [],
+    count: 0
   });
 };
 

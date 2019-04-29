@@ -12,7 +12,9 @@ class NoteContainer extends React.Component {
     this.state = { 
       body: "Add Note Body",
       title: "Add Note Title",
+      count: 0,
       tags: [],
+      klass: "nonactive",
    };
     
     this.handleBody = this.handleBody.bind(this);
@@ -30,7 +32,7 @@ class NoteContainer extends React.Component {
     if(this.props.noteId !== null){
       this.setState({
         body: this.props.oldNote.body,
-        title: this.props.oldNote.title
+        title: this.props.oldNote.title,
       });
     }
   }
@@ -42,7 +44,9 @@ componentDidUpdate(prevProps, prevState){
         if (this.props.noteId !== null) {
           this.setState({
             body: this.props.oldNote.body,
-            title: this.props.oldNote.title
+            title: this.props.oldNote.title,
+            count: 0,
+            klass: "nonactive"
           });
         }
       }
@@ -53,6 +57,7 @@ componentDidUpdate(prevProps, prevState){
   handleTitle(e){
     this.setState({
       title: e.target.value,
+      klass: 'note-save-button save2',
     });
   }
   
@@ -72,8 +77,15 @@ componentDidUpdate(prevProps, prevState){
   handleBody(value) {
     this.setState({
      body: value,
+     count: this.state.count + 1, 
    });
+   if(this.state.count > 1){
+     this.setState({
+       klass: 'note-save-button save2',
+     });
+   }
   }
+
   tagDelete(e){
     e.preventDefault();
     const tagId = parseInt(e.target.getAttribute('name'));
@@ -91,7 +103,9 @@ componentDidUpdate(prevProps, prevState){
   }
 
   handleSave(e){
-    e.preventDefault();
+    if( e !== undefined){
+      e.preventDefault();
+    }
     const newNote = {
       title: this.state.title,
       body: this.state.body,
@@ -99,14 +113,16 @@ componentDidUpdate(prevProps, prevState){
       author_id: this.props.oldNote.authorId
     };
     
+    
     if(this.props.noteId === null){
       this.props.createNote(newNote);
-      this.setState({body: "Add note body", title: "Add note title"});
+      this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
     } else {
       let updatedNote = merge({}, this.props.oldNote, newNote);
       this.props.updateNote(updatedNote);
-      this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`)
+      this.props.history.push(`/notes/${updatedNote.id}/notebooks/${this.props.match.params.notebookId}`);
     }
+    this.setState({klass: 'nonactive'});
   }
 
 renderErrors() {
@@ -172,7 +188,7 @@ renderErrors() {
         <div className="note-bottom-container">
           <div className="note-buttons-container">
             <button
-              className="note-save-button save2"
+              className={this.state.klass}
               onClick={this.handleSave}
             >Save
             </button>
@@ -184,6 +200,7 @@ renderErrors() {
           </div>
             <TagsMenu 
             noteId={this.props.noteId}
+            className={this.props.tagKlass}
             />
         </div>
       </div>
