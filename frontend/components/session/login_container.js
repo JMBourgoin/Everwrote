@@ -22,6 +22,7 @@ const msp = state => {
 const mdp = dispatch => {
   return ({
     submitAction: user => dispatch(createNewSession(user)),
+    demoAction: user => dispatch(createNewSession(user)),
     clearErrors: () => dispatch(clearErrors())
   });
 };

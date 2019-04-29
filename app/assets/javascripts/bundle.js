@@ -3275,6 +3275,9 @@ var mdp = function mdp(dispatch) {
     submitAction: function submitAction(user) {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewUser"])(user));
     },
+    demoAction: function demoAction(user) {
+      return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["createNewSession"])(user));
+    },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
@@ -3361,7 +3364,7 @@ function (_React$Component) {
         'password': 'password'
       };
       this.setState(user);
-      setTimeout(this.props.submitAction(user), 3000);
+      setTimeout(this.props.demoAction(user), 3000);
     }
   }, {
     key: "handleSubmit",

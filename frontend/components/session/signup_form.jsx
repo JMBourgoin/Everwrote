@@ -24,7 +24,7 @@ class SignUpForm extends React.Component {
       e.preventDefault();
       let user = {'email': "demo_user@gmail.com", 'password': 'password'};
       this.setState(user);
-      setTimeout(this.props.submitAction(user), 3000);
+      setTimeout(this.props.demoAction(user), 3000);
     }
   
 

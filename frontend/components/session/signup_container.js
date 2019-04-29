@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createNewUser, clearErrors } from '../../actions/session';
+import { createNewUser, createNewSession, clearErrors } from '../../actions/session';
 import signUpForm from './signup_form';
 
 const msp = state => {
@@ -21,6 +21,7 @@ const msp = state => {
 const mdp = dispatch => {
   return ({
     submitAction: user => dispatch(createNewUser(user)),
+    demoAction: user => dispatch(createNewSession(user)),
     clearErrors: () => dispatch(clearErrors()),
   });
 };
