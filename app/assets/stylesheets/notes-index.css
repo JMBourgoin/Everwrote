@@ -1,6 +1,8 @@
 .notes-index-component {
-  width: 35vw;
+  max-width: 30vw;
+  min-width: 20vw;
   margin-left: 240px;
+  border-right: solid 1px rgb(228, 228, 228);
 }
 .notes-idx-item-outer-container{
   display: flex;
