@@ -3989,7 +3989,8 @@ function (_React$Component) {
       showAddModal: false,
       showEditModal: false,
       tag: "",
-      klass: {}
+      klass: {},
+      columns: ''
     };
     _this.handleNew = _this.handleNew.bind(_assertThisInitialized(_this));
     _this.showAddModal = _this.showAddModal.bind(_assertThisInitialized(_this));
@@ -4002,9 +4003,30 @@ function (_React$Component) {
   }
 
   _createClass(TagsIndex, [{
+    key: "setColumns",
+    value: function setColumns(tags) {
+      var columns = '';
+
+      if (Object.keys(tags.tags).length < 20) {
+        columns = 'tags-index-body';
+      } else if (Object.keys(tags.tags).length >= 20 && Object.keys(tags.tags).length <= 40) {
+        columns = 'tags-index-body-2';
+      } else {
+        columns = 'tags-index-body-3';
+      }
+
+      this.setState({
+        columns: columns
+      });
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchAllTags();
+      var _this2 = this;
+
+      this.props.fetchAllTags().then(function (tags) {
+        _this2.setColumns(tags);
+      });
     }
   }, {
     key: "handleDelete",
@@ -4070,7 +4092,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var tagIndex = Object.values(this.props.tags);
       var alphaIndex = tagIndex.sort(function (a, b) {
@@ -4102,7 +4124,7 @@ function (_React$Component) {
           }, tag.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "delete-button",
             name: tag.id,
-            onClick: _this2.handleDelete
+            onClick: _this3.handleDelete
           }, "delete"));
         })));
       });
@@ -4128,7 +4150,7 @@ function (_React$Component) {
         src: window.newNote,
         alt: ""
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tags-index-body"
+        className: this.state.columns
       }, sortedIndex)));
     }
   }]);

@@ -10,9 +10,8 @@ class TagsIndex extends React.Component {
             showAddModal: false,
             showEditModal: false,
             tag: "",
-            klass: {
-
-            }
+            klass: {},
+            columns: '',
         }
 
         this.handleNew = this.handleNew.bind(this);
@@ -22,10 +21,22 @@ class TagsIndex extends React.Component {
         this.hover = this.hover.bind(this);
         this.classReset = this.classReset.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+       
+    }
+    setColumns(tags){
+        let columns = '';
+        if(Object.keys(tags.tags).length < 20){
+            columns = 'tags-index-body';
+        } else if(Object.keys(tags.tags).length >= 20 && Object.keys(tags.tags).length <= 40){
+            columns = 'tags-index-body-2';
+        } else {
+            columns = 'tags-index-body-3';
+        }
+        this.setState({columns: columns});
     }
 
     componentDidMount(){
-        this.props.fetchAllTags();
+        this.props.fetchAllTags().then(tags => {this.setColumns(tags)});
     }
 
 
@@ -77,9 +88,10 @@ class TagsIndex extends React.Component {
         alpha.split('').forEach(letter => {
             let subArr = alphaIndex.filter(tag => {
                 return tag.name[0].toUpperCase() === letter});
-                if(subArr.length > 0){
-                    sortedTagsArr.push([letter, subArr]) 
-                }
+
+            if(subArr.length > 0){
+                sortedTagsArr.push([letter, subArr]) 
+            }
         });
         
         const sortedIndex = sortedTagsArr.map((letterTags, index) => {
@@ -102,7 +114,8 @@ class TagsIndex extends React.Component {
                     </ul>
                 </div>
             )
-        })
+        });
+
 
         return (
             <div className="tags-index-outer-container">
@@ -136,7 +149,7 @@ class TagsIndex extends React.Component {
                             </button>
                         </div>
                     </div>
-                    <div className="tags-index-body">
+                    <div className={this.state.columns}>
                         { sortedIndex }
                     </div>
                 </div>
