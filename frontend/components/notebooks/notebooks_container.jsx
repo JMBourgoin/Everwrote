@@ -123,10 +123,6 @@ class NotebooksContainer extends React.Component {
       return (
          <NotebookIndexItem 
           id={notebook.id} 
-          // author_id={this.props.userEmail} 
-          // created_at={notebook.created_at}
-          // updated_at={notebook.updated_at}
-          // title={notebook.title}
           key={notebook.id}
           showEditModal={this.showEditModal}
           />
@@ -135,7 +131,6 @@ class NotebooksContainer extends React.Component {
     
     return (
       <div className="notebooks-container">
-      {this.renderErrors}
         {
           this.state.showAddModal ?
           (

@@ -1823,18 +1823,14 @@ function (_React$Component) {
 
       var notebooks = sortedNotebooks.map(function (notebook) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          id: notebook.id // author_id={this.props.userEmail} 
-          // created_at={notebook.created_at}
-          // updated_at={notebook.updated_at}
-          // title={notebook.title}
-          ,
+          id: notebook.id,
           key: notebook.id,
           showEditModal: _this2.showEditModal
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "notebooks-container"
-      }, this.renderErrors, this.state.showAddModal ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_menus_new_notebook_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, this.state.showAddModal ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_menus_new_notebook_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
         closeModal: this.closeModal
       }) : null, this.state.showEditModal ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_menus_edit_notebook_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
         notebook: this.state.notebook,
@@ -2008,9 +2004,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -2045,32 +2041,54 @@ function (_React$Component) {
   _inherits(NotebookIndexItem, _React$Component);
 
   function NotebookIndexItem(props) {
+    var _this;
+
     _classCallCheck(this, NotebookIndexItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NotebookIndexItem).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NotebookIndexItem).call(this, props));
+    _this.notesUpdatedDate = _this.notesUpdatedDate.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(NotebookIndexItem, [{
-    key: "showNotebook",
-    value: function showNotebook() {}
+    key: "notesUpdatedDate",
+    value: function notesUpdatedDate(notes) {
+      if (notes.length > 1) {
+        var updated = notes.reduce(function (acc, note) {
+          if (acc.updated_at < note.updated_at) {
+            acc = note;
+            return acc;
+          } else {
+            return acc;
+          }
+        });
+        return updated.updated_at;
+      } else if (notes.length === 1) {
+        return notes[0].updated_at;
+      } else {
+        return '0';
+      }
+    }
   }, {
     key: "render",
     value: function render() {
-      var author_id = this.props.notebook.author_id;
       var id = this.props.notebook.id;
       var created_at = this.props.notebook.created_at;
       var updated_at = this.props.notebook.updated_at;
-      var title = this.props.notebook.title;
-      var monthStr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; //  const createdDateStr = JSON.parse(created_at); 
-      //  const updatedDateStr = JSON.parse(updated_at);
-      //  const updatedDate = new Date(updatedDateStr);
+      var notes = this.props.notes;
 
+      if (this.notesUpdatedDate(notes) != '0' && this.notesUpdatedDate(notes) > updated_at) {
+        updated_at = this.notesUpdatedDate(notes);
+      }
+
+      var title = this.props.notebook.title;
+      var monthStr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var createdDate = new Date(created_at);
       var updatedDate = new Date(updated_at);
       var monthUpdated = monthStr[updatedDate.getMonth()];
-      var dayCreated = createdDate.getDate();
-      var monthCreated = monthStr[createdDate.getMonth()];
       var dayUpdated = updatedDate.getDate();
+      var monthCreated = monthStr[createdDate.getMonth()];
+      var dayCreated = createdDate.getDate();
       var updated = "".concat(monthUpdated, " ").concat(dayUpdated);
       var created = "".concat(monthCreated, " ").concat(dayCreated);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2093,12 +2111,12 @@ function (_React$Component) {
         key: "".concat(id, "2"),
         className: "nb-createdby"
       }, this.props.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        key: "".concat(id, "3"),
-        className: "nb-created"
-      }, created), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         key: "".concat(id, "4"),
         className: "nb-updated"
       }, updated), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: "".concat(id, "3"),
+        className: "nb-created"
+      }, created), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         key: "".concat(id, "5"),
         className: "nb-actions"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menus_notebooks_action_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
