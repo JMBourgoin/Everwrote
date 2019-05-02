@@ -4007,9 +4007,9 @@ function (_React$Component) {
     value: function setColumns(tags) {
       var columns = '';
 
-      if (Object.keys(tags.tags).length < 20) {
+      if (Object.keys(tags.tags).length < 15) {
         columns = 'tags-index-body';
-      } else if (Object.keys(tags.tags).length >= 20 && Object.keys(tags.tags).length <= 40) {
+      } else if (Object.keys(tags.tags).length >= 15 && Object.keys(tags.tags).length <= 30) {
         columns = 'tags-index-body-2';
       } else {
         columns = 'tags-index-body-3';
