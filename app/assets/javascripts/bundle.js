@@ -1718,7 +1718,9 @@ function (_React$Component) {
       sortBy: 'updated',
       showAddModal: false,
       showEditModal: false,
-      notebook: ""
+      notebook: "",
+      updatedNotesCollection: {},
+      updatedNotebookOrder: {}
     };
     _this.sortByCreated = _this.sortByCreated.bind(_assertThisInitialized(_this));
     _this.sortByUpdated = _this.sortByUpdated.bind(_assertThisInitialized(_this));
@@ -1731,10 +1733,37 @@ function (_React$Component) {
   }
 
   _createClass(NotebooksContainer, [{
+    key: "mapUpdatedNoteToNotebook",
+    value: function mapUpdatedNoteToNotebook(notes) {
+      var collection = {};
+      Object.values(notes.notes).forEach(function (note) {
+        if (note.notebook_id in collection) {
+          collection[note.notebook_id].push(note);
+          collection[note.notebook_id] = collection[note.notebook_id][0].updated_at > collection[note.notebook_id][1].updated_at ? [collection[note.notebook_id][0]] : [collection[note.notebook_id][1]];
+        } else {
+          collection[note.notebook_id] = [note];
+        }
+      });
+      var collectionArr = Object.values(collection).sort(function (a, b) {
+        b[0].updated_at - a[0].updated_at;
+      });
+      var sortedNotebookIds = collectionArr.map(function (note) {
+        return note[0].notebook_id;
+      });
+      this.setState({
+        updatedNotebookOrder: sortedNotebookIds,
+        updatedNotesCollection: collection
+      });
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.props.fetchAllNotebooks();
-      this.props.fetchAllNotes();
+      this.props.fetchAllNotes().then(function (notes) {
+        return _this2.mapUpdatedNoteToNotebook(notes);
+      });
     }
   }, {
     key: "changeState",
@@ -1749,16 +1778,24 @@ function (_React$Component) {
       var newArr = arr.concat([]);
       return newArr.sort(function (a, b) {
         return new Date(b.created_at) < new Date(a.created_at) ? -1 : 1;
-        return new Date(b.created_at) - new Date(a.created_at);
       });
     }
   }, {
     key: "sortByUpdated",
     value: function sortByUpdated(arr) {
+      var _this3 = this;
+
       var newArr = arr.concat([]);
-      return newArr.sort(function (a, b) {
+      var collection = this.state.updatedNotesCollection;
+      newArr.forEach(function (notebook, index) {
+        if (notebook.id in _this3.state.updatedNotebookOrder) {
+          newArr[index].updated_at = collection[notebook.id][0].updated_at;
+        }
+      });
+      var sortedNotebooks = newArr.sort(function (a, b) {
         return new Date(b.updated_at) < new Date(a.updated_at) ? -1 : 1;
       });
+      return sortedNotebooks;
     }
   }, {
     key: "sortByTitle",
@@ -1808,7 +1845,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var notebooksArr = Object.values(this.props.notebooks);
       var sortedNotebooks = [];
@@ -1825,7 +1862,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
           id: notebook.id,
           key: notebook.id,
-          showEditModal: _this2.showEditModal
+          showEditModal: _this4.showEditModal
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -2095,7 +2132,8 @@ function (_React$Component) {
         onClick: this.showNotebook,
         className: "notebook-item",
         key: id,
-        to: "/notebooks/".concat(id)
+        to: "/notebooks/".concat(id),
+        updated: updated
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "notebook-item-list",
         key: id
