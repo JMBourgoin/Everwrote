@@ -38,7 +38,7 @@ class NotebooksContainer extends React.Component {
       showEditModal: false,
       notebook: "",
       updatedNotesCollection: {},
-      updatedNotebookOrder: {}
+      updatedNotebookOrder: []
     };
 
     this.sortByCreated = this.sortByCreated.bind(this);
@@ -61,7 +61,7 @@ class NotebooksContainer extends React.Component {
         collection[note.notebook_id] = [ note ];
       }
     });
-    const collectionArr = Object.values(collection).sort((a, b) => {b[0].updated_at - a[0].updated_at});
+    const collectionArr = Object.values(collection).sort((a, b) => {new Date(b[0].updated_at) - new Date(a[0].updated_at)});
     const sortedNotebookIds = collectionArr.map(note => { return note[0].notebook_id });
     this.setState({
       updatedNotebookOrder: sortedNotebookIds,
@@ -73,7 +73,6 @@ class NotebooksContainer extends React.Component {
     this.props.fetchAllNotebooks();
     this.props.fetchAllNotes().then(notes => this.mapUpdatedNoteToNotebook(notes));
   }
-
 
   changeState(sort){
     this.setState({sortBy: sort})
@@ -89,16 +88,21 @@ class NotebooksContainer extends React.Component {
   };
 
   sortByUpdated(arr) {
-    let newArr = arr.concat([]);
+    let tempArr = arr.concat([]);
+    debugger
     const collection = this.state.updatedNotesCollection;
-    newArr.forEach((notebook, index) => {
-      if(notebook.id in this.state.updatedNotebookOrder){
+    const order = this.state.updatedNotebookOrder;
+    const newArr = tempArr.concat([]);
+    tempArr.forEach((notebook, index) => {
+      debugger
+      if(order.includes(notebook.id)){
         newArr[index].updated_at = collection[notebook.id][0].updated_at;
       }
     });
     let sortedNotebooks = newArr.sort(function (a, b) {
       return ((new Date(b.updated_at)) < (new Date(a.updated_at)) ? -1 : 1);
     });
+    debugger
       return sortedNotebooks;
   };
 

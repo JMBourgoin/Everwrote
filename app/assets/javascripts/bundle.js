@@ -1720,7 +1720,7 @@ function (_React$Component) {
       showEditModal: false,
       notebook: "",
       updatedNotesCollection: {},
-      updatedNotebookOrder: {}
+      updatedNotebookOrder: []
     };
     _this.sortByCreated = _this.sortByCreated.bind(_assertThisInitialized(_this));
     _this.sortByUpdated = _this.sortByUpdated.bind(_assertThisInitialized(_this));
@@ -1745,7 +1745,7 @@ function (_React$Component) {
         }
       });
       var collectionArr = Object.values(collection).sort(function (a, b) {
-        b[0].updated_at - a[0].updated_at;
+        new Date(b[0].updated_at) - new Date(a[0].updated_at);
       });
       var sortedNotebookIds = collectionArr.map(function (note) {
         return note[0].notebook_id;
@@ -1783,18 +1783,22 @@ function (_React$Component) {
   }, {
     key: "sortByUpdated",
     value: function sortByUpdated(arr) {
-      var _this3 = this;
-
-      var newArr = arr.concat([]);
+      var tempArr = arr.concat([]);
+      debugger;
       var collection = this.state.updatedNotesCollection;
-      newArr.forEach(function (notebook, index) {
-        if (notebook.id in _this3.state.updatedNotebookOrder) {
+      var order = this.state.updatedNotebookOrder;
+      var newArr = tempArr.concat([]);
+      tempArr.forEach(function (notebook, index) {
+        debugger;
+
+        if (order.includes(notebook.id)) {
           newArr[index].updated_at = collection[notebook.id][0].updated_at;
         }
       });
       var sortedNotebooks = newArr.sort(function (a, b) {
         return new Date(b.updated_at) < new Date(a.updated_at) ? -1 : 1;
       });
+      debugger;
       return sortedNotebooks;
     }
   }, {
@@ -1845,7 +1849,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var notebooksArr = Object.values(this.props.notebooks);
       var sortedNotebooks = [];
@@ -1862,7 +1866,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_notebooks_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
           id: notebook.id,
           key: notebook.id,
-          showEditModal: _this4.showEditModal
+          showEditModal: _this3.showEditModal
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
