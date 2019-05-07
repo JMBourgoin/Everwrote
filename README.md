@@ -4,8 +4,16 @@
 
 ## Features
 • Secure user authentication<br>
+![]()
 • Create and edit notes in a rich text editor<br>
 • Save and organize notes to notebooks<br>
+• Add / Organize / Sort notes by custom tags.<br>
+#### Add custom tags to notes
+![](https://media.giphy.com/media/3d4INILQVWpvEtm08t/giphy.gif)
+#### Create & remove custom tags
+![](https://media.giphy.com/media/7JNtq3NaAoMOhjuZXp/giphy.gif)
+#### Sort notes by tag
+![](https://media.giphy.com/media/2YaJDYChG5Y7x27s9a/giphy.gif)
 • Filter notes by notebook, date created / updated, and title.
 
 ## Technologies
@@ -35,3 +43,4 @@ if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
      newNotePath = `/notes/notebooks/${notebooksArr[lastNbId].id}`;
   } 
 ```
+
