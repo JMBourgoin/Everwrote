@@ -75,4 +75,16 @@ mapUpdatedNoteToNotebook(notes){
   }
 
 ```
+• Joins table creating 'association objects' to easily add / remove tags to notes<br><br>
+When creating tags for notes, there is a one to many relationship where a tag can belong to multiple notes.  Removing a tag from one note, should not remove the tag from another.  Creating a joins table to represent the relationship allows for the tag object to be assigned to multiple notes and deleted without affecting the tag object itself.
+```ruby
+create_table "joins", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "note_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_joins_on_note_id"
+    t.index ["tag_id"], name: "index_joins_on_tag_id"
+  end
+  ```
 
