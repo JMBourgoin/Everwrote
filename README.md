@@ -1,18 +1,23 @@
 # README
 
 [Everwrote](https://everwrote.herokuapp.com/Everwrote) is an Evernote clone built with React, Redux, Ruby-On-Rails and PostgreSQL.  Users can create notebooks and fill them with notes using imbedded font styling, images and links.
+![](./readme_pics/splash_page.png)
 
 ## Features
-• Secure user authentication<br>
-![]()
-• Create and edit notes in a rich text editor<br>
-• Save and organize notes to notebooks<br>
-• Add / Organize / Sort notes by custom tags.<br>
-#### Add custom tags to notes
+#### • Secure user authentication<br>
+![](./readme_pics/login.png)
+#### • Create and edit notes in a rich text editor<br>
+![](./readme_pics/rich_text.png)
+#### • Save and organize notes to notebooks<br>
+![](./readme_pics/notebook_index.png)
+#### • Add / Organize / Sort notes by custom tags.<br>
+![](./readme_pics/tags_index.png)
+![](./readme_pics/sort_by_tag.png)
+#### • Add custom tags to notes
 ![](https://media.giphy.com/media/3d4INILQVWpvEtm08t/giphy.gif)
-#### Create & remove custom tags
+#### • Create & remove custom tags
 ![](https://media.giphy.com/media/7JNtq3NaAoMOhjuZXp/giphy.gif)
-#### Sort notes by tag
+#### • Sort notes by tag
 ![](https://media.giphy.com/media/2YaJDYChG5Y7x27s9a/giphy.gif)
 • Filter notes by notebook, date created / updated, and title.
 
