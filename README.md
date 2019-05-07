@@ -4,22 +4,24 @@
 ![](./readme_pics/splash_page.png)
 
 ## Features
-#### • Secure user authentication<br>
+### • Secure user authentication<hr>
 ![](./readme_pics/login.png)
-#### • Create and edit notes in a rich text editor<br>
+### • Create and edit notes in a rich text editor<hr>
 ![](./readme_pics/rich_text.png)
-#### • Save and organize notes to notebooks<br>
+### • Save and organize notes to notebooks<hr>
 ![](./readme_pics/notebook_index.png)
-#### • Add / Organize / Sort notes by custom tags.<br>
-![](./readme_pics/tags_index.png)
+### • Add / Organize / Sort notes by custom tags.<hr>
+![](./readme_pics/tags_index.png)<br>
 ![](./readme_pics/sort_by_tag.png)
-#### • Add custom tags to notes
-![](https://media.giphy.com/media/3d4INILQVWpvEtm08t/giphy.gif)
-#### • Create & remove custom tags
-![](https://media.giphy.com/media/7JNtq3NaAoMOhjuZXp/giphy.gif)
-#### • Sort notes by tag
-![](https://media.giphy.com/media/2YaJDYChG5Y7x27s9a/giphy.gif)
-• Filter notes by notebook, date created / updated, and title.
+### • Add custom tags to notes<hr>
+![](https://media.giphy.com/media/3d4INILQVWpvEtm08t/giphy.gif)<br>
+### • Create & remove custom tags<hr>
+![](https://media.giphy.com/media/7JNtq3NaAoMOhjuZXp/giphy.gif)<br>
+### • Sort notes by tag<hr>
+![](https://media.giphy.com/media/2YaJDYChG5Y7x27s9a/giphy.gif)<br><br>
+### • Filter notes by notebook, date created / updated, and title.
+![](./readme_pics/sort_by.png)
+
 
 ## Technologies
 ### Frontend
