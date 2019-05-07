@@ -11,8 +11,8 @@
 ### • Save and organize notes to notebooks<hr>
 ![](./readme_pics/notebook_index.png)
 ### • Add / Organize / Sort notes by custom tags.<hr>
-![](./readme_pics/tags_index.png)<br>
-![](./readme_pics/sort_by_tag.png)
+![](./readme_pics/tags_index.png)<br><br>
+![](./readme_pics/sort_by_tag.png)<br>
 ### • Add custom tags to notes<hr>
 ![](https://media.giphy.com/media/3d4INILQVWpvEtm08t/giphy.gif)<br>
 ### • Create & remove custom tags<hr>
