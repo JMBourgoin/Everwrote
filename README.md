@@ -51,3 +51,28 @@ if (/notebooks\/\d*/.test(ownProps.location.pathname)) {
   } 
 ```
 
+• Mapping note objects to notebooks: <br><br>
+When sorting notebooks by "updated", the updated date needed to reflect the most recent changes to the notebook object itself, OR, the most recent change with any note associated with the notebook.  This required to map the associated notes updated_at parameter of each notebook with the notebooks own updated_at parameter.
+
+```javascript
+mapUpdatedNoteToNotebook(notes){
+    const collection = {};
+    Object.values(notes.notes).forEach(note => {
+      if(note.notebook_id in collection){
+        collection[note.notebook_id].push(note);
+        collection[note.notebook_id] = 
+          collection[note.notebook_id][0].updated_at > collection[note.notebook_id][1].updated_at ? [ collection[note.notebook_id][0] ] : [ collection[note.notebook_id][1] ];
+      } else {
+        collection[note.notebook_id] = [ note ];
+      }
+    });
+    const collectionArr = Object.values(collection).sort((a, b) => {new Date(b[0].updated_at) - new Date(a[0].updated_at)});
+    const sortedNotebookIds = collectionArr.map(note => { return note[0].notebook_id });
+    this.setState({
+      updatedNotebookOrder: sortedNotebookIds,
+      updatedNotesCollection: collection,
+    });
+  }
+
+```
+
