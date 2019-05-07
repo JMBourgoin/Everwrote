@@ -89,12 +89,11 @@ class NotebooksContainer extends React.Component {
 
   sortByUpdated(arr) {
     let tempArr = arr.concat([]);
-    debugger
     const collection = this.state.updatedNotesCollection;
     const order = this.state.updatedNotebookOrder;
     const newArr = tempArr.concat([]);
     tempArr.forEach((notebook, index) => {
-      debugger
+
       if(order.includes(notebook.id)){
         newArr[index].updated_at = collection[notebook.id][0].updated_at;
       }
@@ -102,7 +101,6 @@ class NotebooksContainer extends React.Component {
     let sortedNotebooks = newArr.sort(function (a, b) {
       return ((new Date(b.updated_at)) < (new Date(a.updated_at)) ? -1 : 1);
     });
-    debugger
       return sortedNotebooks;
   };
 
