@@ -87,4 +87,10 @@ create_table "joins", force: :cascade do |t|
     t.index ["tag_id"], name: "index_joins_on_tag_id"
   end
   ```
+## Future Features
+• Sharable notes and notebooks between users<br>
+• Messaging between users using Action Cable & Web Sockets<br>
+• Simple trash can feature for deleted notes<br>
+• Fullscreen expandable note editor<br>
+• Downloadable notes & notebook collections in editable & pdf formats
 
