@@ -55,8 +55,10 @@ componentDidUpdate(prevProps, prevState){
 }
 
   handleTitle(e){
+    let value = e.target.value;
     this.setState({
-      title: e.target.value,
+      title: value,
+      count: this.state.count + 1, 
       klass: 'note-save-button save2',
     });
   }
@@ -83,6 +85,7 @@ componentDidUpdate(prevProps, prevState){
      this.setState({
        klass: 'note-save-button save2',
      });
+     this.handleSave();
    }
   }
 
@@ -112,15 +115,21 @@ componentDidUpdate(prevProps, prevState){
       notebook_id: this.props.oldNote.notebookId,
       author_id: this.props.oldNote.authorId
     };
-    
-    
+    debugger
     if(this.props.noteId === null){
-      this.props.createNote(newNote);
-      this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
+      let newNoteId = 0;
+      this.props.createNote(newNote).then(function(note){ 
+        newNoteId = note.note.id; 
+      }).then(()=>{
+        this.props.history.push(`/notes/${newNoteId}/notebooks/${this.props.match.params.notebookId}`);
+      });
+      // this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
     } else {
       let updatedNote = merge({}, this.props.oldNote, newNote);
       this.props.updateNote(updatedNote);
-      this.props.history.push(`/notes/${updatedNote.id}/notebooks/${this.props.match.params.notebookId}`);
+      if (this.props.history.location.pathname !== `/notes/${updatedNote.id}/notebooks/${this.props.match.params.notebookId}`){
+        this.props.history.push(`/notes/${updatedNote.id}/notebooks/${this.props.match.params.notebookId}`);
+      }
     }
     this.setState({klass: 'nonactive'});
   }

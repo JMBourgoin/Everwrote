@@ -1784,13 +1784,10 @@ function (_React$Component) {
     key: "sortByUpdated",
     value: function sortByUpdated(arr) {
       var tempArr = arr.concat([]);
-      debugger;
       var collection = this.state.updatedNotesCollection;
       var order = this.state.updatedNotebookOrder;
       var newArr = tempArr.concat([]);
       tempArr.forEach(function (notebook, index) {
-        debugger;
-
         if (order.includes(notebook.id)) {
           newArr[index].updated_at = collection[notebook.id][0].updated_at;
         }
@@ -1798,7 +1795,6 @@ function (_React$Component) {
       var sortedNotebooks = newArr.sort(function (a, b) {
         return new Date(b.updated_at) < new Date(a.updated_at) ? -1 : 1;
       });
-      debugger;
       return sortedNotebooks;
     }
   }, {
@@ -2465,8 +2461,10 @@ function (_React$Component) {
   }, {
     key: "handleTitle",
     value: function handleTitle(e) {
+      var value = e.target.value;
       this.setState({
-        title: e.target.value,
+        title: value,
+        count: this.state.count + 1,
         klass: 'note-save-button save2'
       });
     } // handleBody(content, delta, source, editor) {
@@ -2496,6 +2494,7 @@ function (_React$Component) {
         this.setState({
           klass: 'note-save-button save2'
         });
+        this.handleSave();
       }
     }
   }, {
@@ -2519,6 +2518,8 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
+      var _this3 = this;
+
       if (e !== undefined) {
         e.preventDefault();
       }
@@ -2529,14 +2530,22 @@ function (_React$Component) {
         notebook_id: this.props.oldNote.notebookId,
         author_id: this.props.oldNote.authorId
       };
+      debugger;
 
       if (this.props.noteId === null) {
-        this.props.createNote(newNote);
-        this.props.history.push("/notes/notebooks/".concat(this.props.match.params.notebookId));
+        var newNoteId = 0;
+        this.props.createNote(newNote).then(function (note) {
+          newNoteId = note.note.id;
+        }).then(function () {
+          _this3.props.history.push("/notes/".concat(newNoteId, "/notebooks/").concat(_this3.props.match.params.notebookId));
+        }); // this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
       } else {
         var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, this.props.oldNote, newNote);
         this.props.updateNote(updatedNote);
-        this.props.history.push("/notes/".concat(updatedNote.id, "/notebooks/").concat(this.props.match.params.notebookId));
+
+        if (this.props.history.location.pathname !== "/notes/".concat(updatedNote.id, "/notebooks/").concat(this.props.match.params.notebookId)) {
+          this.props.history.push("/notes/".concat(updatedNote.id, "/notebooks/").concat(this.props.match.params.notebookId));
+        }
       }
 
       this.setState({
@@ -2557,7 +2566,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var modules = {
         toolbar: [[{
@@ -2578,7 +2587,7 @@ function (_React$Component) {
           key: tag.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           name: tag.id,
-          onClick: _this3.tagDelete,
+          onClick: _this4.tagDelete,
           className: "note-tag-button"
         }, tag.name));
       });
