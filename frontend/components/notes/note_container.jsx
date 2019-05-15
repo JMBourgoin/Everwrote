@@ -80,13 +80,8 @@ componentDidUpdate(prevProps, prevState){
     this.setState({
      body: value,
      count: this.state.count + 1, 
-   });
-   if(this.state.count > 1){
-     this.setState({
-       klass: 'note-save-button save2',
-     });
-     this.handleSave();
-   }
+   }, () => { this.handleSave(); });
+   
   }
 
   tagDelete(e){

@@ -2489,17 +2489,14 @@ function (_React$Component) {
   }, {
     key: "handleBody",
     value: function handleBody(value) {
+      var _this4 = this;
+
       this.setState({
         body: value,
         count: this.state.count + 1
+      }, function () {
+        _this4.handleSave();
       });
-
-      if (this.state.count > 1) {
-        this.setState({
-          klass: 'note-save-button save2'
-        });
-        this.handleSave();
-      }
     }
   }, {
     key: "tagDelete",
@@ -2527,7 +2524,7 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
-      var _this4 = this;
+      var _this5 = this;
 
       if (e !== undefined) {
         e.preventDefault();
@@ -2545,7 +2542,7 @@ function (_React$Component) {
         this.props.createNote(newNote).then(function (note) {
           newNoteId = note.note.id;
         }).then(function () {
-          _this4.props.history.push("/notes/".concat(newNoteId, "/notebooks/").concat(_this4.props.match.params.notebookId));
+          _this5.props.history.push("/notes/".concat(newNoteId, "/notebooks/").concat(_this5.props.match.params.notebookId));
         }); // this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
       } else {
         var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, this.props.oldNote, newNote);
@@ -2574,7 +2571,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       var modules = {
         toolbar: [[{
@@ -2595,7 +2592,7 @@ function (_React$Component) {
           key: tag.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           name: tag.id,
-          onClick: _this5.tagDelete,
+          onClick: _this6.tagDelete,
           className: "note-tag-button"
         }, tag.name));
       });
