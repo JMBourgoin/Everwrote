@@ -80,8 +80,13 @@ componentDidUpdate(prevProps, prevState){
     this.setState({
      body: value,
      count: this.state.count + 1, 
-   }, () => { this.handleSave(); });
-   
+   });
+   if(this.state.count > 1){
+     this.setState({
+       klass: 'note-save-button save2',
+     });
+     this.handleSave();
+   }
   }
 
   tagDelete(e){
@@ -114,6 +119,7 @@ componentDidUpdate(prevProps, prevState){
       notebook_id: this.props.oldNote.notebookId,
       author_id: this.props.oldNote.authorId
     };
+
     if(this.props.noteId === null){
       let newNoteId = 0;
       this.props.createNote(newNote).then(function(note){ 
