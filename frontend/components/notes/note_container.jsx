@@ -60,7 +60,7 @@ componentDidUpdate(prevProps, prevState){
       title: value,
       count: this.state.count + 1, 
       klass: 'note-save-button save2',
-    });
+    },() => { this.titleSave(); });
   }
   
   // handleBody(content, delta, source, editor) {
@@ -105,6 +105,10 @@ componentDidUpdate(prevProps, prevState){
     this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
   }
 
+  titleSave(){
+    this.handleSave();
+  }
+
   handleSave(e){
     if( e !== undefined){
       e.preventDefault();
@@ -115,7 +119,6 @@ componentDidUpdate(prevProps, prevState){
       notebook_id: this.props.oldNote.notebookId,
       author_id: this.props.oldNote.authorId
     };
-    debugger
     if(this.props.noteId === null){
       let newNoteId = 0;
       this.props.createNote(newNote).then(function(note){ 

@@ -2461,11 +2461,15 @@ function (_React$Component) {
   }, {
     key: "handleTitle",
     value: function handleTitle(e) {
+      var _this3 = this;
+
       var value = e.target.value;
       this.setState({
         title: value,
         count: this.state.count + 1,
         klass: 'note-save-button save2'
+      }, function () {
+        _this3.titleSave();
       });
     } // handleBody(content, delta, source, editor) {
     //   let value = editor.getContents();
@@ -2516,9 +2520,14 @@ function (_React$Component) {
       this.props.history.push("/notes/notebooks/".concat(this.props.match.params.notebookId));
     }
   }, {
+    key: "titleSave",
+    value: function titleSave() {
+      this.handleSave();
+    }
+  }, {
     key: "handleSave",
     value: function handleSave(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (e !== undefined) {
         e.preventDefault();
@@ -2530,14 +2539,13 @@ function (_React$Component) {
         notebook_id: this.props.oldNote.notebookId,
         author_id: this.props.oldNote.authorId
       };
-      debugger;
 
       if (this.props.noteId === null) {
         var newNoteId = 0;
         this.props.createNote(newNote).then(function (note) {
           newNoteId = note.note.id;
         }).then(function () {
-          _this3.props.history.push("/notes/".concat(newNoteId, "/notebooks/").concat(_this3.props.match.params.notebookId));
+          _this4.props.history.push("/notes/".concat(newNoteId, "/notebooks/").concat(_this4.props.match.params.notebookId));
         }); // this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
       } else {
         var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, this.props.oldNote, newNote);
@@ -2566,7 +2574,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var modules = {
         toolbar: [[{
@@ -2587,7 +2595,7 @@ function (_React$Component) {
           key: tag.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           name: tag.id,
-          onClick: _this4.tagDelete,
+          onClick: _this5.tagDelete,
           className: "note-tag-button"
         }, tag.name));
       });
