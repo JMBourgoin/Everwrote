@@ -15,8 +15,10 @@ class NoteContainer extends React.Component {
       count: 0,
       tags: [],
       klass: "nonactive",
+      focus: ""
    };
-    
+    this.titleInput = React.createRef();
+    this.bodyInput = React.createRef();
     this.handleBody = this.handleBody.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -24,6 +26,8 @@ class NoteContainer extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.handleBodyValue = this.handleBodyValue.bind(this);
+    this.focusTitleInput = this.focusTitleInput.bind(this);
+    this.focusBodyInput = this.focusBodyInput.bind(this);
   }
   
   componentDidMount(prevProps, prevState){
@@ -34,6 +38,11 @@ class NoteContainer extends React.Component {
         body: this.props.oldNote.body,
         title: this.props.oldNote.title,
       });
+      if(this.props.oldNote.title !== "Add Note Title"){
+        this.focusTitleInput();
+      } else if(this.props.oldNote.title !== "Add Note Body"){
+        this.focusBodyInput();
+      }
     }
   }
 
@@ -54,22 +63,24 @@ componentDidUpdate(prevProps, prevState){
   }
 }
 
+  focusTitleInput(){
+    this.titleInput.current.focus();
+  }
+
+  focusBodyInput(){
+    this.bodyInput.current.focus();
+  }
+
   handleTitle(e){
     let value = e.target.value;
     this.setState({
       title: value,
       count: this.state.count + 1, 
       klass: 'note-save-button save2',
+      focus: 'title'
     },() => { this.titleSave(); });
   }
   
-  // handleBody(content, delta, source, editor) {
-  //   let value = editor.getContents();
-  //   debugger
-  //   this.setState({
-  //    body: value,
-  //  });
-  // }
   handleBodyValue(content, delta, source, editor){
     content = this.state.body;
     const value = content;
@@ -80,6 +91,7 @@ componentDidUpdate(prevProps, prevState){
     this.setState({
      body: value,
      count: this.state.count + 1, 
+     focus: 'body',
    });
    if(this.state.count > 1){
      this.setState({
@@ -126,7 +138,9 @@ componentDidUpdate(prevProps, prevState){
         newNoteId = note.note.id; 
       }).then(()=>{
         this.props.history.push(`/notes/${newNoteId}/notebooks/${this.props.match.params.notebookId}`);
-      });
+      }).then(() => { this.focusTitleInput(); });
+
+
       // this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
     } else {
       let updatedNote = merge({}, this.props.oldNote, newNote);
@@ -187,10 +201,12 @@ renderErrors() {
           className="header-input" 
           type="text" value={this.state.title} 
           onChange={this.handleTitle}
+          ref={this.titleInput}
           />
         </div>
         <div className="quil-container">
           <ReactQuill 
+          ref={this.bodyInput}
           value={this.state.body}
           onChange={this.handleBody} 
           theme="snow"

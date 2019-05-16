@@ -2416,8 +2416,11 @@ function (_React$Component) {
       title: "Add Note Title",
       count: 0,
       tags: [],
-      klass: "nonactive"
+      klass: "nonactive",
+      focus: ""
     };
+    _this.titleInput = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    _this.bodyInput = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.handleBody = _this.handleBody.bind(_assertThisInitialized(_this));
     _this.handleTitle = _this.handleTitle.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
@@ -2425,6 +2428,8 @@ function (_React$Component) {
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     _this.handleBodyValue = _this.handleBodyValue.bind(_assertThisInitialized(_this));
+    _this.focusTitleInput = _this.focusTitleInput.bind(_assertThisInitialized(_this));
+    _this.focusBodyInput = _this.focusBodyInput.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2438,6 +2443,12 @@ function (_React$Component) {
           body: this.props.oldNote.body,
           title: this.props.oldNote.title
         });
+
+        if (this.props.oldNote.title !== "Add Note Title") {
+          this.focusTitleInput();
+        } else if (this.props.oldNote.title !== "Add Note Body") {
+          this.focusBodyInput();
+        }
       }
     }
   }, {
@@ -2459,6 +2470,16 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "focusTitleInput",
+    value: function focusTitleInput() {
+      this.titleInput.current.focus();
+    }
+  }, {
+    key: "focusBodyInput",
+    value: function focusBodyInput() {
+      this.bodyInput.current.focus();
+    }
+  }, {
     key: "handleTitle",
     value: function handleTitle(e) {
       var _this3 = this;
@@ -2467,18 +2488,12 @@ function (_React$Component) {
       this.setState({
         title: value,
         count: this.state.count + 1,
-        klass: 'note-save-button save2'
+        klass: 'note-save-button save2',
+        focus: 'title'
       }, function () {
         _this3.titleSave();
       });
-    } // handleBody(content, delta, source, editor) {
-    //   let value = editor.getContents();
-    //   debugger
-    //   this.setState({
-    //    body: value,
-    //  });
-    // }
-
+    }
   }, {
     key: "handleBodyValue",
     value: function handleBodyValue(content, delta, source, editor) {
@@ -2491,7 +2506,8 @@ function (_React$Component) {
     value: function handleBody(value) {
       this.setState({
         body: value,
-        count: this.state.count + 1
+        count: this.state.count + 1,
+        focus: 'body'
       });
 
       if (this.state.count > 1) {
@@ -2546,6 +2562,8 @@ function (_React$Component) {
           newNoteId = note.note.id;
         }).then(function () {
           _this4.props.history.push("/notes/".concat(newNoteId, "/notebooks/").concat(_this4.props.match.params.notebookId));
+        }).then(function () {
+          _this4.focusTitleInput();
         }); // this.props.history.push(`/notes/notebooks/${this.props.match.params.notebookId}`);
       } else {
         var updatedNote = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, this.props.oldNote, newNote);
@@ -2609,10 +2627,12 @@ function (_React$Component) {
         className: "header-input",
         type: "text",
         value: this.state.title,
-        onChange: this.handleTitle
+        onChange: this.handleTitle,
+        ref: this.titleInput
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "quil-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_quill__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        ref: this.bodyInput,
         value: this.state.body,
         onChange: this.handleBody,
         theme: "snow",
